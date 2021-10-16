@@ -38,6 +38,12 @@ body {
     color: inherit;
 }
 
+.content-area {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(12, 1fr);
+}
+
 .footer {
     position: absolute;
     bottom: 0;
