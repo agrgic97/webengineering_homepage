@@ -1,0 +1,63 @@
+/* Google font imports */
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Noto Sans', sans-serif;
+    user-select: none;
+}
+
+.header {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    padding: 10px;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
+.title {
+    color: #04AA6D;
+    font-weight: bold;
+    font-size: 1.25em;
+    text-decoration: none;
+}
+
+#menu-button {
+    cursor: pointer;
+    display: block;
+}
+
+
+#menu-button-arrow {
+    margin-left: 2px;
+}
+
+#navbar {
+    text-align: center;
+    background-color: #04AA6D;
+}
+
+#navbar li {
+    padding: 5px;
+}
+
+#navbar li:hover, .navbar li:active {
+    background-color: #059862;
+}
+
+#navbar a {
+    display: block;
+    text-decoration: none;
+    color: white;
+}
+
+footer {
+    color: white;
+    background-color: #282A35;
+}

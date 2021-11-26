@@ -1,32 +1,47 @@
-<!DOCTYPE html>
 <html lang="de">
-    <head>
-        <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mein Solution Browser</title>
+    <link rel="stylesheet" href="/assets/css/main.css">
 
-        <!-- Google font imports -->
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
+    <!-- fontawesome kit import -->
+    <script src="https://kit.fontawesome.com/3d690014f1.js" crossorigin="anonymous"></script>
+</head>
+<body>
 
-        <link rel="stylesheet" href="styles/main.css">
-
-        <title>My Solution Browser</title>
-    </head>
-    <body>
+    <!-- header with title and navigation -->
+    <header>
         <div class="header">
-            <div class="title"><h1><a href="index.html">My Solution Browser</a></h1></div>
-            <div class="navbar">
-                <div class="nav-item"><a>Page 1</a></div>
-                <div class="nav-item"><a>Page 2</a></div>
-                <div class="nav-item"><a>Page 3</a></div>
-            </div>
+            <a href="index.html" class="title">Mein Soliution Browser</a>
+            <a id="menu-button">Menu<i id="menu-button-arrow" class="fa fa-caret-down"></i></a>
         </div>
-        <div class="content-area">
-        </div>
-        <div class="footer">
-            <div class="footer-text">
-                <p>Antonio Grgic</p>
-            </div>
-        </div>
-    </body>
+    </header>
+    <nav>
+        <ul id="navbar">
+            <li><a href="#">Einführung</a></li>
+            <li><a href="#">CSS 1. Teil</a></li>
+            <li><a href="#">CSS 2. Teil</a></li>
+            <li><a href="#">JavaScript</a></li>
+            <li><a href="#">DOM</a></li>
+            <li><a href="#">ECMAScript</a></li>
+            <li><a href="#">Functional</a></li>
+            <li><a href="#">Async</a></li>
+            <li><a href="#">SVG</a></li>
+            <li><a href="#">TypeScript</a></li>
+            <li><a href="#">Vue</a></li>
+            <li><a href="#">PHP</a></li>
+            <li><a href="#">Security</a></li>
+        </ul>
+    </nav>
+
+    <!-- main section with content -->
+    <main>
+        <div class="content-area"></div>
+    </main>
+
+    <!-- footer -->
+    <footer></footer>
+    <script type="text/javascript" src="/assets/js/main.js"></script>
+</body>
 </html>
