@@ -30,7 +30,10 @@ body {
 
 #menu-button {
     cursor: pointer;
-    display: block;
+    display: inherit;
+    flex-wrap: nowrap;
+    align-items: baseline;
+    margin-left: 10px;
 }
 
 
