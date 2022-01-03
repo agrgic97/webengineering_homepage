@@ -1,0 +1,41 @@
+<template>
+  <div class="navigation">
+    <div class="navItem" v-for="item in navList"><a>{{ item.valueOf() }}</a></div>
+  </div>
+</template>
+
+<script>
+export default {
+  name: "DesktopNavigation",
+  props: {
+      navList: Array
+  }
+}
+</script>
+
+<style scoped>
+  .navigation {
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    margin-top: 20px;
+  }
+
+  .navItem {
+    display: inline-block;
+    padding: 10px;
+    font-size: 1.25rem;
+    color: #333333;
+  }
+
+  .navItem a {
+    display: block;
+  }
+
+  .navItem a:hover, .navItem a:active {
+    transform: scale(1.05);
+    font-weight: bold;
+    color: #528545;
+  }
+
+</style>

@@ -6,7 +6,7 @@
     name: 'App',
     components: {
       Header,
-      MobileNavigation
+      MobileNavigation,
     },
     data() {
       return {
@@ -52,7 +52,7 @@
   <div class="app">
     <MobileNavigation :navList="navList"></MobileNavigation>
     <div class="content" :class="showNav ? 'open' : ''">
-      <Header :showIcon="isMobile()" :showNav="showNav" @slide-content="slideContent()"></Header>
+      <Header :mobile="isMobile()" :navList="navList" :showNav="showNav" @slide-content="slideContent()"></Header>
     </div>
   </div>
 </template>
@@ -74,11 +74,14 @@
     background-color: #4CAF50;
     font-family: 'Poppins', sans-serif;
     font-size: 1rem;
+    overflow-x: hidden;
+    height: 100vh;
+    width: 100%;
   }
 
   .app {
     padding: 10px;
-    height: calc(100vh - 20px);
+    min-height: calc(100vh - 20px);
     width: 100%;
     position: relative;
   }
@@ -86,7 +89,7 @@
   .content {
     padding: 20px;
     background-color: white;
-    height: calc(100vh - 20px);
+    min-height: calc(100vh - 20px);
     width: 100%;
     border: 1px solid white;
     border-radius: 5px;
@@ -97,5 +100,30 @@
 
   .open {
     transform: translateX(150px);
+  }
+
+  /* */
+
+  /* width */
+  ::-webkit-scrollbar {
+    height: 5px;
+    width: 8px;
+  }
+
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
   }
 </style>

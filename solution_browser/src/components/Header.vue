@@ -1,17 +1,24 @@
 <template>
   <div class="header">
-    <font-awesome-icon v-if="showIcon" class="icon" :icon="['fas', showNav ? 'times' : 'bars']" @click="$emit('slide-content')"></font-awesome-icon>
-    <span class="title">Solution Browser</span>
+    <font-awesome-icon v-if="mobile" class="icon" :icon="['fas', showNav ? 'times' : 'bars']" @click="$emit('slide-content')"></font-awesome-icon>
+    <span class="title" :style="mobile ? '' : 'font-size: 2rem'">Solution Browser</span>
+    <DesktopNavigation :navList="navList" v-if="!mobile"></DesktopNavigation>
   </div>
 </template>
 
 <script>
+  import DesktopNavigation from "./DesktopNavigation.vue";
+
   export default {
     name: "Header",
-    props: [
-        'showIcon',
-        'showNav'
-    ]
+    components: {
+      DesktopNavigation
+    },
+    props: {
+      mobile: Boolean,
+      showNav: Boolean,
+      navList: Array
+    }
   }
 </script>
 
@@ -19,7 +26,6 @@
 
   .header {
     text-align: center;
-    border-bottom: 1px solid #ccc;
     padding: 10px;
   }
 
