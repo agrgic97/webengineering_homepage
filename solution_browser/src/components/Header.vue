@@ -1,7 +1,7 @@
 <template>
   <div class="header">
     <font-awesome-icon v-if="mobile" class="icon" :icon="['fas', showNav ? 'times' : 'bars']" @click="$emit('slide-content')"></font-awesome-icon>
-    <span class="title" :style="mobile ? '' : 'font-size: 2rem'">Solution Browser</span>
+    <router-link class="title" :style="mobile ? '' : 'font-size: 2rem'" to="/">Solution Browser</router-link>
     <DesktopNavigation :navList="navList" v-if="!mobile"></DesktopNavigation>
   </div>
 </template>
@@ -32,6 +32,8 @@
   .title {
     font-size: 1.5rem;
     font-weight: bold;
+    text-decoration: none;
+    color: black;
   }
 
   .icon {
