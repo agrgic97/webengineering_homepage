@@ -10,6 +10,9 @@ import { faBars } from "@fortawesome/free-solid-svg-icons"
 import { faTimes } from "@fortawesome/free-solid-svg-icons"
 import { faHome } from "@fortawesome/free-solid-svg-icons"
 
+// https://github.com/elisiondesign/vue-code-highlight
+import VueCodeHighlight from "vue-code-highlight"
+
 library.add(faBars)
 library.add(faTimes)
 library.add(faHome)
@@ -18,6 +21,7 @@ const app = createApp(App)
 
 app.use(store)
 app.use(router)
+app.use(VueCodeHighlight)
 
 app.component('font-awesome-icon', FontAwesomeIcon)
 

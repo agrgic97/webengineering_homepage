@@ -1,9 +1,9 @@
 <template>
   <div class="navigation">
-    <div class="home"><a>Home<font-awesome-icon class="icon" icon="home"></font-awesome-icon></a></div>
-    <div class="navItem" v-for="item in navList"><a>{{ item.valueOf() }}</a></div>
+    <router-link class="navItem" to="/">Home<font-awesome-icon icon="home" class="icon"></font-awesome-icon></router-link>
+    <router-link class="navItem" v-for="item in navList" key="{{ item.id }}" :to="item.path">{{ item.text }}</router-link>
   </div>
-</template>
+</template>valueOf()
 
 <script>
 export default {
@@ -21,32 +21,20 @@ export default {
     margin-top: 25px;
   }
 
-  .navItem, .home {
-    padding: 10px;
-    width: 210px;
-    border-radius: 5px;
-  }
-
-  .home {
-    margin-bottom: 10px;
-    background-color: #333333;
-  }
-
-  .home:hover, .home:active {
-    transform: scale(1.05);
-  }
-
-  .navItem a {
+  .navItem{
     display: block;
+    padding: 10px;
+    color: white;
+    text-decoration: none;
+    width: 160px;
+
+    /* https://pretagteam.com/question/chrome-hide-blue-highlight-css-mobile */
+    -webkit-tap-highlight-color: transparent;
   }
 
-  .navItem a:hover, .navItem a:active {
-    font-weight: bold;
-    transform: scale(1.05);
-  }
-
-  .navItem:hover, .navItem:active {
+  .navItem:hover {
     background-color: #528545;
+    border-radius: 5px;
   }
 
   .icon {

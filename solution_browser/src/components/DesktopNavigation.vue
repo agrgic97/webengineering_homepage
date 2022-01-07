@@ -1,6 +1,6 @@
 <template>
   <div class="navigation">
-    <div class="navItem" v-for="item in navList"><a>{{ item.valueOf() }}</a></div>
+    <div class="navItem" v-for="item in navList" key="{{ item.id }}"><router-link class="link" :to="item.path">{{ item.text }}</router-link></div>
   </div>
 </template>
 
@@ -28,11 +28,16 @@ export default {
     color: #333333;
   }
 
-  .navItem a {
+  .link {
+    text-decoration: none;
+    color: #333333;
+  }
+
+  .navItem .link {
     display: block;
   }
 
-  .navItem a:hover, .navItem a:active {
+  .navItem .link:hover, .navItem .link:active {
     transform: scale(1.05);
     font-weight: bold;
     color: #528545;

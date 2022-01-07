@@ -26,7 +26,7 @@
 
   .header {
     text-align: center;
-    padding: 10px;
+    padding: 30px;
   }
 
   .title {

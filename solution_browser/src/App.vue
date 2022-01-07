@@ -13,20 +13,76 @@
         screenWidth: window.innerWidth,
         showNav: false,
         navList: [
-            'Einführung',
-            'CSS 1. Teil',
-            'CSS 2. Teil',
-            'JavaScript',
-            'DOM',
-            'ECMAScript',
-            'Functional',
-            'Async',
-            'SVG',
-            'TypeScript',
-            'Vue',
-            'PHP',
-            'Security',
-            'Vue 3'
+          {
+            text: 'Einführung',
+            path: '/Einfuehrung',
+            id: 1
+          },
+          {
+            text: 'CSS 1. Teil',
+            path: '/',
+            id: 2
+          },
+          {
+            text: 'CSS 2. Teil',
+            path: '/',
+            id: 3
+          },
+          {
+            text: 'JavaScript',
+            path: '/',
+            id: 4
+          },
+          {
+            text: 'DOM',
+            path: '/',
+            id: 5
+          },
+          {
+            text: 'ECMAScript',
+            path: '/',
+            id: 6
+          },
+          {
+            text: 'Functional',
+            path: '/',
+            id: 7
+          },
+          {
+            text: 'Async',
+            path: '/',
+            id: 8
+          },
+          {
+            text: 'SVG',
+            path: '/',
+            id: 9
+          },
+          {
+            text: 'TypeScript',
+            path: '/',
+            id: 10
+          },
+          {
+            text: 'Vue',
+            path: '/',
+            id: 11
+          },
+          {
+            text: 'PHP',
+            path: '/',
+            id: 12
+          },
+          {
+            text: 'Security',
+            path: '/',
+            id: 13
+          },
+          {
+            text: 'Vue 3',
+            path: '/',
+            id: 14
+          }
         ]
       }
     },
@@ -53,6 +109,7 @@
     <MobileNavigation :navList="navList"></MobileNavigation>
     <div class="content" :class="showNav ? 'open' : ''">
       <Header :mobile="isMobile()" :navList="navList" :showNav="showNav" @slide-content="slideContent()"></Header>
+      <router-view></router-view>
     </div>
   </div>
 </template>
@@ -87,11 +144,9 @@
   }
 
   .content {
-    padding: 20px;
     background-color: white;
     min-height: calc(100vh - 20px);
     width: 100%;
-    border: 1px solid white;
     border-radius: 5px;
     box-shadow: 2px 2px 2px 2px rgba(0,0,0,0.2);
     position: relative;
@@ -102,7 +157,7 @@
     transform: translateX(150px);
   }
 
-  /* */
+  /* https://www.w3schools.com/howto/howto_css_custom_scrollbar.asp */
 
   /* width */
   ::-webkit-scrollbar {
