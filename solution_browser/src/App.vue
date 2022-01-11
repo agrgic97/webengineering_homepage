@@ -1,3 +1,13 @@
+<template>
+  <div class="app">
+    <MobileNavigation :navList="navList"></MobileNavigation>
+    <div class="content" :class="showNav ? 'open' : ''">
+      <Header :mobile="isMobile()" :navList="navList" :showNav="showNav" @slide-content="slideContent()"></Header>
+      <router-view class="view"></router-view>
+    </div>
+  </div>
+</template>
+
 <script>
   import Header from "./components/Header.vue";
   import MobileNavigation from "./components/MobileNavigation.vue";
@@ -104,16 +114,6 @@
   }
 </script>
 
-<template>
-  <div class="app">
-    <MobileNavigation :navList="navList"></MobileNavigation>
-    <div class="content" :class="showNav ? 'open' : ''">
-      <Header :mobile="isMobile()" :navList="navList" :showNav="showNav" @slide-content="slideContent()"></Header>
-      <router-view></router-view>
-    </div>
-  </div>
-</template>
-
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
@@ -158,28 +158,31 @@
     transform: translateX(150px);
   }
 
-  /* https://www.w3schools.com/howto/howto_css_custom_scrollbar.asp */
+  @media only screen and (min-width: 600px) {
 
-  /* width */
-  ::-webkit-scrollbar {
-    height: 5px;
-    width: 8px;
-  }
+    /* https://www.w3schools.com/howto/howto_css_custom_scrollbar.asp */
 
-  /* Track */
-  ::-webkit-scrollbar-track {
-    background: #f1f1f1;
-    border-radius: 10px;
-  }
+    /* width */
+    ::-webkit-scrollbar {
+      height: 5px;
+      width: 8px;
+    }
 
-  /* Handle */
-  ::-webkit-scrollbar-thumb {
-    background: #888;
-    border-radius: 10px;
-  }
+    /* Track */
+    ::-webkit-scrollbar-track {
+      background: #f1f1f1;
+      border-radius: 10px;
+    }
 
-  /* Handle on hover */
-  ::-webkit-scrollbar-thumb:hover {
-    background: #555;
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+      background: #888;
+      border-radius: 10px;
+    }
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+      background: #555;
+    }
   }
 </style>
