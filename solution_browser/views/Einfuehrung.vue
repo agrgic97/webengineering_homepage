@@ -1,13 +1,15 @@
 <template>
   <div class="view">
     <ViewHeader :header="header" :subheader="subheader"></ViewHeader>
-    <Exercise></Exercise>
+    <Exercise class="exercise" v-for="item in data" :data="item"></Exercise>
   </div>
 </template>
 
 <script>
 import ViewHeader from "../src/components/ViewHeader.vue";
 import Exercise from "../src/components/Exercise.vue";
+import { exercises } from "../data/exercises.js";
+
 
 export default {
   name: "Einfuehrung",
@@ -18,7 +20,8 @@ export default {
   data() {
     return {
       header: 'Einführung',
-      subheader: 'HTTP, URI, und HTML'
+      subheader: 'HTTP, URI, und HTML',
+      data: exercises.Einfuehrung
     }
   }
 
@@ -27,17 +30,9 @@ export default {
 
 <style scoped>
 
-  .title {
-    font-size: 1.5rem;
-    font-weight: bold;
-  }
-
-  .description {
-    display: inline-block;
-    padding: 10px 30px;
-    background-color: #ccc;
-    border-radius: 5px;
-    text-align: center;
-    font-weight: bold;
+  @media only screen and (min-width: 600px) {
+    .exercise {
+      margin: 50px 15%;
+    }
   }
 </style>
