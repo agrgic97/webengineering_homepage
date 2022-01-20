@@ -13,6 +13,7 @@ import { faHome } from "@fortawesome/free-solid-svg-icons"
 // https://github.com/elisiondesign/vue-code-highlight
 import VueCodeHighlight from "vue-code-highlight"
 
+
 library.add(faBars)
 library.add(faTimes)
 library.add(faHome)

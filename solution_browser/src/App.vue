@@ -30,68 +30,63 @@
           },
           {
             text: 'CSS 1. Teil',
-            path: '/',
+            path: '/CSS1',
             id: 2
           },
           {
             text: 'CSS 2. Teil',
-            path: '/',
+            path: '/CSS2',
             id: 3
           },
           {
             text: 'JavaScript',
-            path: '/',
+            path: '/JavaScript',
             id: 4
           },
           {
             text: 'DOM',
-            path: '/',
+            path: '/DOM',
             id: 5
           },
           {
             text: 'ECMAScript',
-            path: '/',
+            path: '/ECMAScript',
             id: 6
           },
           {
             text: 'Functional',
-            path: '/',
+            path: '/Functional',
             id: 7
           },
           {
             text: 'Async',
-            path: '/',
+            path: '/Async',
             id: 8
           },
           {
             text: 'SVG',
-            path: '/',
+            path: '/SVG',
             id: 9
           },
           {
             text: 'TypeScript',
-            path: '/',
+            path: '/TypeScript',
             id: 10
           },
           {
             text: 'Vue',
-            path: '/',
+            path: '/Vue',
             id: 11
           },
           {
             text: 'PHP',
-            path: '/',
+            path: '/PHP',
             id: 12
           },
           {
             text: 'Security',
-            path: '/',
+            path: '/Security',
             id: 13
-          },
-          {
-            text: 'Vue 3',
-            path: '/',
-            id: 14
           }
         ]
       }
@@ -159,7 +154,6 @@
   }
 
   @media only screen and (min-width: 600px) {
-
     /* https://www.w3schools.com/howto/howto_css_custom_scrollbar.asp */
 
     /* width */
