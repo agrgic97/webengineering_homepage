@@ -529,6 +529,706 @@ export const exercises = {
                 }
             }
         }
+    },
+    "CSS2": {
+        "3.1": {
+            "title": "3.1. Responsiv mit Flexbox Desktop-First",
+            "exercises": {
+                "1": {
+                    "title": "Implementieren Sie ausschließlich mit HTML und CSS Flexbox folgendes responsive Webdesign nach der Desktop-First-Strategie!",
+                    "image": true,
+                    "path": "src/assets/holy-grail1.png",
+                    "video": false,
+                    "code": true,
+                    "language": "html",
+                    "solution": " <!DOCTYPE html>\n" +
+                        "           <html>\n" +
+                        "               <head>\n" +
+                        "                   <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n" +
+                        "                   <style>\n" +
+                        "\n" +
+                        "                       header {\n" +
+                        "                           background-color: red;\n" +
+                        "                           width: inherit;\n" +
+                        "                           height: 200px;  \n" +
+                        "                           margin-bottom: 15px;\n" +
+                        "                       }\n" +
+                        "\n" +
+                        "                       aside {\n" +
+                        "                           background-color: lawngreen;\n" +
+                        "                           width: 20%;\n" +
+                        "                           height: 500px;\n" +
+                        "                       }\n" +
+                        "\n" +
+                        "                       article {\n" +
+                        "                           background-color: blue;\n" +
+                        "                           height: 500px;\n" +
+                        "                           width: 60%;\n" +
+                        "                           margin-left: 15px;\n" +
+                        "                           margin-right: 15px;\n" +
+                        "                       }\n" +
+                        "\n" +
+                        "                       footer {\n" +
+                        "                           background-color: violet;\n" +
+                        "                           width: 20%;\n" +
+                        "                           height: 500px;\n" +
+                        "                       }\n" +
+                        "\n" +
+                        "                       .main-section {\n" +
+                        "                           display: flex;\n" +
+                        "                           flex-flow: row;\n" +
+                        "                       }\n" +
+                        "\n" +
+                        "                       @media (max-width: 992px) {\t\n" +
+                        "                           header {\n" +
+                        "                               background-color: red;\n" +
+                        "                               width: inherit;\n" +
+                        "                               height: 200px;  \n" +
+                        "                               margin-bottom: 15px;\n" +
+                        "                           }\n" +
+                        "\n" +
+                        "                           aside {\n" +
+                        "                               background-color: lawngreen;\n" +
+                        "                               width: 30%;\n" +
+                        "                               height: 800px;\n" +
+                        "                           }\n" +
+                        "\n" +
+                        "                           article {\n" +
+                        "                               background-color: blue;\n" +
+                        "                               height: 800px;\n" +
+                        "                               width: 70%;\n" +
+                        "                               margin: 0;   \n" +
+                        "                           }\n" +
+                        "\n" +
+                        "                           footer {\n" +
+                        "                               background-color: violet;\n" +
+                        "                               width: 100%;\n" +
+                        "                               height: 300px;\n" +
+                        "                               margin-top: 15px;\n" +
+                        "                           }\n" +
+                        "\n" +
+                        "                           .main-section {\n" +
+                        "                               display: flex;\n" +
+                        "                               flex-wrap: wrap;\n" +
+                        "                           }\n" +
+                        "                       }\n" +
+                        "            \n" +
+                        "                       @media (max-width: 768px) {\n" +
+                        "                           header {\n" +
+                        "                               background-color: red;\n" +
+                        "                               width: inherit;\n" +
+                        "                               height: 200px; \n" +
+                        "                               margin: 0; \n" +
+                        "                           }\n" +
+                        "\n" +
+                        "                           aside {\n" +
+                        "                               background-color: lawngreen;\n" +
+                        "                               width: inherit;\n" +
+                        "                               height: 800px;\n" +
+                        "                           }\n" +
+                        "\n" +
+                        "                           article {\n" +
+                        "                               background-color: blue;\n" +
+                        "                               height: 1000px;\n" +
+                        "                               width: inherit;\n" +
+                        "                               margin: 0;   \n" +
+                        "                           }\n" +
+                        "\n" +
+                        "                           footer {\n" +
+                        "                               background-color: violet;\n" +
+                        "                               width: inherit;\n" +
+                        "                               height: 300px;\n" +
+                        "                               margin: 0;\n" +
+                        "                           }\n" +
+                        "\n" +
+                        "                           .main-section {\n" +
+                        "                               display: block;\n" +
+                        "                           }\n" +
+                        "                       }\n" +
+                        "                   </style>\n" +
+                        "               </head>\n" +
+                        "               <body>\n" +
+                        "                   <header></header>\n" +
+                        "                   <div class=\"main-section\">\n" +
+                        "                       <aside></aside>\n" +
+                        "                       <article></article>\n" +
+                        "                       <footer></footer>\n" +
+                        "                   </div>\n" +
+                        "               </body>\n" +
+                        "           </html>"
+                }
+            }
+        },
+        "3.2": {
+            "title": "3.2. Responsiv mit Grid Mobile-First",
+            "exercises": {
+                "1": {
+                    "title": "Implementieren Sie das gleiche responsive Webdesign wie in Aufgabe 3.1 allerdings mit Grid und der Mobile-First-Strategie! Vermeiden Sie diesmal außerdem das Erscheinen von Scrollbars.",
+                    "image": false,
+                    "video": false,
+                    "code": true,
+                    "language": "html",
+                    "solution": " <!DOCTYPE html>\n" +
+                        "           <html>\n" +
+                        "               <head>\n" +
+                        "                   <style>\n" +
+                        "                       .grid-container {\n" +
+                        "                           display: grid;\n" +
+                        "                           grid-template-columns: repeat(12, 1fr);\n" +
+                        "                           grid-template-rows: 10vh 27vh 50vh 10vh;\n" +
+                        "                       }\n" +
+                        "\n" +
+                        "                       header {\n" +
+                        "                           background-color: red;\n" +
+                        "                           grid-column: 1 / 13;\n" +
+                        "                           grid-row: 1 / 2;\n" +
+                        "                       }\n" +
+                        "\n" +
+                        "                       aside {\n" +
+                        "                           background-color: lawngreen;\n" +
+                        "                           grid-column: 1 / 13;\n" +
+                        "                           grid-row: 2 / 3;\n" +
+                        "                       }\n" +
+                        "\n" +
+                        "                       article {\n" +
+                        "                           background-color: blue;\n" +
+                        "                           grid-column: 1 / 13;\n" +
+                        "                           grid-row: 3 / 4;\n" +
+                        "                       }\n" +
+                        "\n" +
+                        "                       footer {\n" +
+                        "                           background-color: violet;\n" +
+                        "                           grid-column: 1 / 13;\n" +
+                        "                           grid-row: 4 / 5;\n" +
+                        "                       }\n" +
+                        "\n" +
+                        "                       @media only screen and (min-width: 600px) {\n" +
+                        "                           header {\n" +
+                        "                               background-color: red;\n" +
+                        "                               grid-column: 1 / 13;\n" +
+                        "                               grid-row: 1 / 2;\n" +
+                        "                               margin-bottom: 10px;\n" +
+                        "                           }\n" +
+                        "\n" +
+                        "                           aside {\n" +
+                        "                               background-color: lawngreen;\n" +
+                        "                               grid-column: 1 / 4;\n" +
+                        "                               grid-row: 2 / 4;\n" +
+                        "                }\n" +
+                        "\n" +
+                        "                           article {\n" +
+                        "                               background-color: blue;\n" +
+                        "                               grid-column: 4 / 13;\n" +
+                        "                               grid-row: 2 / 4;\n" +
+                        "                               margin-left: 5px;\n" +
+                        "                           }\n" +
+                        "\n" +
+                        "                           footer {\n" +
+                        "                               background-color: violet;\n" +
+                        "                               grid-column: 1 / 13;\n" +
+                        "                               grid-row: 4 / 5;\n" +
+                        "                               margin-top: 10px;\n" +
+                        "                           }\n" +
+                        "                       }\n" +
+                        "\n" +
+                        "                       @media only screen and (min-width: 768px) {\n" +
+                        "                           .grid-container {\n" +
+                        "                               display: grid;\n" +
+                        "                               grid-template-columns: repeat(12, 1fr);\n" +
+                        "                               grid-template-rows: repeat(4, 24vh);\n" +
+                        "                           }\n" +
+                        "\n" +
+                        "                           header {\n" +
+                        "                               background-color: red;\n" +
+                        "                               grid-column: 1 / 13;\n" +
+                        "                               grid-row: 1 / 2;\n" +
+                        "                               margin-bottom: 10px;\n" +
+                        "                           }\n" +
+                        "\n" +
+                        "                           aside {\n" +
+                        "                               background-color: lawngreen;\n" +
+                        "                               grid-column: 1 / 4;\n" +
+                        "                               grid-row: 2 / 5;\n" +
+                        "                           }\n" +
+                        "\n" +
+                        "                           article {\n" +
+                        "                               background-color: blue;\n" +
+                        "                               grid-column: 4 / 10;\n" +
+                        "                               grid-row: 2 / 5;\n" +
+                        "                               margin-left: 10px;\n" +
+                        "                               margin-right: 10px;\n" +
+                        "                           }\n" +
+                        "\n" +
+                        "                           footer {\n" +
+                        "                               background-color: violet;\n" +
+                        "                               grid-column: 10 / 13;\n" +
+                        "                               grid-row: 2 / 5;\n" +
+                        "                               margin-top: 0;\n" +
+                        "                           }\n" +
+                        "                       }\n" +
+                        "                   </style>\n" +
+                        "               </head>\n" +
+                        "               <body>\n" +
+                        "                   <div class=\"grid-container\">\n" +
+                        "                       <header></header>\n" +
+                        "                       <aside></aside>\n" +
+                        "                       <article></article>\n" +
+                        "                       <footer></footer>\n" +
+                        "                   </div>\n" +
+                        "               </body>\n" +
+                        "           </html>"
+                }
+            }
+        },
+        "3.3": {
+            "title": "",
+            "exercises": {
+                "1": {
+                    "title": "Implementieren Sie folgende Landing Page responsiv mit Grid Layout. Vermeiden Sie außerdem das Erscheinen von Scrollbars so weit wie möglich.",
+                    "image": true,
+                    "path": "src/assets/landing.png",
+                    "video": false,
+                    "code": true,
+                    "language": "html",
+                    "solution": " <!DOCTYPE html>\n" +
+                        "           <html>\n" +
+                        "               <head>\n" +
+                        "                   <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n" +
+                        "                   <link rel=\"preconnect\" href=\"https://fonts.googleapis.com\">\n" +
+                        "                   <link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin>\n" +
+                        "                   <link href=\"https://fonts.googleapis.com/css2?family=Oswald&display=swap\" rel=\"stylesheet\">\n" +
+                        "                   <style>\n" +
+                        "                       * {\n" +
+                        "                           font-family: 'Oswald', sans-serif;\n" +
+                        "                           margin: 0;\n" +
+                        "                           padding: 0;\n" +
+                        "                       }\n" +
+                        "\n" +
+                        "                       .grid-container {\n" +
+                        "                           display: grid;\n" +
+                        "                           grid-template-columns: repeat(12, 1fr);\n" +
+                        "                           grid-template-rows: repeat(12, 8.33vh);\n" +
+                        "                       }\n" +
+                        "\n" +
+                        "                       .navigator {\n" +
+                        "                           grid-column: 1 / 13;\n" +
+                        "                           grid-row: 1 / 2;\n" +
+                        "                           background-color: #363636;\n" +
+                        "                           display: flex;\n" +
+                        "                           align-items: center;\n" +
+                        "                           justify-content: center;\n" +
+                        "                       }\n" +
+                        "\n" +
+                        "                       .navigator ul {\n" +
+                        "                           display: flex;\n" +
+                        "                           list-style: none;\n" +
+                        "                           flex-direction: row;\n" +
+                        "                           justify-content: center;\n" +
+                        "                       }\n" +
+                        "\n" +
+                        "                       .navigator ul li a {\n" +
+                        "                           text-decoration: none;\n" +
+                        "                           color: white;\n" +
+                        "                           margin-left: 10px;\n" +
+                        "                           margin-right: 10px;\n" +
+                        "                       }\n" +
+                        "\n" +
+                        "                       .content-area {\n" +
+                        "                           background-color: #ebeae5;\n" +
+                        "                           grid-column: 1 / 13;\n" +
+                        "                           grid-row: 2 / 10;\n" +
+                        "                           display: grid;\n" +
+                        "                           grid-template-columns: repeat(12, 1fr);\n" +
+                        "                           grid-template-rows: repeat(12 ,1fr);\n" +
+                        "                       }\n" +
+                        "\n" +
+                        "                       .subheader {\n" +
+                        "                           text-align: center;\n" +
+                        "                           padding: 20px;\n" +
+                        "                           grid-column: 1 / 13;\n" +
+                        "                           grid-row: 1 / 2;\n" +
+                        "                       }\n" +
+                        "\n" +
+                        "                       .image {\n" +
+                        "                           grid-column: 1 / 7;\n" +
+                        "                           grid-row: 2 / 13;\n" +
+                        "                           display: flex;\n" +
+                        "                           align-items: center;\n" +
+                        "                           justify-content: center;\n" +
+                        "                           margin-bottom: 20px;\n" +
+                        "                       }\n" +
+                        "\n" +
+                        "                       .image img {\n" +
+                        "                           max-width: 100%;\n" +
+                        "                           height: 100%;\n" +
+                        "                           border: 1px solid black;\n" +
+                        "                           border-radius: 5px;\n" +
+                        "                       }\n" +
+                        "\n" +
+                        "                       .content {\n" +
+                        "                           grid-column: 7 / 13;\n" +
+                        "                           grid-row: 2 / 13;\n" +
+                        "                           display: flex;\n" +
+                        "                           flex-direction: column;\n" +
+                        "                           align-items: center;\n" +
+                        "                           justify-content: center;\n" +
+                        "                       }\n" +
+                        "\n" +
+                        "                       .content p {\n" +
+                        "                           margin: 20px;\n" +
+                        "                           text-align: center;\n" +
+                        "                       }\n" +
+                        "\n" +
+                        "                       .button-content {\n" +
+                        "                           text-decoration: none;\n" +
+                        "                           color: white;\n" +
+                        "                           background-color: #f88e37;\n" +
+                        "                           border: 1px solid #f88e37;\n" +
+                        "                           border-radius: 5px;\n" +
+                        "                           padding: 5px 50px 5px 50px;\n" +
+                        "                       }\n" +
+                        "\n" +
+                        "                       @media screen and (max-width: 600px) {\n" +
+            "                                       .button-content {\n" +
+                        "                               padding: 5px 30px 5px 30px;\n" +
+                        "                           }\n" +
+                        "\n" +
+                        "                           .image img {\n" +
+                        "                               width: 90%;\n" +
+                        "                               height: auto;\n" +
+                        "                           }\n" +
+                        "                       }\n" +
+                        "\n" +
+                        "                       .button-footer {\n" +
+                        "                           text-decoration: none;\n" +
+                        "                           color: white;\n" +
+                        "                           background-color: #f88e37;\n" +
+                        "                           border: 1px solid #f88e37;\n" +
+                        "                           border-radius: 5px;\n" +
+                        "                           padding: 5px 80px 5px 80px;\n" +
+                        "                           max-width: 300px;\n" +
+                        "                       }\n" +
+                        "\n" +
+                        "                       .footer {\n" +
+                        "                           grid-column: 1 / 13;\n" +
+                        "                           grid-row: 10 / 13;\n" +
+                        "                           background-color: #011826;\n" +
+                        "                           display: flex;\n" +
+                        "                           flex-direction: column;\n" +
+                        "                           align-items: center;\n" +
+                        "                           justify-content: center;\n" +
+                        "                       }\n" +
+                        "\n" +
+                        "                       .footer p {\n" +
+                        "                           color: white;\n" +
+                        "                           text-decoration: none;\n" +
+                        "                           margin: 20px;\n" +
+                        "                       }\n" +
+                        "\n" +
+                        "                   </style>\n" +
+                        "               </head>\n" +
+                        "               <body>\n" +
+                        "                   <div class=\"grid-container\">\n" +
+                        "                       <div class=\"navigator\">\n" +
+                        "                           <ul>\n" +
+                        "                               <li><a href=\"#\">The book series</a></li>\n" +
+                        "                               <li><a href=\"#\">Testimonials</a></li>\n" +
+                        "                               <li><a href=\"#\">The Author</a></li>\n" +
+                        "                               <li><a href=\"#\">Free Resources</a></li>\n" +
+                        "                           </ul>\n" +
+                        "                       </div>\n" +
+                        "                       <div class=\"content-area\">\n" +
+                        "                           <div class=\"subheader\">\n" +
+                        "                               <h2>You dont know JavaScript</h2>\n" +
+                        "                           </div>\n" +
+                        "                           <div class=\"image\">\n" +
+                        "                               <img src=\"landing-img.png\">\n" +
+                        "                           </div>\n" +
+                        "                           <div class=\"content\">\n" +
+                        "                               <p>Dont't just drift through Javascript.</p>\n" +
+                        "                               <p>Understand how Javascript works</p>\n" +
+                        "                               <p>Start your journey through the bumpy side of Javascript</p>\n" +
+                        "                               <a class=\"button-content\" href=\"#\">ORDER YOUR COPY NOW</a>\n" +
+                        "                           </div>\n" +
+                        "                       </div>\n" +
+                        "                       <div class=\"footer\">\n" +
+                        "                           <p>The first ebook in the book series is absolutely free</p>\n" +
+                        "                           <a class=\"button-footer\" href=\"#\">FIND OUT MORE ABOUT THIS OFFER</a>\n" +
+                        "                       </div>\n" +
+                        "                   </div>\n" +
+                        "               </body>\n" +
+                        "           </html>"
+                }
+            }
+        }
+    },
+    "JavaScript": {
+        "4.1": {
+            "title": "4.1. Funktionen",
+            "exercises": {
+                "1": {
+                    "title": "Schreiben Sie eine Funktion identity(), die ein Argument als Parameter entgegen nimmt und dieses als Ergebnis zurück gibt.",
+                    "image": false,
+                    "video": false,
+                    "code": true,
+                    "language": "javascript",
+                    "solution": " function identity(arg) {\n" +
+                        "             return arg;\n" +
+                        "           }"
+                },
+                "2": {
+                    "title": "Schreiben Sie eine Funktion identity_function(), die ein Argument als Parameter entgegen nimmt und eine Funktion zurück gibt, die dieses Argument zurück gibt.",
+                    "image": false,
+                    "video": false,
+                    "code": true,
+                    "language": "javascript",
+                    "solution": " function identity_function(arg) {\n" +
+                        "               return function (){\n" +
+                        "                   return arg;\n" +
+                        "               }\n" +
+                        "           }"
+                },
+                "3": {
+                    "title": "Schreiben Sie zwei binäre Funktionen add und mul, die Summe und Produkt berechnen.",
+                    "image": false,
+                    "video": false,
+                    "code": true,
+                    "language": "javascript",
+                    "solution": " function add(arg1, arg2) {\n" +
+                        "               if(typeof arg1 == 'number' && typeof arg2 == 'number') {\n" +
+                        "                   return arg1 + arg2;\n" +
+                        "               }\n" +
+                        "           }\n" +
+                        "\n" +
+                        "           function mul(arg1, arg2) {\n" +
+                        "               if(typeof arg1 == 'number' && typeof arg2 == 'number') {\n" +
+                        "                   return arg1 * arg2;\n" +
+                        "               }\n" +
+                        "           }"
+                },
+                "4": {
+                    "title": "Schreiben Sie eine Addier-Funktion addf(), so dass addf(x)(y) genau x + y zurück gibt. (Es haben also zwei Funktionsaufrufe zu erfolgen. addf(x) liefert eine Funktion, die auf y angewandt wird.)",
+                    "image": false,
+                    "video": false,
+                    "code": true,
+                    "language": "javascript",
+                    "solution": " function addf(arg1) {\n" +
+                        "               return function(arg2) {\n" +
+                        "                   return add(arg1,arg2);\n" +
+                        "               }\n" +
+                        "           }"
+                },
+                "5": {
+                    "title": "Schreiben Sie eine Funktion applyf(), die aus einer binären Funktion wie add(x,y) eine Funktion addfberechnet, die mit zwei Aufrufen das gleiche Ergebnis liefert, z.B. addf = applyf(add); addf(x)(y) soll add(x,y) liefern. Entsprechend applyf(mul)(5)(6) soll 30 liefern, wenn mul die binäre Multiplikation ist.",
+                    "image": false,
+                    "video": false,
+                    "code": true,
+                    "language": "javascript",
+                    "solution": " function applyf(operation) {\n" +
+                        "               if(typeof operation == 'function') {\n" +
+                        "                   return function(arg1) {\n" +
+                        "                       return function(arg2) {\n" +
+                        "                           return operation(arg1,arg2);\n" +
+                        "                       }\n" +
+                        "                   }\n" +
+                        "               }\n" +
+                        "           }"
+                }
+            }
+        },
+        "4.2": {
+            "title": "4.2. Objekte",
+            "exercises": {
+                "1": {
+                    "title": "Schreiben Sie die Prototypen Person und Auto in JavaScript, so dass jede Person weiß, welche Autos sie besitzt. Schreiben Sie eine Funktion conflict(), die feststellt, ob ein Auto von mehr als einer Person besessen wird.",
+                    "image": false,
+                    "video": false,
+                    "code": true,
+                    "language": "javascript",
+                    "solution": " function Person(firstname, lastname, age , car) {\n" +
+                        "               this.firstname = firstname;\n" +
+                        "               this.lastname = lastname;\n" +
+                        "               this.age = age;\n" +
+                        "               this.car = car;\n" +
+                        "           }\n" +
+                        "\n" +
+                        "           function Auto(make, model, color){\n" +
+                        "               this.make = make;\n" +
+                        "               this.model = model;\n" +
+                        "               this.color = color;\n" +
+                        "               this.collision = function() {\n" +
+                        "                   var count = 0;\n" +
+                        "                   personen.forEach(element => {\n" +
+                        "                       if(element.car === this) {\n" +
+                        "                           count++;\n" +
+                        "                       }\n" +
+                        "                   });\n" +
+                        "    \n" +
+                        "                   return count > 1 ? true : false;\n" +
+                        "               }\n" +
+                        "           }\n" +
+                        "\n" +
+                        "           var autos = [new Auto('VW','Golf','schwarz'),new Auto('Ford','Mustang','blau'),new Auto('Porsche','911','rot')];\n" +
+                        "           var personen = [new Person('Alice','Wunderland',16,autos[0]),new Person('Bernd','Brot',57,autos[1]),new Person('Kurt C.','Hose',43,autos[0])];\n" +
+                        "\n" +
+                        "           console.log(autos[0].collision());\n" +
+                        "           console.log(autos[1].collision());\n" +
+                        "           console.log(autos[2].collision());"
+                }
+            }
+        },
+        "4.3": {
+            "title": "4.3. Fibonacci",
+            "exercises": {
+                "1": {
+                    "title": "Schreiben Sie im Browser die Fibonacci-Funktion in JavaScript und geben Sie die ersten 2000 Fibonacci-Zahlen 0,1,1,2,3,5,8,13,... auf der Konsole mit console.log() aus.\n" +
+                        "\n" +
+                        "Achten Sie auf Performanz: Berechnen Sie jeden Fibonacci-Wert nur einmal. Speichern Sie zu diesem Zweck jede bereits berechnete Fibonacci-Zahl in einer Tabelle.",
+                    "image": false,
+                    "video": false,
+                    "code": true,
+                    "language": "html",
+                    "solution": " <!DOCTYPE html>\n" +
+                        "           <html>\n" +
+                        "               <head>\n" +
+                        "        \n" +
+                        "                   <style>\n" +
+                        "                       table, th, td {\n" +
+                        "                           border: 1px solid black;\n" +
+                        "                           border-collapse: collapse;\n" +
+                        "                       }\n" +
+                        "                   </style>\n" +
+                        "               </head>\n" +
+                        "               <body>\n" +
+                        "                   <h1>Übung 4.3</h1>\n" +
+                        "                   <table id=\"table\">\n" +
+                        "                       <tr>\n" +
+                        "                           <th colspan=\"2\">Fibonacci-Sequenz</th>\n" +
+                        "                       </tr>\n" +
+                        "                       <tr>\n" +
+                        "                           <th>n</th>\n" +
+                        "                           <th>fibonacci(n)</th>\n" +
+                        "                       </tr>\n" +
+                        "                   </table>\n" +
+                        "                   <script>\n" +
+                        "                       function fibonacci(num, memo) {\n" +
+                        "                           memo = memo || {};\n" +
+                        " \n" +
+                        "                           if (memo[num]) return memo[num];\n" +
+                        "                           if (num == 1 || num == 2) return 1;\n" +
+                        "                           if (num == 0) return 0;\n" +
+                        " \n" +
+                        "                           if (num > 0) {\n" +
+                        "                               return memo[num] = fibonacci(num - 1, memo) + fibonacci(num - 2, memo);\n" +
+                        "                           }\n" +
+                        "                           else{\n" +
+                        "                               return memo[num] = Math.pow(-1, num + 1) * fibonacci(-num);\n" +
+                        "                           }\n" +
+                        "                       }\n" +
+                        "         \n" +
+                        "                       for (var i = 0; i < 2000; i++) {\n" +
+                        "                           var table = document.getElementById(\"table\");\n" +
+                        "                           var row = table.insertRow(-1);\n" +
+                        "                 \n" +
+                        "                           var cell1 = row.insertCell(0);\n" +
+                        "                           var cell2 = row.insertCell(1);\n" +
+                        " \n" +
+                        "                           cell1.innerHTML = i;\n" +
+                        "                           cell2.innerHTML = fibonacci(i);\n" +
+                        "\n" +
+                        "                           console.log(fibonacci(i));\n" +
+                        "                       }\n" +
+                        "             \n" +
+                        "                   </script>\n" +
+                        "               </body>\n" +
+                        "           </html>"
+                },
+                "2": {
+                    "title": "Was ist die größte Fibonacci-Zahl, die sich noch als Integer sicher speichern lässt (Number.MAX_SAFE_INTEGER)? Die wievielte Fibonacci-Zahl in der Fibonacci-Folge ist das?",
+                    "image": false,
+                    "video": false,
+                    "code": false,
+                    "solution": "927372692193079200000 ist die 102. Fibonacci-Zahl"
+                },
+                "3": {
+                    "title": "Was ist die größte Fibonacci-Zahl, die sich noch als Number speichern lässt (Number.MAX_VALUE)? Die wievielte Fibonacci-Zahl in der Fibonacci-Folge ist das (d.h. welche Stelle in der Fibonacci-Folge)?",
+                    "image": false,
+                    "video": false,
+                    "code": false,
+                    "solution": "1.3069892237633987e+308 ist die 1476. Fibonacci-Zahl."
+                },
+                "4": {
+                    "title": "Wechseln Sie zu BigInt, um alle 2000 Fibonacci-Zahlen korrekt anzuzeigen. Geben Sie hier HTML- und JavaScript-Code zusammen ein:",
+                    "image": false,
+                    "video": false,
+                    "code": true,
+                    "language": "html",
+                    "solution": " <!DOCTYPE html>\n" +
+                        "           <html>\n" +
+                        "               <head>\n" +
+                        "        \n" +
+                        "                   <style>\n" +
+                        "                       table, th, td {\n" +
+                        "                           border: 1px solid black;\n" +
+                        "                           border-collapse: collapse;\n" +
+                        "                       }\n" +
+                        "                   </style>\n" +
+                        "               </head>\n" +
+                        "               <body>\n" +
+                        "                   <h1>Übung 4.3</h1>\n" +
+                        "                   <table id=\"table\">\n" +
+                        "                       <tr>\n" +
+                        "                           <th colspan=\"2\">Fibonacci-Sequenz</th>\n" +
+                        "                       </tr>\n" +
+                        "                       <tr>\n" +
+                        "                           <th>n</th>\n" +
+                        "                           <th>fibonacci(n)</th>\n" +
+                        "                       </tr>\n" +
+                        "                   </table>\n" +
+                        "                   <script>\n" +
+                        "                       function fibonacci(num, memo) {\n" +
+                        "                           memo = memo || {};\n" +
+                        " \n" +
+                        "                           if (memo[num]) return memo[num];\n" +
+                        "                           if (num == 1n || num == 2n) return 1n;\n" +
+                        "                           if (num == 0n) return 0n;\n" +
+                        " \n" +
+                        "                           if (num > 0n) {\n" +
+                        "                               return memo[num] = fibonacci(num - 1n, memo) + fibonacci(num - 2n, memo);\n" +
+                        "                           }\n" +
+                        "                           else{\n" +
+                        "                               return memo[num] = Math.pow(-1, num + 1n) * fibonacci(-num);\n" +
+                        "                           }\n" +
+                        "                       }\n" +
+                        "         \n" +
+                        "                       for (var i = 0n; i <= 2000; i++) {\n" +
+                        "                           var table = document.getElementById(\"table\");\n" +
+                        "                           var row = table.insertRow(-1);\n" +
+                        "                 \n" +
+                        "                           var cell1 = row.insertCell(0);\n" +
+                        "                           var cell2 = row.insertCell(1);\n" +
+                        " \n" +
+                        "                           cell1.innerHTML = i;\n" +
+                        "                           cell2.innerHTML = fibonacci(i);\n" +
+                        "\n" +
+                        "                           console.log(fibonacci(i));\n" +
+                        "                       }\n" +
+                        "             \n" +
+                        "                   </script>\n" +
+                        "               </body>\n" +
+                        "           </html>"
+                },
+                "5": {
+                    "title": "Optional: Was ist die größte Fibonacci-Zahl, die Sie mit BigInt korrekt berechnet haben? An welcher Stelle in der Fibonacci-Folge steht diese?",
+                    "image": false,
+                    "video": false,
+                    "code": false,
+                    "solution": "4224696333392304878706725602341482782579852840250681098010280137314308584370130707224123599639141511088446087538909603607640194711643596029271983312598737326253555802606991585915229492453904998722256795316982874482472992263901833716778060607011615497886719879858311468870876264597369086722884023654422295243347964480139515349562972087652656069529806499841977448720155612802665404554171717881930324025204312082516817125\n" +
+                        "\n" +
+                        "an 2000. Stelle"
+                }
+            }
+        }
     }
 }
 

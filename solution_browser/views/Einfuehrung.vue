@@ -29,7 +29,6 @@ export default {
 </script>
 
 <style scoped>
-
   @media only screen and (min-width: 600px) {
     .exercise {
       margin: 50px 15%;

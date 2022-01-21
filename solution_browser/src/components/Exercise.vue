@@ -69,6 +69,8 @@ export default {
     font-family: 'Tinos', serif;
     background-color: #eee;
     white-space: pre-line;
+    /* https://stackoverflow.com/questions/3058866/how-to-force-a-line-break-in-a-long-word-in-a-div */
+    overflow-wrap: break-word;
   }
 
   img {
