@@ -4,7 +4,8 @@
     <div class="exercises" v-for="item in data.exercises">
       <div class="subtitle">{{ item.title }}
         <br>
-        <a v-if="item.video" :href="item.link">Zum Video</a>
+        <a v-if="item.video" :href="item.video_link">Zum Video</a>
+        <a v-if="item.html_page" :href="item.page_link">Zur Seite</a>
       </div>
       <img v-if="item.image" :src="item.path">
       <div class="solution" v-if="!item.code">{{ item.solution }}</div>

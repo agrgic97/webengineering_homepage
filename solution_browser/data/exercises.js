@@ -1,3 +1,4 @@
+
 export const exercises = {
     "Einfuehrung": {
         "1.1": {
@@ -214,7 +215,7 @@ export const exercises = {
                     "title": "Schauen Sie sich folgendes Video an und bauen Sie das dynamische Verhalten exakt nach (nur mit HTML und CSS, ohne JavaScript):",
                     "image": false,
                     "video": true,
-                    "link": "https://www.youtube.com/watch?v=PE3POxjDspo",
+                    "video_link": "https://www.youtube.com/watch?v=PE3POxjDspo",
                     "code": true,
                     "language": "html",
                     "solution": "\t<!DOCTYPE html>\n" +
@@ -291,7 +292,7 @@ export const exercises = {
                     "title": "Schauen Sie sich folgendes Video an und bauen Sie das dynamische Verhalten exakt nach (nur mit HTML und CSS, ohne JavaScript):",
                     "image": false,
                     "video": true,
-                    "link": "https://www.youtube.com/watch?v=HVmnv3k4__E",
+                    "video_link": "https://www.youtube.com/watch?v=HVmnv3k4__E",
                     "code": true,
                     "language": "html",
                     "solution": "\t<!DOCTYPE html>\n" +
@@ -1226,6 +1227,935 @@ export const exercises = {
                     "solution": "4224696333392304878706725602341482782579852840250681098010280137314308584370130707224123599639141511088446087538909603607640194711643596029271983312598737326253555802606991585915229492453904998722256795316982874482472992263901833716778060607011615497886719879858311468870876264597369086722884023654422295243347964480139515349562972087652656069529806499841977448720155612802665404554171717881930324025204312082516817125\n" +
                         "\n" +
                         "an 2000. Stelle"
+                }
+            }
+        }
+    },
+    "DOM": {
+        "5.1": {
+            "title": "5.1. Performanzmessungen von DOM-Operationen",
+            "exercises": {
+                "1": {
+                    "title": "Implementieren Sie Performanzmessungen zum Vergleich von innerHTML, innerText, textContent und outerHTML selbstständig in JavaScript durch Nutzung der DOM API. Geben Sie die Messergebnisse als Tabelle aus. Verwenden Sie die eingebauten Zeitmess-Funktionen performance.now (), siehe auch When-milliseconds-are-not-enough-performance-now. Suchen Sie eine möglichst kurze und elegante Lösung.",
+                    "image": false,
+                    "video": false,
+                    "code": true,
+                    "language": "html",
+                    "solution": " <!DOCTYPE html>\n" +
+                        "           <html>\n" +
+                        "               <head>\n" +
+                        "                   <meta charset=\"utf-8\">\n" +
+                        "                   <style>\n" +
+                        "                       table, tr, th, td {\n" +
+                        "                           border: 1px solid black;\n" +
+                        "                       }\n" +
+                        "                   </style>\n" +
+                        "                   <script>\n" +
+                        "                       function init() {\n" +
+                        "                           var start = performance.now();\n" +
+                        "                           document.getElementById(\"innerHTML\").innerHTML = \"innerHTML\";\n" +
+                        "                           var test1 = performance.now();\n" +
+                        "                           document.getElementById(\"innerText\").innerText = \"innerText\";\n" +
+                        "                           var test2 = performance.now();\n" +
+                        "                           document.getElementById(\"textContent\").textContent = \"textContent\";\n" +
+                        "                           var test3 = performance.now();\n" +
+                        "                           document.getElementById(\"outerHTML\").outerHTML = \"<td class='outerHTML'>outerHTML</td>\";\n" +
+                        "                           var test4 = performance.now();\n" +
+                        "\n" +
+                        "                           document.getElementById(\"innerHTML-time\").textContent = (test1 - start) + \" ms\";\n" +
+                        "                           document.getElementById(\"innerText-time\").textContent = (test2 - test1) + \" ms\";\n" +
+                        "                           document.getElementById(\"textContent-time\").textContent = (test3 - test2) + \" ms\";\n" +
+                        "                           document.getElementById(\"outerHTML-time\").textContent = (test4 - test3) + \" ms\";\n" +
+                        "                       }\n" +
+                        "                   </script>\n" +
+                        "               </head>\n" +
+                        "               <body onload=\"init()\">\n" +
+                        "                   <h1>Übung 5.1</h1>\n" +
+                        "                   <table>\n" +
+                        "                       <tr>\n" +
+                        "                           <th colspan=\"2\">Performanzmessungen von DOM-Operationen</th>\n" +
+                        "                       </tr>\n" +
+                        "                       <tr>\n" +
+                        "                           <th>Funktion</th>\n" +
+                        "                           <th>Zeit</th>\n" +
+                        "                       </tr>\n" +
+                        "                       <tr>\n" +
+                        "                           <td id=\"innerHTML\"></td>\n" +
+                        "                           <td id=\"innerHTML-time\"></td>\n" +
+                        "                       </tr>\n" +
+                        "                       <tr>\n" +
+                        "                           <td id=\"innerText\"></td>\n" +
+                        "                           <td id=\"innerText-time\"></td>\n" +
+                        "                       </tr>\n" +
+                        "                       <tr>\n" +
+                        "                           <td id=\"textContent\"></td>\n" +
+                        "                           <td id=\"textContent-time\"></td>\n" +
+                        "                       </tr>\n" +
+                        "                       <tr>\n" +
+                        "                           <td id=\"outerHTML\"></td>\n" +
+                        "                           <td id=\"outerHTML-time\"></td>\n" +
+                        "                       </tr>\n" +
+                        "                   </table>\n" +
+                        "               </body>\n" +
+                        "           </html>"
+                }
+            }
+        },
+        "5.2": {
+            "title": "5.2. Rednerliste mit Zeitmessung",
+            "exercises": {
+                "1": {
+                    "title": "Implementieren Sie die interaktive Anwendung \"Rednerliste mit Zeitmessung\" selbstständig in JavaScript durch Nutzung der DOM API und der Timer-Funktionen. Neue Redner sollen auf Knopfdruck hinzugefügt werden können. Deren Uhr wird dann sofort automatisch gestartet und alle anderen Uhren angehalten. Bei jedem Redner soll die individuelle, gemessene Redezeit sekundengenau angezeigt werden. Für jeden Redner soll es einen eigenen Start-/Stopp-Button geben. Es soll immer nur eine Uhr laufen. Angezeigt werden sollen die bisherigen Summenzeiten aller Redebeiträge der betreffenden Person. Suchen Sie eine möglichst kurze und elegante Lösung. Achten Sie gleichzeitig auf gute Usability: z.B. wenn die Eingabe mit einem Return beendet wird, soll der Button-Click nicht mehr erforderlich sein, usw.",
+                    "image": true,
+                    "path": "src/assets/Rednerliste.png",
+                    "video": false,
+                    "code": true,
+                    "language": "html",
+                    "solution": " <!DOCTYPE html>\n" +
+                        "           <html>\n" +
+                        "                <head>\n" +
+                        "                 <meta charset=\"utf-8\">\n" +
+                        "                   <style>\n" +
+                        "                       .listElement > *{\n" +
+                        "                           margin-right: 10px;\n" +
+                        "                       }\n" +
+                        "\n" +
+                        "                     .speaker, .time {\n" +
+                        "                         font-size: 32px;\n" +
+                        "                      }\n" +
+                        "\n" +
+                        "                        .timerButtonStart, .timerButtonStop {\n" +
+                        "                            border: 1px solid black;\n" +
+                        "                            padding: 2px 10px 2px 10px;\n" +
+                        "                        }\n" +
+                        "                  </style>\n" +
+                        "                </head>\n" +
+                        "               <body>\n" +
+                        "                   <h1>Rednerliste</h1>\n" +
+                        "                   <label>Neuer Redner:</label>\n" +
+                        "                   <input id=\"name\" type=\"text\">\n" +
+                        "                   <button id=\"submit\">Hinzufügen</button>\n" +
+                        "                   <ul id=\"speakerslist\">\n" +
+                        "                   </ul>\n" +
+                        "                   <script type=\"text/javascript\" src=\"uebung5_2.js\"></script>\n" +
+                        "               </body>\n" +
+                        "           </html> "
+                },
+                "2": {
+                    "title": "",
+                    "image": false,
+                    "video": false,
+                    "code": true,
+                    "language": "javascript",
+                    "solution": " var submitButton = document.getElementById(\"submit\");\n" +
+                        "           var input = document.getElementById(\"name\");\n" +
+                        "           var speakersList = document.getElementById(\"speakerslist\");\n" +
+                        "           var speakers = new Array();\n" +
+                        "\n" +
+                        "           submitButton.addEventListener(\"click\",function(e) {\n" +
+                        "               if(input.value !== \"\") {\n" +
+                        "                   addSpeaker();\n" +
+                        "                   initTimer(e.target);\n" +
+                        "               }\n" +
+                        "           });\n" +
+                        "\n" +
+                        "\n" +
+                        "           input.addEventListener(\"keyup\",function(e) {\n" +
+                        "               if(e.key === 'Enter' && input.value !== \"\") {\n" +
+                        "                   addSpeaker();\n" +
+                        "                   initTimer(e.target.nextElementSibling);\n" +
+                        "               }\n" +
+                        "           });\n" +
+                        "\n" +
+                        "\n" +
+                        "           function addSpeaker() {\n" +
+                        "    \n" +
+                        "               let listElement = document.createElement(\"li\");\n" +
+                        "               let textNode = document.createElement(\"span\");\n" +
+                        "               let timeNode = document.createElement(\"span\");\n" +
+                        "               let seconds = document.createElement(\"span\");\n" +
+                        "               let minutes = document.createElement(\"span\");\n" +
+                        "               let hours = document.createElement(\"span\");\n" +
+                        "               let buttonNode = document.createElement(\"button\");\n" +
+                        "\n" +
+                        "               let newSpeaker;\n" +
+                        "               speakers.push(newSpeaker);\n" +
+                        "\n" +
+                        "               listElement.setAttribute(\"class\",\"listElement\");\n" +
+                        "\n" +
+                        "               textNode.appendChild(document.createTextNode(document.getElementById(\"name\").value));\n" +
+                        "               textNode.className = \"speaker\"\n" +
+                        "\n" +
+                        "               hours.appendChild(document.createTextNode(\"00\"));\n" +
+                        "               hours.className = \"hours\";\n" +
+                        "               minutes.appendChild(document.createTextNode(\"00\"));\n" +
+                        "               minutes.className = \"minutes\";\n" +
+                        "               seconds.appendChild(document.createTextNode(\"00\"));\n" +
+                        "               seconds.className = \"seconds\";\n" +
+                        "\n" +
+                        "               timeNode.appendChild(hours);\n" +
+                        "               timeNode.appendChild(document.createTextNode(\":\"));\n" +
+                        "               timeNode.appendChild(minutes);\n" +
+                        "               timeNode.appendChild(document.createTextNode(\":\"));\n" +
+                        "               timeNode.appendChild(seconds);\n" +
+                        "\n" +
+                        "               timeNode.className = \"time\";\n" +
+                        "\n" +
+                        "               buttonNode.setAttribute(\"class\",\"timerButton\");\n" +
+                        "               buttonNode.appendChild(document.createTextNode(\"Stop!\"));\n" +
+                        "    \n" +
+                        "\n" +
+                        "               listElement.appendChild(textNode);\n" +
+                        "               listElement.appendChild(timeNode);\n" +
+                        "               listElement.appendChild(buttonNode);\n" +
+                        "               speakersList.appendChild(listElement);\n" +
+                        "    \n" +
+                        "               document.getElementById(\"name\").value = \"\";\n" +
+                        "           }\n" +
+                        "\n" +
+                        "\n" +
+                        "           function initTimer(e) {\n" +
+                        "\n" +
+                        "               let currentElement = e.nextElementSibling.lastChild;\n" +
+                        "\n" +
+                        "               let list = Array.from(currentElement.parentElement.children);\n" +
+                        "               let index = list.indexOf(currentElement);\n" +
+                        "\n" +
+                        "               let button = currentElement.lastChild;\n" +
+                        "               let buttonList = document.getElementsByClassName(\"timerButton\");\n" +
+                        "\n" +
+                        "               button.onclick = function(e) {\n" +
+                        "                   toggleButtons(e.target, index, buttonList);\n" +
+                        "               }\n" +
+                        "\n" +
+                        "               runTimer(currentElement, index);\n" +
+                        "\n" +
+                        "               for(var i = 0; i < speakers.length; i++) {\n" +
+                        "                   if(index !== i) {\n" +
+                        "                       clearInterval(speakers[i]); \n" +
+                        "                       buttonList[i].textContent = \"Start!\";\n" +
+                        "                   } \n" +
+                        "               }\n" +
+                        "           }\n" +
+                        "\n" +
+                        "           function runTimer(currentElement, index) {\n" +
+                        "\n" +
+                        "               let sec = parseInt(currentElement.childNodes[1].childNodes[4].textContent);\n" +
+                        "               let min = parseInt(currentElement.childNodes[1].childNodes[2].textContent);\n" +
+                        "               let hrs = parseInt(currentElement.childNodes[1].childNodes[0].textContent);\n" +
+                        "\n" +
+                        "\n" +
+                        "               speakers[index] = setInterval(function() {\n" +
+                        "                   sec++;\n" +
+                        "                   if (sec >= 60) {\n" +
+                        "                       sec = 0;\n" +
+                        "                       min++;\n" +
+                        "                       if (min >= 60) {\n" +
+                        "                           min = 0;\n" +
+                        "                           hrs++;\n" +
+                        "                       }\n" +
+                        "                   }\n" +
+                        "\n" +
+                        "                   currentElement.childNodes[1].childNodes[4].textContent = (sec > 9 ? sec : \"0\" + sec);\n" +
+                        "                   currentElement.childNodes[1].childNodes[2].textContent = (min > 9 ? min : \"0\" + min);\n" +
+                        "                   currentElement.childNodes[1].childNodes[0].textContent = (hrs > 9 ? hrs : \"0\" + hrs);\n" +
+                        "               },1000);\n" +
+                        "\n" +
+                        "           }\n" +
+                        "\n" +
+                        "           function toggleButtons(currentElement, index, buttonList) {\n" +
+                        "\n" +
+                        "               let row = currentElement.parentElement;\n" +
+                        "\n" +
+                        "               if(currentElement.textContent === \"Start!\") {\n" +
+                        "                   currentElement.textContent = \"Stopp!\";\n" +
+                        "                   runTimer(row, index);\n" +
+                        "\n" +
+                        "                   for(let i = 0; i < speakers.length; i++) {\n" +
+                        "                       if(index !== i) {\n" +
+                        "                           buttonList[i].textContent = \"Start!\";\n" +
+                        "                           stopTimer(i);\n" +
+                        "                       }\n" +
+                        "                   }\n" +
+                        "               }\n" +
+                        "               else if(currentElement.textContent === \"Stopp!\") {\n" +
+                        "                   currentElement.textContent = \"Start!\";\n" +
+                        "                   stopTimer(index);\n" +
+                        "               }\n" +
+                        "           }\n" +
+                        "\n" +
+                        "           function stopTimer(index) {\n" +
+                        "    \n" +
+                        "               clearInterval(speakers[index]);\n" +
+                        "           }"
+                }
+            }
+        },
+        "5.3": {
+            "title": "5.3. TopSort als WebApp",
+            "exercises": {
+                "1": {
+                    "title": "Schreiben Sie eine Web-Oberfläche, in der man beliebige Beziehungen (Vorrang-Relationen) eingeben kann, für die dann die topologische Sortierung per Knopfdruck auf der Webseite ausgegeben wird.\n" +
+                        "\n" +
+                        "Für die Eingabe können Sie HTML5-Eingabefelder oder contentEditable verwenden.",
+                    "image": false,
+                    "video": false,
+                    "code": true,
+                    "language": "html",
+                    "solution": " <!DOCTYPE html>\n" +
+                        "           <html>\n" +
+                        "               <head>\n" +
+                        "                   <meta charset=\"utf-8\">\n" +
+                        "                   <style>\n" +
+                        "                       #container {\n" +
+                        "                           display: flex;\n" +
+                        "                           flex-direction: row;\n" +
+                        "                           margin-top: 20px;\n" +
+                        "                       }\n" +
+                        "                       .entries {\n" +
+                        "                           border: 1px solid black;\n" +
+                        "                           padding: 20px;\n" +
+                        "                       }\n" +
+                        "                   </style>\n" +
+                        "               </head>\n" +
+                        "               <body>\n" +
+                        "                   <h1>Übung 5.3</h1>\n" +
+                        "                   <h2>Topsort</h2>\n" +
+                        "                   <div>\n" +
+                        "                       <input id=\"relation\" type=\"text\" placeholder=\"format: x->y\">\n" +
+                        "                       <button id=\"add\">add</button>\n" +
+                        "                       <button id=\"clear\">clear</button>\n" +
+                        "                   </div>\n" +
+                        "                   <div id=\"container\"></div>\n" +
+                        "                   <script type=\"text/javascript\" src=\"uebung5_3.js\"></script>\n" +
+                        "               </body>\n" +
+                        "           </html>"
+                },
+                "2": {
+                    "title": "",
+                    "image": false,
+                    "video": false,
+                    "code": true,
+                    "language": "javascript",
+                    "solution": " var relations = new Array();\n" +
+                        "\n" +
+                        "           var input = document.getElementById(\"relation\");\n" +
+                        "           var add = document.getElementById(\"add\");\n" +
+                        "           var clear = document.getElementById(\"clear\");\n" +
+                        "\n" +
+                        "           add.addEventListener(\"click\",function() {\n" +
+                        "               clearGraph();\n" +
+                        "               updateGraph(input.value);\n" +
+                        "               input.value = \"\";\n" +
+                        "           });\n" +
+                        "\n" +
+                        "           input.addEventListener(\"keyup\",function(e) {\n" +
+                        "               if(e.key === \"Enter\") {\n" +
+                        "                   clearGraph();\n" +
+                        "                   updateGraph(input.value);\n" +
+                        "                   input.value = \"\";\n" +
+                        "               }\n" +
+                        "           });\n" +
+                        "\n" +
+                        "           clear.addEventListener(\"click\",function() {\n" +
+                        "               clearGraph();\n" +
+                        "               deleteData();\n" +
+                        "           });\n" +
+                        "\n" +
+                        "           function topsort(arg) {\n" +
+                        "\n" +
+                        "               var result = new Array();\n" +
+                        "               var nodes = new Object();\n" +
+                        "               var temp = Array.from(new Set(arg.flat()));\n" +
+                        "    \n" +
+                        "               for(var i = 0; i < temp.length; i++) {\n" +
+                        "                   nodes[temp[i]] = 0;\n" +
+                        "               }\n" +
+                        "\n" +
+                        "               arg.forEach(element => {\n" +
+                        "                   nodes[element[1]] += 1;\n" +
+                        "               });\n" +
+                        "\n" +
+                        "               while(Object.keys(nodes).length) {\n" +
+                        "                   if(Object.values(nodes).indexOf(0) == -1) return null;\n" +
+                        "                   for (const [key, value] of Object.entries(nodes)) {\n" +
+                        "                       if(value == 0) {\n" +
+                        "                           result.push(key);\n" +
+                        "                           delete nodes[key]\n" +
+                        "                           arg.forEach(node => {\n" +
+                        "                               if(node[0] === key) {\n" +
+                        "                                   nodes[node[1]] -= 1;\n" +
+                        "                               }\n" +
+                        "                           });\n" +
+                        "                       }\n" +
+                        "                   }\n" +
+                        "               }\n" +
+                        "               return result;    \n" +
+                        "           }\n" +
+                        "\n" +
+                        "           function updateGraph(input) {\n" +
+                        "               let relation = input.split(\"->\");\n" +
+                        "               relations.push(relation);\n" +
+                        "               console.log(relations);\n" +
+                        "\n" +
+                        "               let output = topsort(relations);\n" +
+                        "\n" +
+                        "               if(output !== null) {\n" +
+                        "                   output.forEach(element => {\n" +
+                        "                       let entry = document.createElement(\"div\");\n" +
+                        "                       entry.className = \"entries\";\n" +
+                        "                       entry.appendChild(document.createTextNode(element));\n" +
+                        "                       document.getElementById(\"container\").appendChild(entry);\n" +
+                        "                   });\n" +
+                        "               }\n" +
+                        "           }\n" +
+                        "\n" +
+                        "           function deleteData() {\n" +
+                        "               relations.length = 0;\n" +
+                        "           }\n" +
+                        "\n" +
+                        "           function clearGraph() {\n" +
+                        "               let container = document.getElementById(\"container\");\n" +
+                        "    \n" +
+                        "               while(container.firstChild) {\n" +
+                        "                   container.removeChild(container.firstChild);\n" +
+                        "               }\n" +
+                        "           }"
+                }
+            }
+        }
+    },
+    "ECMAScript": {
+        "6.1": {
+            "title": "6.1. Klammerpaare",
+            "exercises": {
+                "1": {
+                    "title": "Schreiben Sie eine Webseite, in die man eine Zeichenkette mit beliebigen Buchstaben, Zahlen und Sonderzeichen eingeben kann, die beliebig geschachtelte Klammern [...], (...) und {...} enthält, so dass sofort geprüft wird, ob alle Klammerpaare korrekt geschachtelt sind. Das Eingabefeld der Zeichenkette soll rot gefärbt werden, wenn es ein Klammerpaar gibt, das falsch geschachtelt ist.",
+                    "image": false,
+                    "video": false,
+                    "code": true,
+                    "language": "javascript",
+                    "solution": " let input = document.getElementById(\"input\")\n" +
+                        "\n" +
+                        "           input.addEventListener(\"keyup\" , () =>  {\n" +
+                        "               checkSyntax(input.value) ? input.style.backgroundColor = 'white' : input.style.backgroundColor = 'red'\n" +
+                        "           })\n" +
+                        "\n" +
+                        "\n" +
+                        "           const checkSyntax = (arg) => {\n" +
+                        "               let stack = new Array()\n" +
+                        "\n" +
+                        "               for (let char of arg) {\n" +
+                        "                   if (['(','{','['].includes(char)) {\n" +
+                        "                       stack.push(char)\n" +
+                        "                   }\n" +
+                        "        \n" +
+                        "                   if([')','}',']'].includes(char)) {\n" +
+                        "                       if(char == ')' && stack[stack.length - 1] == '(' && stack.length > 0) {\n" +
+                        "                           stack.pop()\n" +
+                        "                       }\n" +
+                        "                       else if(char == '}' && stack[stack.length - 1] == '{' && stack.length > 0) {\n" +
+                        "                           stack.pop()\n" +
+                        "                       }\n" +
+                        "                       else if(char == ']' && stack[stack.length - 1] == '[' && stack.length > 0) {\n" +
+                        "                           stack.pop()\n" +
+                        "                       }\n" +
+                        "                       else {\n" +
+                        "                           return false\n" +
+                        "                       }\n" +
+                        "                   }\n" +
+                        "               }\n" +
+                        "\n" +
+                        "               return stack.length == 0 ? true : false\n" +
+                        "           }\n" +
+                        "\n" +
+                        "\n" +
+                        "           console.assert(checkSyntax('') === true, \"Test 1 fehlgeschlagen!\");\n" +
+                        "           console.assert(checkSyntax('hallo{welt}') === true, \"Test 2 fehlgeschlagen!\");\n" +
+                        "           console.assert(checkSyntax('[eins],{zwei},(drei)') === true, \"Test 3 fehlgeschlagen!\");\n" +
+                        "           console.assert(checkSyntax('[{]}') === false, \"Test 4 fehlgeschlagen!\");\n" +
+                        "           console.assert(checkSyntax('[{(verschachtelt)mit}Inhalt]') === true, \"Test 5 fehlgeschlagen!\");\n" +
+                        "           console.assert(checkSyntax('{') === false, \"Test 6 fehlgeschlagen!\");\n" +
+                        "           console.assert(checkSyntax(')(') === false, \"Test 7 fehlgeschlagen!\");\n" +
+                        "           console.assert(checkSyntax('}[]') === false, \"Test 8 fehlgeschlagen!\");"
+                }
+            }
+        },
+        "6.2": {
+            "title": "6.2. Topologische Iterierbarkeit",
+            "exercises": {
+                "1": {
+                    "title": "Schreiben Sie eine ES6-Klasse Vorrang für Vorrangrelationen, z.B. new Vorrang([ [\"schlafen\", \"studieren\"], [\"essen\", \"studieren\"], [\"studieren\", \"prüfen\"] ]). Wählen Sie eine Implementierung, die universell gültig, also nicht nur für dieses Beispiel gilt. (Überlegen Sie sich, über welche Properties und Methoden eine solche Klasse verfügen sollte und wie TopSort hier hineinspielt. Topologische Iterierbarkeit und topologischer Generator sind jedoch Gegenstand der nächsten Übungen weiter unten auf diesem Übungsblatt und sollten für die folgenden Aufgaben aufgespart werden.)\n" +
+                        "\n" +
+                        "Stellen Sie bei Ihrer Klasse die topologische Iterierbarkeit her (zunächst über das Iterationsprotokoll, ohne Generator, ohne yield).",
+                    "image": false,
+                    "video": false,
+                    "code": true,
+                    "language": "javascript",
+                    "solution": " class Vorrang {\n" +
+                        "               constructor(args) {\n" +
+                        "                   this.relations = args\n" +
+                        "                   this.elements = new Set(this.relations.flat())\n" +
+                        "                   this.predecessors = new Object()\n" +
+                        "\n" +
+                        "                   for (let element of this.elements) {\n" +
+                        "                       this.predecessors[element] = 0\n" +
+                        "                   }\n" +
+                        "\n" +
+                        "                   for (let entry of Object.entries(this.relations)) {\n" +
+                        "                       this.predecessors[entry[1][1]] += 1\n" +
+                        "                   }\n" +
+                        "        \n" +
+                        "                   this.predecessors = Object.fromEntries(\n" +
+                        "                       Object.entries(this.predecessors).sort(([,a],[,b]) => a-b)\n" +
+                        "                   );\n" +
+                        "\n" +
+                        "                   this.successors = new Map()\n" +
+                        "\n" +
+                        "                   for (let element of this.elements) {\n" +
+                        "                       this.successors.set(element,[])\n" +
+                        "                   }\n" +
+                        "\n" +
+                        "                   for (let entry of Object.entries(this.relations)) {\n" +
+                        "                       let x = this.successors.get(entry[1][0])\n" +
+                        "                       x.push(entry[1][1])\n" +
+                        "                       this.successors.set(entry[1][0],x)\n" +
+                        "                   }\n" +
+                        "\n" +
+                        "               }\n" +
+                        "\n" +
+                        "               [Symbol.iterator]() {\n" +
+                        "                   return {\n" +
+                        "                       next: () => {\n" +
+                        "                           if (Object.values(this.predecessors).includes(0)) {\n" +
+                        "                               let result = undefined\n" +
+                        "                               for (let [key,value] of Object.entries(this.predecessors)) {\n" +
+                        "                                   if (value == 0) {\n" +
+                        "                                       result = key\n" +
+                        "                                       delete this.predecessors[key]\n" +
+                        "                                       for (let element of this.successors.get(key)) {\n" +
+                        "                                           this.predecessors[element] -= 1\n" +
+                        "                                       }\n" +
+                        "                                       return {value: result, done: false}\n" +
+                        "                                   }\n" +
+                        "                               }\n" +
+                        "                           }\n" +
+                        "                           else {\n" +
+                        "                               return {done: true}\n" +
+                        "                           }\n" +
+                        "                       }\n" +
+                        "                   }\n" +
+                        "               }\n" +
+                        "           }\n" +
+                        "\n" +
+                        "\n" +
+                        "           const test1 = new Vorrang([ [\"schlafen\", \"studieren\"], [\"essen\", \"studieren\"], [\"studieren\", \"prüfen\"] ])\n" +
+                        "           const test2 = new Vorrang([])\n" +
+                        "           const test3 = new Vorrang([[\"unterhose\",\"hose\"], [\"shirt\", \"jacke\"], [\"socken\", \"schuhe\"], [\"socken\", \"hose\"], [\"hose\", \"jacke\"], [\"hose\", \"schuhe\"]])\n" +
+                        "           const test4 = new Vorrang([[\"blitz\", \"donner\"], [\"regen\", \"traufe\"]])\n" +
+                        "           const test5 = new Vorrang([['huhn', 'ei'], ['ei','huhn']])\n" +
+                        "\n" +
+                        "           let result1 = new Array()\n" +
+                        "           let result2 = new Array()\n" +
+                        "           let result3 = new Array()\n" +
+                        "           let result4 = new Array()\n" +
+                        "           let result5 = new Array()\n" +
+                        "\n" +
+                        "           for (const next of test1) {\n" +
+                        "               result1.push(next)\n" +
+                        "           }\n" +
+                        "           for (const next of test2) {\n" +
+                        "               result2.push(next)\n" +
+                        "           }\n" +
+                        "           for (const next of test3) {\n" +
+                        "               result3.push(next)\n" +
+                        "           }\n" +
+                        "           for (const next of test4) {\n" +
+                        "               result4.push(next)\n" +
+                        "           }\n" +
+                        "           for (const next of test5) {\n" +
+                        "               result5.push(next)\n" +
+                        "           }\n" +
+                        "\n" +
+                        "           console.assert(JSON.stringify(result1) === JSON.stringify(['schlafen','essen','studieren','prüfen']), \"Test 1 failed!\");\n" +
+                        "           console.assert(JSON.stringify(result2) === JSON.stringify([]), \"Test 2 failed!\");\n" +
+                        "           console.assert(JSON.stringify(result3) === JSON.stringify(['unterhose', 'shirt', 'socken', 'hose', 'jacke', 'schuhe']), \"Test 3 failed!\");\n" +
+                        "           console.assert(JSON.stringify(result4) === JSON.stringify(['blitz', 'regen', 'donner', 'traufe']), \"Test 4 failed!\");\n" +
+                        "           console.assert(JSON.stringify(result5) === JSON.stringify([]), \"Test 5 failed!\");"
+                },
+                "2": {
+                    "title": "",
+                    "image": false,
+                    "video": false,
+                    "code": true,
+                    "language": "javascript",
+                    "solution": ""
+                }
+            }
+        },
+        "6.3": {
+            "title": "6.3. Topologischer Generator",
+            "exercises": {
+                "1": {
+                    "title": "Stellen Sie bei Ihrer Klasse aus der letzten Aufgabe die topologische Iterierbarkeit mittels Generator her.",
+                    "image": false,
+                    "video": false,
+                    "code": true,
+                    "language": "javascript",
+                    "solution": " class Vorrang {\n" +
+                        "               constructor(args) {\n" +
+                        "                   this.relations = args\n" +
+                        "                   this.elements = new Set(this.relations.flat())\n" +
+                        "                   this.predecessors = new Object()\n" +
+                        "\n" +
+                        "                   for (let element of this.elements) {\n" +
+                        "                       this.predecessors[element] = 0\n" +
+                        "                   }\n" +
+                        "\n" +
+                        "                   for (let entry of Object.entries(this.relations)) {\n" +
+                        "                       this.predecessors[entry[1][1]] += 1\n" +
+                        "                   }\n" +
+                        "        \n" +
+                        "                   this.predecessors = Object.fromEntries(\n" +
+                        "                       Object.entries(this.predecessors).sort(([,a],[,b]) => a-b)\n" +
+                        "                   );\n" +
+                        "\n" +
+                        "                   this.successors = new Map()\n" +
+                        "\n" +
+                        "                   for (let element of this.elements) {\n" +
+                        "                       this.successors.set(element,[])\n" +
+                        "                   }\n" +
+                        "\n" +
+                        "                   for (let entry of Object.entries(this.relations)) {\n" +
+                        "                       let x = this.successors.get(entry[1][0])\n" +
+                        "                       x.push(entry[1][1])\n" +
+                        "                       this.successors.set(entry[1][0],x)\n" +
+                        "                   }\n" +
+                        "\n" +
+                        "               }\n" +
+                        "\n" +
+                        "               *[Symbol.iterator]() {\n" +
+                        "        \n" +
+                        "                   while (Object.values(this.predecessors).includes(0)) {\n" +
+                        "                       for (let [key,value] of Object.entries(this.predecessors)) {\n" +
+                        "                           if (value == 0) {\n" +
+                        "                               yield key\n" +
+                        "                               delete this.predecessors[key]\n" +
+                        "                               for (let element of this.successors.get(key)) {\n" +
+                        "                                   this.predecessors[element] -= 1\n" +
+                        "                               }\n" +
+                        "                           }\n" +
+                        "                       }\n" +
+                        "                   }\n" +
+                        "               }\n" +
+                        "           }\n" +
+                        "\n" +
+                        "\n" +
+                        "           const test1 = new Vorrang([ [\"schlafen\", \"studieren\"], [\"essen\", \"studieren\"], [\"studieren\", \"prüfen\"] ])\n" +
+                        "           const test2 = new Vorrang([])\n" +
+                        "           const test3 = new Vorrang([[\"unterhose\",\"hose\"], [\"shirt\", \"jacke\"], [\"socken\", \"schuhe\"], [\"socken\", \"hose\"], [\"hose\", \"jacke\"], [\"hose\", \"schuhe\"]])\n" +
+                        "           const test4 = new Vorrang([[\"blitz\", \"donner\"], [\"regen\", \"traufe\"]])\n" +
+                        "           const test5 = new Vorrang([['huhn', 'ei'], ['ei','huhn']])\n" +
+                        "\n" +
+                        "           let result1 = new Array()\n" +
+                        "           let result2 = new Array()\n" +
+                        "           let result3 = new Array()\n" +
+                        "           let result4 = new Array()\n" +
+                        "           let result5 = new Array()\n" +
+                        "\n" +
+                        "           for (const next of test1) {\n" +
+                        "               result1.push(next)\n" +
+                        "           }\n" +
+                        "           for (const next of test2) {\n" +
+                        "               result2.push(next)\n" +
+                        "           }\n" +
+                        "           for (const next of test3) {\n" +
+                        "               result3.push(next)\n" +
+                        "           }\n" +
+                        "           for (const next of test4) {\n" +
+                        "               result4.push(next)\n" +
+                        "           }\n" +
+                        "           for (const next of test5) {\n" +
+                        "               result5.push(next)\n" +
+                        "           }\n" +
+                        "\n" +
+                        "           console.assert(JSON.stringify(result1) === JSON.stringify(['schlafen','essen','studieren','prüfen']), \"Test 1 failed!\");\n" +
+                        "           console.assert(JSON.stringify(result2) === JSON.stringify([]), \"Test 2 failed!\");\n" +
+                        "           console.assert(JSON.stringify(result3) === JSON.stringify(['unterhose', 'shirt', 'socken', 'hose', 'jacke', 'schuhe']), \"Test 3 failed!\");\n" +
+                        "           console.assert(JSON.stringify(result4) === JSON.stringify(['blitz', 'regen', 'donner', 'traufe']), \"Test 4 failed!\");\n" +
+                        "           console.assert(JSON.stringify(result5) === JSON.stringify([]), \"Test 5 failed!\");"
+                }
+            }
+        },
+        "6.4": {
+            "title": "6.4. Proxy",
+            "exercises": {
+                "1": {
+                    "title": "Erweitern Sie Ihre Vorrang-Klasse um Logging, indem Sie ein Proxy einfügen. Lassen Sie sich vom Logger bei jedem Schritt ausgeben, wie viele der Vorrangrelationen noch übrig bleiben. Verwenden Sie so weit wie möglich High-Level-Methoden wie Object.keys und High-Level-Datenstrukturen wie Map und Set und deren Methoden, anstatt mühsam von Hand zu iterieren und zu zählen.",
+                    "image": false,
+                    "video": false,
+                    "code": true,
+                    "language": "javascript",
+                    "solution": ""
+                }
+            }
+        },
+        "6.5": {
+            "title": "6.5. DeepCopy",
+            "exercises": {
+                "1": {
+                    "title": "Schreiben Sie eine rekursive Funktion deepCopy( struct ) als ES6-Ausdruck, so dass beliebig geschachtelte Arrays und Objekte struct tiefenkopiert werden können. Verwenden Sie zu diesem Zweck den konditionalen ternären Operator, Array.map(), Object.fromEntries() und Object.entries(). Verwenden Sie dabei nur Arrow Functions und Ausdrücke, keine Anweisungen, keine Blöcke. Verwenden Sie nicht die JSON-Methoden.",
+                    "image": false,
+                    "video": false,
+                    "code": true,
+                    "language": "javascript",
+                    "solution": ""
+                }
+            }
+        }
+    },
+    "Functional": {
+        "7.1": {
+            "title": "7.1. Funktionen in JavaScript",
+            "exercises": {
+                "1": {
+                    "title": "Schreiben Sie eine Funktion identity_function(), die ein Argument als Parameter entgegennimmt und eine Funktion zurückgibt, die dieses Argument zurückgibt.",
+                    "image": false,
+                    "video": false,
+                    "code": true,
+                    "language": "javascript",
+                    "solution": "const identity_function = arg => _ => arg"
+                },
+                "2": {
+                    "title": "Schreiben Sie eine Addier-Funktion addf(), so dass addf(x)(y) genau x + y zurück gibt. (Es haben also zwei Funktionsaufrufe zu erfolgen. addf(x) liefert eine Funktion, die auf y angewandt wird.)",
+                    "image": false,
+                    "video": false,
+                    "code": true,
+                    "language": "javascript",
+                    "solution": "const addf = x => y => x + y"
+                },
+                "3": {
+                    "title": "Schreiben Sie eine Funktion applyf(), die aus einer binären Funktion wie add(x,y) eine Funktion addfberechnet, die mit zwei Aufrufen das gleiche Ergebnis liefert, z.B. addf = applyf(add); addf(x)(y) soll add(x,y) liefern. Entsprechend applyf(mul)(5)(6) soll 30 liefern, wenn mul die binäre Multiplikation ist.",
+                    "image": false,
+                    "video": false,
+                    "code": true,
+                    "language": "javascript",
+                    "solution": "const applyf = func => x => y => op(x, y)"
+                },
+                "4": {
+                    "title": "Schreiben Sie eine Funktion curry() (von Currying), die eine binäre Funktion und ein Argument nimmt, um daraus eine Funktion zu erzeugen, die ein zweites Argument entgegen nimmt, z.B. add3 = curry(add, 3);add3(4) ergibt 7. curry(mul, 5)(6) ergibt 30.",
+                    "image": false,
+                    "video": false,
+                    "code": true,
+                    "language": "javascript",
+                    "solution": "const curry = (func,...x) => (...y) => func(...x, ...y)"
+                },
+                "5": {
+                    "title": "Erzeugen Sie die inc-Funktion mit Hilfe einer der Funktionen addf, applyf und curry aus den letzten Aufgaben, ohne die Funktion inc() selbst zu implementieren. (inc(x) soll immer x + 1 ergeben und lässt sich natürlich auch direkt implementieren. Das ist aber hier nicht die Aufgabe.) Vielleicht schaffen Sie es auch, drei Varianten der inc()-Implementierung zu schreiben?",
+                    "image": false,
+                    "video": false,
+                    "code": true,
+                    "language": "javascript",
+                    "solution": "const inc1 = addf(1)\n" +
+                        "\n" +
+                        "          const inc2 = applyf(add)(1)\n" +
+                        "\n" +
+                        "          const inc3 = curry(add,1)"
+                },
+                "6": {
+                    "title": "Schreiben Sie eine Funktion methodize(), die eine binäre Funktion (z.B. add, mul) in eine unäre Methode verwandelt. Nach Number.prototype.add = methodize(add); soll (3).add(4) genau 7 ergeben.",
+                    "image": false,
+                    "video": false,
+                    "code": true,
+                    "language": "javascript",
+                    "solution": "const methodize = function (func) {\n" +
+                        "              return function(arg) {\n" +
+                        "                  return func(this.valueOf(), arg)\n" +
+                        "              }\n" +
+                        "          }"
+                },
+                "7": {
+                    "title": "Schreiben Sie eine Funktion demethodize(), die eine unäre Methode (z.B. add, mul) in eine binäre Funktion umwandelt. demethodize(Number.prototype.add)(5, 6) soll 11 ergeben.",
+                    "image": false,
+                    "video": false,
+                    "code": true,
+                    "language": "javascript",
+                    "solution": "const demethodize = function (func) {\n" +
+                        "              return func\n" +
+                        "          }"
+                },
+                "8": {
+                    "title": "Schreiben Sie eine Funktion twice(), die eine binäre Funktion in eine unäre Funktion umwandelt, die den einen Parameter zweimal weiter reicht. Z.B. var double = twice(add); double(11) soll 22 ergeben; var square = twice(mul); square(11) soll mul(11,11) === 121 ergeben.",
+                    "image": false,
+                    "video": false,
+                    "code": true,
+                    "language": "javascript",
+                    "solution": "const twice = func => arg => func(arg, arg)"
+                },
+                "9": {
+                    "title": "Schreiben Sie eine Funktion composeu(), die zwei unäre Funktionen in eine einzelne unäre Funktion transformiert, die beide nacheinander aufruft, z.B. soll composeu(double, square)(3) genau 36 ergeben.",
+                    "image": false,
+                    "video": false,
+                    "code": true,
+                    "language": "javascript",
+                    "solution": "const composeu = (func1, func2) => arg => func2(func1(arg))"
+                },
+                "10": {
+                    "title": "Schreiben Sie eine Funktion composeb(), die zwei binäre Funktionen in eine einzelne Funktion transformiert, die beide nacheinander aufruft, z.B. composeb(add, mul)(2, 3, 5) soll 25 ergeben.",
+                    "image": false,
+                    "video": false,
+                    "code": true,
+                    "language": "javascript",
+                    "solution": "const composeb = (func1, func2) => (x, y, z) => func2(func1(x, y), z)"
+                },
+                "11": {
+                    "title": "Schreiben Sie eine Funktion once(), die einer anderen Funktion nur einmal erlaubt, aufgerufen zu werden, z.B. add_once = once(add); add_once(3, 4) soll beim ersten Mal 7 ergeben, beim zweiten Mal soll jedoch add_once(3, 4) einen Fehlerabbruch bewirken.",
+                    "image": false,
+                    "video": false,
+                    "code": true,
+                    "language": "javascript",
+                    "solution": "const once = (func) => {\n" +
+                        "              let executed = false\n" +
+                        "\n" +
+                        "              return function (x, y) {\n" +
+                        "\n" +
+                        "                  if (!executed) {\n" +
+                        "                      executed = true\n" +
+                        "                      return func(x, y)\n" +
+                        "                  }\n" +
+                        "                  else {\n" +
+                        "                      throw Error(\"Fehlermeldung!\")\n" +
+                        "                  }\n" +
+                        "              }\n" +
+                        "           }"
+                },
+                "12": {
+                    "title": "Schreiben Sie eine Fabrik-Funktion counterf(), die zwei Funktionen inc() und dec() berechnet, die einen Zähler hoch- und herunterzählen. Z.B. counter = counterf(10); Dann soll counter.inc() 11 und counter.dec() wieder 10 ergeben.",
+                    "image": false,
+                    "video": false,
+                    "code": true,
+                    "language": "javascript",
+                    "solution": "const counterf = (arg) => {\n" +
+                        "              return {\n" +
+                        "                  counter: arg,\n" +
+                        "                  inc: function() {\n" +
+                        "                      this.counter += 1\n" +
+                        "                      return this.counter\n" +
+                        "                  },\n" +
+                        "                  dec: function() {\n" +
+                        "                      this.counter -= 1\n" +
+                        "                      return this.counter\n" +
+                        "                  }\n" +
+                        "              }\n" +
+                        "\n" +
+                        "          }"
+
+                },
+                "13": {
+                    "title": "Schreiben Sie eine rücknehmbare Funktion revocable(), die als Parameter eine Funktion nimmt und diese bei Aufruf ausführt. Sobald die Funktion aber mit revoke() zurück genommen wurde, führt ein erneuter Aufruf zu einem Fehler. Z.B.\n" +
+                        "temp = revocable(alert);\n" +
+                        "temp.invoke(7); // führt zu alert(7);\n" +
+                        "temp.revoke();\n" +
+                        "temp.invoke(8); // Fehlerabbruch!",
+                    "image": false,
+                    "video": false,
+                    "code": true,
+                    "solution": "const revokable = (func) => {\n" +
+                        "              return {\n" +
+                        "                  revoked: false,\n" +
+                        "                  invoke: function(arg) {\n" +
+                        "                      if (!this.revoked) {\n" +
+                        "                          return func(arg)\n" +
+                        "                      }\n" +
+                        "                      else {\n" +
+                        "                          throw Error(\"Fehlermeldung!\")\n" +
+                        "                      }\n" +
+                        "                  },\n" +
+                        "                  revoke: function() {\n" +
+                        "                      this.revoked = true\n" +
+                        "                  }\n" +
+                        "              }\n" +
+                        "           }"
+                },
+                "14": {
+                    "title": "Implementieren Sie ein \"Array Wrapper\"-Objekt mit den Methoden get, store und append, so dass ein Angreifer keinen Zugriff auf das innere, private Array hat.\n" +
+                        "\n" +
+                        "my_vector = vector();\n" +
+                        "my_vector.append(7);\n" +
+                        "my_vector.store(1, 8);\n" +
+                        "my_vector.get(0) // 7\n" +
+                        "my_vector.get(1) // 8",
+                    "image": false,
+                    "video": false,
+                    "code": true,
+                    "language": "javascript",
+                    "solution": "const vector = () => {\n" +
+                        "              return {\n" +
+                        "                  array: [],\n" +
+                        "                  get: function(index) {\n" +
+                        "                      return this.array[index] == -1 ? null : this.array[index]\n" +
+                        "                  },\n" +
+                        "                  store: function(index, value) {\n" +
+                        "                      this.array[index] = value\n" +
+                        "                  },\n" +
+                        "                  append: function(value) {\n" +
+                        "                      this.array = [...this.array, value]\n" +
+                        "                  }\n" +
+                        "              }\n" +
+                        "          }"
+                }
+            }
+        },
+        "7.2": {
+            "title": "7.2. Textanalyse mit filter-map-reduce",
+            "exercises": {
+                "1": {
+                    "title": "Schreiben Sie in JavaScript eine Textanalyse. Ermitteln Sie die häufigsten Begriffe im Text Plagiatsresolution. Filtern Sie dabei alle Stoppworte und HTML-Tags. Reduzieren Sie das Ergebnis auf die 3 häufigsten Begriffe.",
+                    "image": false,
+                    "video": false,
+                    "html_page": true,
+                    "page_link": "https://kaul.inf.h-brs.de/we/assets/html/plagiatsresolution.html",
+                    "code": true,
+                    "language": "javascript",
+                    "solution": "const source_code = Array.from(document.getElementsByTagName('*'))\n" +
+                        "\n" +
+                        "          // * stopwords from https://github.com/stopwords-iso/stopwords-de/blob/master/stopwords-de.json\n" +
+                        "          const stopWords = [*]\n" +
+                        "          const filterByParagraph = (element) => {\n" +
+                        "              return element.localName == 'p' || element.localName == 'h2' ? element : undefined\n" +
+                        "          }\n" +
+                        "\n" +
+                        "          const filterOutStopWords = (element) => {\n" +
+                        "              return stopWords.includes(element.toLowerCase()) ? undefined : element\n" +
+                        "          }\n" +
+                        "\n" +
+                        "          const filterFirstThree = (element) => {\n" +
+                        "    \n" +
+                        "          }\n" +
+                        "\n" +
+                        "          const wordCount = source_code.filter(filterByParagraph)\n" +
+                        "                                  .map(element => element.textContent)\n" +
+                        "                                  .map(element => element.split(\" \"))\n" +
+                        "                                  .map(element => element.filter(filterOutStopWords))\n" +
+                        "                                  .reduce((accumulator, currentValue) => accumulator.concat(currentValue),[])\n" +
+                        "                                  .reduce((allWords, word) => {\n" +
+                        "                                      word in allWords ? allWords[word]++ : allWords[word] = 1\n" +
+                        "                                      return allWords\n" +
+                        "                                  } ,{})\n" +
+                        "\n" +
+                        "\n" +
+                        "\n" +
+                        "          const result = Object.keys(wordCount).map(key => [key, wordCount[key]])\n" +
+                        "                                                        .reduce((sorted, current) => {\n" +
+                        "                                                              let index = 0\n" +
+                        "                                                              while(index < sorted.length && current[1] < sorted[index][1]) index++\n" +
+                        "                                                              sorted.splice(index, 0, current)\n" +
+                        "                                                              return sorted\n" +
+                        "                                                          }, [])\n" +
+                        "                                                          .filter((element, index) => {\n" +
+                        "                                                              return index < 3 ? element : undefined\n" +
+                        "                                                          })\n" +
+                        "                                                          .map(element => element[0])\n"
                 }
             }
         }
