@@ -4,6 +4,11 @@
     <div class="exercises" v-for="item in data.exercises">
       <div class="subtitle">{{ item.title }}
         <br>
+        <code-highlight :language="item.snipped_language" class="code" v-if="item.code_snipped">
+          <pre>
+            {{ item.snipped }}
+          </pre>
+        </code-highlight>
         <a v-if="item.video" :href="item.video_link">Zum Video</a>
         <a v-if="item.html_page" :href="item.page_link">Zur Seite</a>
       </div>

@@ -2622,7 +2622,6 @@ export const exercises = {
                         "          <html lang=\"de\">\n" +
                         "          <head>\n" +
                         "              <meta charset=\"UTF-8\">\n" +
-                        "              <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n" +
                         "              <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n" +
                         "              <title>Übung 9.2</title>\n" +
                         "              <style>\n" +
@@ -2872,6 +2871,215 @@ export const exercises = {
                         "              </script>\n" +
                         "          </body>\n" +
                         "          </html>"
+                }
+            }
+        }
+    },
+    "TypeScript": {
+        "10.1": {
+            "title": "10.1. Static classes in TypeScript",
+            "exercises": {
+                "1": {
+                    "title": "Gibt es in TypeScript statische Klassen? Erläutern Sie den Unterschied von TypeScript zu anderen objekt-orientierten, statisch typisierten Programmiersprachen wie Java und C#.",
+                    "image": false,
+                    "video": false,
+                    "code": false,
+                    "solution": "Es gibt keine statische Klassen in TypeScript. Es gibt jedoch Möglichkeiten das Verhalten von statischen Klassen in TypeScript zu modellieren z.B mit Modules. \n" +
+                        "\n" +
+                        "Anders als Java oder C#, besitz TypeScript eine eingebaute Typinferenz, welche es ihr erlaubt ohne explizite Typdeklaration, den Datentyp einer Variable, eines Parameters oder eines Rückgabewerts einer Funktion abzuleiten."
+                }
+            }
+        },
+        "10.2": {
+            "title": "10.2. Fehler finden mit TypeScript",
+            "exercises": {
+                "1": {
+                    "title": "Gegeben sei folgendes fehlerbehaftete JavaScript-Programm. Ergänzen Sie dieses um möglichst viele Typisierungen und übersetzen Sie es in ein TypeScript-Programm.\nWas ist der Fehler in dem gegebenen JavaScript-Code?",
+                    "image": false,
+                    "video": false,
+                    "code_snipped": true,
+                    "snipped_language": "javascript",
+                    "snipped": "const add = (x,y) => x+y;\n" +
+                        "            const equals = (x,y) => x===y;\n" +
+                        "\n" +
+                        "            console.log( add(1,2) );\n" +
+                        "            console.log( add(true, true ) );\n" +
+                        "            console.log( add(true, false ) );\n" +
+                        "            var x = y = 1;\n" +
+                        "            console.log( add(equals(x,y), equals(y,x)) );",
+                    "code": false,
+                    "solution": "Die Parametertypen sind frei wählbar, was dazu führt, dass man bei Laufzeit ungewünschte Ergebnisse erhalten kann."
+                },
+                "2": {
+                    "title": "Geben Sie hier Ihren TypeScript-Code ein:\n",
+                    "image": false,
+                    "video": false,
+                    "code": true,
+                    "language": "javascript",
+                    "solution": "type BoolNum = boolean | number;\n" +
+                        "\n" +
+                        "          const add = (x: BoolNum,y: BoolNum): number => +x + +y;\n" +
+                        "          const equals = (x: BoolNum,y: BoolNum): boolean => x===y;\n" +
+                        "\n" +
+                        "          console.log( add(1,2) );\n" +
+                        "          console.log( add(true, true ) );\n" +
+                        "          console.log( add(true, false ) );\n" +
+                        "          var x: number,y: number = 1;\n" +
+                        "          console.log( add(equals(x,y), equals(y,x)) );"
+                },
+                "3": {
+                    "title": "Welche Fehler meldet TypeScript?",
+                    "image": false,
+                    "video": false,
+                    "code": false,
+                    "solution": "Die Variable y ist in TypeScript nicht initialisiert und kann in den Funktionsaufrufen nicht gefunden werden."
+                },
+                "4": {
+                    "title": "Geben Sie weitere Beispiele an, wie TypeScript bei der Fehlersuche helfen kann:\n",
+                    "image": false,
+                    "video": false,
+                    "code": false,
+                    "solution": "TypeScript inferiert durch die Parametertypen den richtigen Rückgabetypen. Es teilt einem falsche Datentypen zur Compiletime mit."
+                }
+            }
+        },
+        "10.3": {
+            "title": "10.3. TypeScript auf Deno",
+            "exercises": {
+                "1": {
+                    "title": "Auf Deno ist TypeScript ohne Übersetzung direkt ablauffähig. Deno ist also die Runtime Engine für TypeScript.\n" +
+                        "\n" +
+                        "Schreiben Sie in TypeScript möglichst umfangreich statisch typisiert ein auf Deno ablauffähiges Programm server.ts, das Sie mit deno run --allow-net server.ts starten können, das die COVID-19-Fallzahlen (Stand 12. Dezember 2021) in Deutschland einliest, Minimum, Maximum, Durchschnitt und Summe berechnet und diese auf einer Webseite ausgibt.",
+                    "image": false,
+                    "video": false,
+                    "html_page": true,
+                    "page_link": "https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Fallzahlen.html",
+                    "code": true,
+                    "language": "javascript",
+                    "solution": "import { Server } from \"https://deno.land/std@0.117.0/http/server.ts\";\n" +
+                        "\n" +
+                        "          const handler = (_request: Request) => {\n" +
+                        "          const body = `<!DOCTYPE html>\n" +
+                        "          <html lang=\"de\">\n" +
+                        "          <head>\n" +
+                        "              <meta charset=\"UTF-8\">\n" +
+                        "              <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n" +
+                        "              <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n" +
+                        "              <title>Corona Fallzahlen</title>\n" +
+                        "          </head>\n" +
+                        "          <body>\n" +
+                        "              <h2>Covid-19 Fallzahlen nach Bundesländern</h2>\n" +
+                        "              <p>Niedrigste Fallzahl: ${ min(data) }</p>\n" +
+                        "              <p>Höchste Fallzahl: ${ max(data) }</p>\n" +
+                        "              <p>Durchschnittliche Fallzahl: ${ avrg(data) }</p>\n" +
+                        "              <p>Summierte Fallzahl: ${ sum(data) }</p>\n" +
+                        "          </body>\n" +
+                        "          </html>`;\n" +
+                        "\n" +
+                        "          return new Response(body, { status: 200, headers: {\n" +
+                        "              \"content-type\": \"text/html\"\n" +
+                        "          } });\n" +
+                        "          };\n" +
+                        "\n" +
+                        "          const server = new Server({ handler });\n" +
+                        "          const listener = Deno.listen({ port: 8000 });\n" +
+                        "\n" +
+                        "          server.serve(listener);\n" +
+                        "\n" +
+                        "          const data: { name: string; count: number }[] = [\n" +
+                        "          {\n" +
+                        "              name: \"Baden-Würtemberg\",\n" +
+                        "              count: 907123,\n" +
+                        "          },\n" +
+                        "          {\n" +
+                        "              name: \"Bayern\",\n" +
+                        "              count: 1219168,\n" +
+                        "          },\n" +
+                        "          {\n" +
+                        "              name: \"Berlin\",\n" +
+                        "              count: 293200,\n" +
+                        "          },\n" +
+                        "          {\n" +
+                        "              name: \"Brandenburg\",\n" +
+                        "              count: 200190,\n" +
+                        "          },\n" +
+                        "          {\n" +
+                        "              name: \"Bremen\",\n" +
+                        "              count: 41628,\n" +
+                        "          },\n" +
+                        "          {\n" +
+                        "              name: \"Hamburg\",\n" +
+                        "              count: 119744,\n" +
+                        "          },\n" +
+                        "          {\n" +
+                        "              name: \"Hessen\",\n" +
+                        "              count: 437099,\n" +
+                        "          },\n" +
+                        "          {\n" +
+                        "              name: \"Mecklenburg-Vorpommern\",\n" +
+                        "              count: 81135,\n" +
+                        "          },\n" +
+                        "          {\n" +
+                        "              name: \"Niedersachsen\",\n" +
+                        "              count: 399254,\n" +
+                        "          },\n" +
+                        "          {\n" +
+                        "              name: \"Nordrhein-Westfalen\",\n" +
+                        "              count: 1247697,\n" +
+                        "          },\n" +
+                        "          {\n" +
+                        "              name: \"Rheinland-Pfalz\",\n" +
+                        "              count: 251709,\n" +
+                        "          },\n" +
+                        "          {\n" +
+                        "              name: \"Saarland\",\n" +
+                        "              count: 66432,\n" +
+                        "          },\n" +
+                        "          {\n" +
+                        "              name: \"Sachsen\",\n" +
+                        "              count: 567898,\n" +
+                        "          },\n" +
+                        "          {\n" +
+                        "              name: \"Sachsen-Anhalt\",\n" +
+                        "              count: 184892,\n" +
+                        "          },\n" +
+                        "          {\n" +
+                        "              name: \"Schleswig-Holstein\",\n" +
+                        "              count: 102598,\n" +
+                        "          },\n" +
+                        "          {\n" +
+                        "              name: \"Thüringen\",\n" +
+                        "              count: 242465,\n" +
+                        "          },\n" +
+                        "          ];\n" +
+                        "\n" +
+                        "          const min = (data: { name: string; count: number }[]): number => {\n" +
+                        "          return data\n" +
+                        "              .map((element) => element.count)\n" +
+                        "              .reduce((acc, curr) => {\n" +
+                        "              return acc < curr ? acc : curr;\n" +
+                        "              });\n" +
+                        "          };\n" +
+                        "\n" +
+                        "          const max = (data: { name: string; count: number }[]): number => {\n" +
+                        "          return data\n" +
+                        "              .map((element) => element.count)\n" +
+                        "              .reduce((acc, curr) => {\n" +
+                        "              return acc > curr ? acc : curr;\n" +
+                        "              });\n" +
+                        "          };\n" +
+                        "\n" +
+                        "          const avrg = (data: { name: string; count: number }[]): number => {\n" +
+                        "          return sum(data) / data.length;\n" +
+                        "          };\n" +
+                        "\n" +
+                        "          const sum = (data: { name: string; count: number }[]): number => {\n" +
+                        "          return data\n" +
+                        "              .map((element) => element.count)\n" +
+                        "              .reduce((acc, curr) => {\n" +
+                        "              return acc + curr;\n" +
+                        "              });\n" +
+                        "          };\n"
                 }
             }
         }
