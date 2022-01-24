@@ -2159,6 +2159,722 @@ export const exercises = {
                 }
             }
         }
+    },
+    "Async": {
+        "8.1": {
+            "title": "8.1. Promises",
+            "exercises": {
+                "1": {
+                    "title": "Erstellen Sie auf Ihrem Server www2.inf.h-brs.de (oder localhost) zwei Text-Dateien A.txt und B.txt mit ungefähr gleich vielen Zeilen. Laden Sie mit der fetch-API parallel beide Text-Dateien vom Server. Geben Sie auf einer Webseite den Inhalt beider Dateien zeilenweise aus, wobei der Anfang der Zeile aus A.txt und das Ende aus B.txt stammen soll. Die beiden Dateien sollen also zeilenweise konkateniert werden. Erzielen Sie max. Geschwindigkeit durch maximale Parallelität. Achten Sie gleichzeitig auf Korrektheit. Verwenden Sie dabei ausschließlich die Promise API ohne async / await.",
+                    "image": false,
+                    "video": false,
+                    "code": true,
+                    "language": "html",
+                    "solution": "<!DOCTYPE html>\n" +
+                        "          <html lang=\"de\">\n" +
+                        "                  <head>\n" +
+                        "                      <meta charset=\"UTF-8\">\n" +
+                        "                      <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n" +
+                        "                      <title>Übung 8.1</title>\n" +
+                        "                  </head>\n" +
+                        "                  <body>\n" +
+                        "\n" +
+                        "                      <div id=\"text\"></div>\n" +
+                        "\n" +
+                        "                      <script>\n" +
+                        "        \n" +
+                        "                          const textConatiner = document.getElementById('text')\n" +
+                        "\n" +
+                        "                          Promise.all([\n" +
+                        "                              fetch('http://localhost:3000/A').then(res => res.text()),\n" +
+                        "                              fetch('http://localhost:3000/B').then(res => res.text())\n" +
+                        "                          ])\n" +
+                        "                          .then(values => values.map(value => value.split('\\r\\n')))\n" +
+                        "                          .then(texts => texts[0].map((text,index) => text.concat(texts[1][index])))\n" +
+                        "                          .then(text => text.forEach(row => generateRow(row)))\n" +
+                        "\n" +
+                        "                          const generateRow = (text) => {\n" +
+                        "                              const paragraph = document.createElement('p')\n" +
+                        "                              const textNode = document.createTextNode(text)\n" +
+                        "\n" +
+                        "                              paragraph.appendChild(textNode)\n" +
+                        "                              textConatiner.appendChild(paragraph)\n" +
+                        "                          }\n" +
+                        "        \n" +
+                        "                      </script>\n" +
+                        "                  </body>\n" +
+                        "          </html>"
+                }
+            }
+        },
+        "8.2": {
+            "title": "8.2. async / await",
+            "exercises": {
+                "1": {
+                    "title": "Lösen Sie die letzte Aufgabe mit async / await statt Promise.",
+                    "image": false,
+                    "video": false,
+                    "code": true,
+                    "language": "html",
+                    "solution": "<!DOCTYPE html>\n" +
+                        "          <html lang=\"de\">\n" +
+                        "                  <head>\n" +
+                        "                      <meta charset=\"UTF-8\">\n" +
+                        "                      <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n" +
+                        "                      <title>Übung 8.2</title>\n" +
+                        "                  </head>\n" +
+                        "                  <body>\n" +
+                        "                      <div id=\"text\"></div>\n" +
+                        "                      <script>\n" +
+                        "\n" +
+                        "                          const textConatiner = document.getElementById('text')\n" +
+                        "\n" +
+                        "                          async function fetchTexts() {\n" +
+                        "\n" +
+                        "                              var data = await Promise.all([\n" +
+                        "                                  fetch('http://localhost:3000/A').then(res => res.text()),\n" +
+                        "                                  fetch('http://localhost:3000/B').then(res => res.text())\n" +
+                        "                              ])\n" +
+                        "\n" +
+                        "                              const texts = data.map(array => array.split('\\r\\n'))\n" +
+                        "                              const text = texts[0].map((row, index) => row.concat(texts[1][index]))\n" +
+                        "\n" +
+                        "                              return text\n" +
+                        "                          }\n" +
+                        "\n" +
+                        "                          const generateRow = (text) => {\n" +
+                        "                              const paragraph = document.createElement('p')\n" +
+                        "                              const textNode = document.createTextNode(text)\n" +
+                        "\n" +
+                        "                              paragraph.appendChild(textNode)\n" +
+                        "                              textConatiner.appendChild(paragraph)\n" +
+                        "                          } \n" +
+                        "\n" +
+                        "                          fetchTexts().then(res => {\n" +
+                        "                              res.forEach(row => generateRow(row))\n" +
+                        "                          })\n" +
+                        "\n" +
+                        "                      </script>\n" +
+                        "                  </body>\n" +
+                        "          </html>"
+                }
+            }
+        },
+        "8.3": {
+            "title": "8.3. WWW-Navigator",
+            "exercises": {
+                "1": {
+                    "title": "Schreiben Sie einen Navigator für die Fachbegriffe des WWW zu den Oberthemen HTML, CSS und JavaScript. Im Hauptmenü sollen diese 3 Oberthemen zur Auswahl stehen. Im Untermenü soll eine zugehörige Liste von Fachbegriffen zum jeweiligen ausgewählten Oberthema stehen. In der Mitte soll eine Dokumentation zum ausgewählten Fachbegriff erscheinen.\n" +
+                        "Schreiben Sie in HTML und CSS nur den responsiven Rahmen für einen solchen WWW-Navigator. Dabei können Sie auch ein schöneres Layout als das hier gezeigte erstellen. Die Inhalte sollen in einer JSON-Datei extern gelagert werden. Mit der fetch-API soll die JSON-Datei asynchron nicht-blockierend geladen werden, und zwar nur einmal, nicht mehrfach. (d.h. Sparen Sie Internet-Bandbreite.) Sobald die Inhalte angekommen sind, sollen sie im Browser auch sofort angezeigt werden.\n" +
+                        "\n" +
+                        "Fügen Sie selbst in die JSON-Datei zusätzliche Inhalte zu Themen der Vorlesung als Strings beispielhaft ein. Wenn Sie Inhalte aus fremden Quellen kopieren, so schreiben Sie bitte stets die Quelle als externe Ressource hinzu. Diese soll dann auf der rechten Seite im WWW-Navigator erscheinen.",
+                    "image": true,
+                    "path": "src/assets/www-navigator.png",
+                    "video": false,
+                    "code": true,
+                    "language": "html",
+                    "solution": "<!DOCTYPE html>\n" +
+                        "          <html lang=\"de\">\n" +
+                        "                  <head>\n" +
+                        "                      <meta charset=\"UTF-8\">\n" +
+                        "                      <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n" +
+                        "                      <title>WWW-Navigator</title>\n" +
+                        "                      <style>\n" +
+                        "                          * {\n" +
+                        "                              margin: 0;\n" +
+                        "                              padding: 0;\n" +
+                        "                          }\n" +
+                        "\n" +
+                        "                          header {\n" +
+                        "                              text-align: center;\n" +
+                        "                              padding: 20px;\n" +
+                        "                              box-sizing: border-box;\n" +
+                        "                              height: 80px;\n" +
+                        "                              background-color: #f4a4a4;\n" +
+                        "                              color: white;\n" +
+                        "                          }\n" +
+                        "\n" +
+                        "                          .nav-container {\n" +
+                        "                              display: flex;\n" +
+                        "                              align-items: center;\n" +
+                        "                              justify-content: space-evenly;\n" +
+                        "                              box-sizing: border-box;\n" +
+                        "                              height: 50px;\n" +
+                        "                              background-color: #f4a4a4;\n" +
+                        "                          }\n" +
+                        "\n" +
+                        "                          .navbar {\n" +
+                        "                              display: flex;\n" +
+                        "                              list-style-type: none;\n" +
+                        "                          }\n" +
+                        "\n" +
+                        "                          .navbar li {\n" +
+                        "                              margin: 0 20px;\n" +
+                        "                          }\n" +
+                        "\n" +
+                        "                          .navbar a {\n" +
+                        "                              display: block;\n" +
+                        "                              text-decoration: none;\n" +
+                        "                              color: white;\n" +
+                        "                              background-color: #4ea1d3;\n" +
+                        "                              border: 1px solid #4ea1d3;\n" +
+                        "                              padding: 5px 20px;\n" +
+                        "                              border-radius: 10px;\n" +
+                        "                          }\n" +
+                        "\n" +
+                        "                          .content-area {\n" +
+                        "                              display: grid;\n" +
+                        "                              grid-template-columns: 15% 1fr 25%;\n" +
+                        "                              min-height: calc(100vh - 210px);\n" +
+                        "                          }\n" +
+                        "\n" +
+                        "                          .sub-nav-container {\n" +
+                        "                              grid-column: 1;\n" +
+                        "                              min-height: inherit;\n" +
+                        "                              height: inherit;\n" +
+                        "                              box-sizing: border-box;\n" +
+                        "                              background-color: #f8c8c6;\n" +
+                        "                          }\n" +
+                        "\n" +
+                        "                          .sub-nav {\n" +
+                        "                              display: flex;\n" +
+                        "                              flex-direction: column;\n" +
+                        "                              list-style-type: none;\n" +
+                        "                              min-height: inherit;\n" +
+                        "                              height: inherit;\n" +
+                        "                              padding: 20px;\n" +
+                        "                              box-sizing: inherit;\n" +
+                        "                          }\n" +
+                        "\n" +
+                        "                          .sub-nav li {\n" +
+                        "                              margin: 10px 0;\n" +
+                        "                              width: 50px;\n" +
+                        "                          }\n" +
+                        "\n" +
+                        "                          .sub-nav a {\n" +
+                        "                              display: inline-block;\n" +
+                        "                              text-decoration: none;\n" +
+                        "                              color: white;\n" +
+                        "                              background-color: #4ea1d3;\n" +
+                        "                              border: 1px solid #4ea1d3;\n" +
+                        "                              padding: 5px 20px;\n" +
+                        "                              border-radius: 10px;\n" +
+                        "                          }\n" +
+                        "\n" +
+                        "                          .text {\n" +
+                        "                              box-sizing: border-box;\n" +
+                        "                              min-height: inherit;\n" +
+                        "                              height: inherit;\n" +
+                        "                              background-color: #9aa4ec;\n" +
+                        "                              padding: 20px;\n" +
+                        "                              color: white;\n" +
+                        "                          }\n" +
+                        "\n" +
+                        "                          .links {\n" +
+                        "                              box-sizing: border-box;\n" +
+                        "                              color: white;\n" +
+                        "                              background-color: #f8c8c6;\n" +
+                        "                              min-height: inherit;\n" +
+                        "                              height: inherit;\n" +
+                        "                              padding: 20px;\n" +
+                        "                          }\n" +
+                        "\n" +
+                        "                          .links p {\n" +
+                        "                              max-width: 25%;\n" +
+                        "                          }\n" +
+                        "\n" +
+                        "                          footer {\n" +
+                        "                              display: flex;\n" +
+                        "                              align-items: center;\n" +
+                        "                              justify-content: center;\n" +
+                        "                              background-color: black;\n" +
+                        "                              width: 100%;\n" +
+                        "                              height: 80px;\n" +
+                        "                              box-sizing: border-box;\n" +
+                        "                          }\n" +
+                        "\n" +
+                        "                          .footer {\n" +
+                        "                              list-style-type: none;\n" +
+                        "                              display: flex;\n" +
+                        "                              justify-content: center;\n" +
+                        "                              align-items: center;\n" +
+                        "                          }\n" +
+                        "\n" +
+                        "                          .footer li {\n" +
+                        "                              margin: 0 10px;\n" +
+                        "                          }\n" +
+                        "\n" +
+                        "                          .footer a {\n" +
+                        "                              text-decoration: none;\n" +
+                        "                              color: white;\n" +
+                        "                          }\n" +
+                        "                      </style>\n" +
+                        "                  </head>\n" +
+                        "                  <body>\n" +
+                        "                      <header><h1>WWW-Navigator</h1></header>\n" +
+                        "                      <div class=\"nav-container\">\n" +
+                        "                          <ul class=\"navbar\">\n" +
+                        "                          </ul>\n" +
+                        "                      </div>\n" +
+                        "                      <div class=\"content-area\">\n" +
+                        "                          <div class=\"sub-nav-container\">\n" +
+                        "                              <ul class=\"sub-nav\">\n" +
+                        "                              </ul>\n" +
+                        "                          </div>\n" +
+                        "                          <div class=\"text\">\n" +
+                        "                          </div>\n" +
+                        "                          <div class=\"links\">\n" +
+                        "                              <p><strong>Weitere Informationen:</strong></p>\n" +
+                        "                          </div>\n" +
+                        "                      </div>\n" +
+                        "                      <footer>\n" +
+                        "                          <ul class=\"footer\">\n" +
+                        "                              <li><a href=\"#\">Sitemap</a></li>\n" +
+                        "                              <li><a href=\"#\">Home</a></li>\n" +
+                        "                              <li><a href=\"#\">News</a></li>\n" +
+                        "                              <li><a href=\"#\">Contact</a></li>\n" +
+                        "                              <li><a href=\"#\">About</a></li>\n" +
+                        "                          </ul>\n" +
+                        "                      </footer>\n" +
+                        "                      <script type=\"text/javascript\" src=\"uebung8_3.js\"></script>\n" +
+                        "                  </body>\n" +
+                        "          </html>"
+                },
+                "2": {
+                    "title": "",
+                    "image": false,
+                    "video": false,
+                    "code": true,
+                    "language": "javascript",
+                    "solution": "{\n" +
+                        "          \"html\": {\n" +
+                        "              \"headings\": {\n" +
+                        "              \"content\": \"Die Überschriftenelemente bestehen aus sechs verschiedenen Leveln. <h1> ist die Überschrift mit der höchsten Gewichtung und <h6> mit der kleinsten. Ein Überschriften-Element beschreibt das Thema des Bereiches, welcher der Überschrift folgt. Überschriften können auch verwendet werden, um ein Inhaltsverzeichnis für ein Dokument automatisch zu erstellen.\",\n" +
+                        "              \"references\": [\n" +
+                        "                  \"https://developer.mozilla.org/de/docs/Web/HTML/Element/h1-h6\"\n" +
+                        "              ]\n" +
+                        "              },\n" +
+                        "              \"paragraph\": {\n" +
+                        "              \"content\": \"Das <p>-Element erzeugt einen Absatz, den zusammenhängenden Abschnitt eines längeren Textes. In HTML kann <p> jedoch für jedwede Art von zu gruppierendem, zusammenhängendem Inhalt genutzt werden, zum Beispiel Bilder oder Formularfelder.\",\n" +
+                        "              \"references\": [\n" +
+                        "                  \"https://developer.mozilla.org/de/docs/Web/HTML/Element/p\"\n" +
+                        "              ]\n" +
+                        "              }\n" +
+                        "          },\n" +
+                        "          \"css\": {\n" +
+                        "              \"selectors\": {\n" +
+                        "              \"content\": \"Selektoren definieren, auf welche Elemente eine Reihe von CSS Regeln angewendet wird.\",\n" +
+                        "              \"references\": [\n" +
+                        "                  \"https://developer.mozilla.org/de/docs/Web/CSS/CSS_Selectors\"\n" +
+                        "              ]\n" +
+                        "              },\n" +
+                        "              \"colors\": {\n" +
+                        "              \"content\": \"Der CSS Datentyp Color beschreibt eine Farbe im sRGB Farbraum. Eine Farbe kann auf eine von drei Arten beschrieben werden: Schlüsselworte, rgb und rgba, hsl und hsla. ...\",\n" +
+                        "              \"references\": [\n" +
+                        "                  \"https://developer.mozilla.org/de/docs/Web/CSS/Farben\"\n" +
+                        "              ]\n" +
+                        "              }\n" +
+                        "          },\n" +
+                        "          \"javascript\": {\n" +
+                        "              \"function\": {\n" +
+                        "              \"content\": \"Funktionen sind ein Grundbaustein in JavaScript. Eine Funktion ist eine Prozedur - eine Reihe von Anweisungen, um eine Aufgabe auszuführen oder eine Wert auszurechnen. Um Funktionen zu verwenden, müssen diese im Scope (Gültigkeitsbereich) deklariert werden, in dem sie ausgeführt werden soll.\",\n" +
+                        "              \"references\": [\n" +
+                        "                  \"https://developer.mozilla.org/de/docs/Web/JavaScript/Guide/Funktionen\"\n" +
+                        "              ]\n" +
+                        "              },\n" +
+                        "              \"object\": {\n" +
+                        "              \"content\": \"Ein Objekt ist eine Sammlung von zusammenhängenden Daten und/oder Funktionalitäten. Diese bestehen üblicherweise aus verschiedenen Variablen und Funktionen, die Eigenschaften und Methoden genannt werden, wenn sie sich innerhalb von Objekten befinden.\",\n" +
+                        "              \"references\": [\n" +
+                        "                  \"https://developer.mozilla.org/de/docs/Learn/JavaScript/Objects/Basics\"\n" +
+                        "              ]\n" +
+                        "              }\n" +
+                        "          }\n" +
+                        "          }"
+                },
+                "3": {
+                    "title": "",
+                    "image": false,
+                    "video": false,
+                    "code": true,
+                    "language": "javascript",
+                    "solution": "const textArea = document.getElementsByClassName('text')[0]\n" +
+                        "          const linkArea = document.getElementsByClassName('links')[0]\n" +
+                        "          const navbar = document.getElementsByClassName('navbar')[0]\n" +
+                        "          const subnav = document.getElementsByClassName('sub-nav')[0]\n" +
+                        "\n" +
+                        "          window.addEventListener('load',() => {\n" +
+                        "              fetchData()\n" +
+                        "          })\n" +
+                        "\n" +
+                        "          async function fetchData() {\n" +
+                        "              const data = await fetch('http://localhost:3000/data').then(res => res.json())\n" +
+                        "              console.log(data)\n" +
+                        "    \n" +
+                        "              for (const [key,value] of Object.entries(data)) {\n" +
+                        "                  generateNavbar(key, navbar)\n" +
+                        "                  for (const [subkey, index] of Object.entries(value)) {\n" +
+                        "                      generateNavbar(subkey, subnav)\n" +
+                        "                      generateText(key, subkey, index['content'])\n" +
+                        "                      console.log(index['references'])\n" +
+                        "                      generateLinks(key, subkey, index['references'])\n" +
+                        "                  }\n" +
+                        "              }\n" +
+                        "    \n" +
+                        "          } \n" +
+                        "\n" +
+                        "          const generateNavbar = (key, nav) => {\n" +
+                        "              const list = document.createElement('li')\n" +
+                        "              const anchor = document.createElement('a')\n" +
+                        "              anchor.className = key + '-button'\n" +
+                        "              const text = document.createTextNode(key)\n" +
+                        "\n" +
+                        "              list.appendChild(anchor)\n" +
+                        "              anchor.appendChild(text)\n" +
+                        "\n" +
+                        "              nav.appendChild(list)\n" +
+                        "          }\n" +
+                        "\n" +
+                        "          const generateText = (topic, subtopic, content) => {\n" +
+                        "              const paragraph = document.createElement('p')\n" +
+                        "              paragraph.className = topic + \"-text\" + \" \" + subtopic + \"-text\"\n" +
+                        "              const text = document.createTextNode(content)\n" +
+                        "\n" +
+                        "              paragraph.appendChild(text)\n" +
+                        "\n" +
+                        "              textArea.appendChild(paragraph)\n" +
+                        "          }\n" +
+                        "\n" +
+                        "          const generateLinks = (topic, subtopic, links) => {\n" +
+                        "              links.forEach(link => {\n" +
+                        "                  const paragraph = document.createElement('p')\n" +
+                        "                  const anchor = document.createElement('a')\n" +
+                        "                  anchor.className = topic + \"-link\" + \" \" + subtopic + \"-link\"\n" +
+                        "                  anchor.href = link\n" +
+                        "                  const text = document.createTextNode(link)\n" +
+                        "\n" +
+                        "                  paragraph.appendChild(anchor)\n" +
+                        "                  anchor.appendChild(text)\n" +
+                        "        \n" +
+                        "                  linkArea.appendChild(paragraph)\n" +
+                        "              })\n" +
+                        "          }"
+                }
+            }
+        }
+    },
+    "SVG": {
+        "9.1": {
+            "title": "9.1. SVG Grafik von Hand erstellen",
+            "exercises": {
+                "1": {
+                    "title": "Codieren Sie eine HTML-Datei mit Inline SVG, so dass sich folgendes Aussehen ergibt:\n" +
+                        "Fügen Sie als Hover-Effekt eine CSS-Animation hinzu, die die Größe der SVG-Grafik verdoppelt, wenn man mit dem Cursor über die Grafik geht.",
+                    "image": true,
+                    "path": "src/assets/use_the_platform.png",
+                    "video": false,
+                    "code": true,
+                    "language": "html",
+                    "solution": "<!DOCTYPE html>\n" +
+                        "          <html lang=\"de\">\n" +
+                        "          <head>\n" +
+                        "              <meta charset=\"UTF-8\">\n" +
+                        "              <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n" +
+                        "              <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n" +
+                        "              <title>Übung 9.1</title>\n" +
+                        "              <style>\n" +
+                        "                  .graphic:hover {\n" +
+                        "                      transform: scale(2.0);\n" +
+                        "                  }\n" +
+                        "\n" +
+                        "                  .graphic {\n" +
+                        "                      transition: all 1s;\n" +
+                        "                  }\n" +
+                        "              </style>\n" +
+                        "          </head>\n" +
+                        "          <body>\n" +
+                        "              <h1>SVG Use the Platform</h1>\n" +
+                        "              <svg width=\"500\" height=\"550\" class=\"graphic\">\n" +
+                        "                  <rect width=\"500\" height=\"550\" x=\"0\" y=\"0\" style=\"fill:#cb798d\"/>\n" +
+                        "                  <text font-family=\"Sans-serif\" font-size=\"6.75em\" x=\"50\" y=\"130\" fill=\"white\">Use</text>\n" +
+                        "                  <path stroke=\"white\" stroke-width=\"6\" d=\"M 50 160 L 450 160 Z\"/>\n" +
+                        "                  <text font-family=\"Sans-serif\" font-size=\"6.75em\" x=\"50\" y=\"285\" fill=\"white\">The</text>\n" +
+                        "                  <path stroke=\"white\" stroke-width=\"6\" d=\"M 50 315 L 450 315 Z\"/>\n" +
+                        "                  <text font-family=\"Sans-serif\" font-size=\"6.75em\" x=\"50\" y=\"450\" fill=\"white\">Platform</text>\n" +
+                        "                  <path stroke=\"white\"stroke-width=\"6\"  d=\"M 50 480 L 450 480 Z\"/>\n" +
+                        "              </svg>\n" +
+                        "          </body>\n" +
+                        "          </html>"
+                }
+            }
+        },
+        "9.2": {
+            "title": "9.2. Statistik-Balkendiagramm in SVG",
+            "exercises": {
+                "1": {
+                    "title": "Implementieren Sie ein eigenes Balkendiagramm mit HTML, Inline SVG, CSS und JavaScript. Geben Sie die Daten für das Balkendiagramm im JSON-Format vor. Nehmen Sie als Beispieldaten die COVID-19: Fallzahlen in Deutschland (Stand 4. Dezember 2021). Animieren Sie die Grafik",
+                    "image": false,
+                    "video": false,
+                    "html_page": true,
+                    "page_link": "https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Fallzahlen.html",
+                    "code": true,
+                    "language": "html",
+                    "solution": "<!DOCTYPE html>\n" +
+                        "          <html lang=\"de\">\n" +
+                        "          <head>\n" +
+                        "              <meta charset=\"UTF-8\">\n" +
+                        "              <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n" +
+                        "              <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n" +
+                        "              <title>Übung 9.2</title>\n" +
+                        "              <style>\n" +
+                        "                  #data line {\n" +
+                        "                      stroke-dasharray: 1500; \n" +
+                        "                      stroke-dashoffset: 1500;\n" +
+                        "                      animation: draw 4s ease-out forwards;\n" +
+                        "                  }\n" +
+                        "\n" +
+                        "                  @keyframes draw {\n" +
+                        "                      to {\n" +
+                        "                          stroke-dashoffset: 0;\n" +
+                        "                      }\n" +
+                        "                  }\n" +
+                        "              </style>\n" +
+                        "          </head>\n" +
+                        "          <body>\n" +
+                        "              <svg width=\"1500\" height=\"720\">\n" +
+                        "                  <rect width=\"1500\" height=\"720\" fill=\"white\" stroke=\"black\"/>\n" +
+                        "                  <text x=\"750\" y=\"50\" text-anchor=\"middle\" font-size=\"2em\" font-family=\"sans-serif\">Covid-19 Infektionen nach Bundesland (in Millionen)</text>\n" +
+                        "                  <g id=\"y-axis\" font-family=\"sans-serif\" fill=\"black\" transform=\"translate(200 120)\" text-anchor=\"end\">\n" +
+                        "                  </g>\n" +
+                        "                  <g id=\"x-axis\" font-family=\"sans-serif\" font-size=\"0.75em\" transform=\"translate(210 90)\" text-anchor=\"middle\">\n" +
+                        "                      <line x1=\"0\" y1=\"0\" x2=\"0\" y2=\"590\" style=\"stroke:#aaa;stroke-width:0.5\"/>\n" +
+                        "                      <text x=\"0\" y=\"610\">0</text>\n" +
+                        "                      <line x1=\"100\" y1=\"0\" x2=\"100\" y2=\"590\" style=\"stroke:#aaa;stroke-width:0.5\"/>\n" +
+                        "                      <text x=\"100\" y=\"610\">0.1</text>\n" +
+                        "                      <line x1=\"200\" y1=\"0\" x2=\"200\" y2=\"590\" style=\"stroke:#aaa;stroke-width:0.5\"/>\n" +
+                        "                      <text x=\"200\" y=\"610\">0.2</text>\n" +
+                        "                      <line x1=\"300\" y1=\"0\" x2=\"300\" y2=\"590\" style=\"stroke:#aaa;stroke-width:0.5\"/>\n" +
+                        "                      <text x=\"300\" y=\"610\">0.3</text>\n" +
+                        "                      <line x1=\"400\" y1=\"0\" x2=\"400\" y2=\"590\" style=\"stroke:#aaa;stroke-width:0.5\"/>\n" +
+                        "                      <text x=\"400\" y=\"610\">0.4</text>\n" +
+                        "                      <line x1=\"500\" y1=\"0\" x2=\"500\" y2=\"590\" style=\"stroke:#aaa;stroke-width:0.5\"/>\n" +
+                        "                      <text x=\"500\" y=\"610\">0.5</text>\n" +
+                        "                      <line x1=\"600\" y1=\"0\" x2=\"600\" y2=\"590\" style=\"stroke:#aaa;stroke-width:0.5\"/>\n" +
+                        "                      <text x=\"600\" y=\"610\">0.6</text>\n" +
+                        "                      <line x1=\"700\" y1=\"0\" x2=\"700\" y2=\"590\" style=\"stroke:#aaa;stroke-width:0.5\"/>\n" +
+                        "                      <text x=\"700\" y=\"610\">0.7</text>\n" +
+                        "                      <line x1=\"800\" y1=\"0\" x2=\"800\" y2=\"590\" style=\"stroke:#aaa;stroke-width:0.5\"/>\n" +
+                        "                      <text x=\"800\" y=\"610\">0.8</text>\n" +
+                        "                      <line x1=\"900\" y1=\"0\" x2=\"900\" y2=\"590\" style=\"stroke:#aaa;stroke-width:0.5\"/>\n" +
+                        "                      <text x=\"900\" y=\"610\">0.9</text>\n" +
+                        "                      <line x1=\"1000\" y1=\"0\" x2=\"1000\" y2=\"590\" style=\"stroke:#aaa;stroke-width:0.5\"/>\n" +
+                        "                      <text x=\"1000\" y=\"610\">1</text>\n" +
+                        "                      <line x1=\"1100\" y1=\"0\" x2=\"1100\" y2=\"590\" style=\"stroke:#aaa;stroke-width:0.5\"/>\n" +
+                        "                      <text x=\"1100\" y=\"610\">1.1</text>\n" +
+                        "                      <line x1=\"1200\" y1=\"0\" x2=\"1200\" y2=\"590\" style=\"stroke:#aaa;stroke-width:0.5\"/>\n" +
+                        "                      <text x=\"1200\" y=\"610\">1.2</text>\n" +
+                        "                  </g>\n" +
+                        "                  <g id=\"data\" transform=\"translate(210 90)\" style=\"stroke: red;stroke-width:5\">\n" +
+                        "                  </g>\n" +
+                        "              </svg>\n" +
+                        "              <script>\n" +
+                        "                  const data = {\n" +
+                        "                      'Baden-Würtemberg': 857957,\n" +
+                        "                      'Bayern': 1167598,\n" +
+                        "                      'Berlin': 282068,\n" +
+                        "                      'Brandenburg': 168828,\n" +
+                        "                      'Bremen': 40308,\n" +
+                        "                      'Hamburg': 116140,\n" +
+                        "                      'Hessen': 422403,\n" +
+                        "                      'Mecklenburg-Vorpommern': 75321,\n" +
+                        "                      'Niedersachsen': 348998,\n" +
+                        "                      'Nordrhein-Westfalen': 1201564,\n" +
+                        "                      'Rheinland-Pfalz': 239998,\n" +
+                        "                      'Saarland': 63261,\n" +
+                        "                      'Sachsen': 524645,\n" +
+                        "                      'Sachsen-Anhalt': 166227,\n" +
+                        "                      'Schleswig-Holstein': 98841,\n" +
+                        "                      'Thüringen': 223403\n" +
+                        "                  }\n" +
+                        "                  const yAxis = document.querySelector('#y-axis')\n" +
+                        "                  const bars = document.querySelector('#data')\n" +
+                        "\n" +
+                        "                  window.addEventListener('load', () => {\n" +
+                        "                      Object.entries(data).map(element => {generateGraphEntry(element[0]);generateBar(element[1])})\n" +
+                        "                  })\n" +
+                        "\n" +
+                        "\n" +
+                        "                  const generateGraphEntry = (value) => {\n" +
+                        "                      const lastChild = yAxis.lastElementChild\n" +
+                        "\n" +
+                        "                      const textNode = document.createElementNS('http://www.w3.org/2000/svg','text')\n" +
+                        "                      const text = document.createTextNode(value)\n" +
+                        "\n" +
+                        "\n" +
+                        "                      if (lastChild) {\n" +
+                        "                          textNode.setAttribute('x', lastChild.attributes.x.value)\n" +
+                        "                          textNode.setAttribute('y', parseInt(lastChild.attributes.y.value) + 36)\n" +
+                        "                      }\n" +
+                        "                      else {\n" +
+                        "                          textNode.setAttribute('x', 0)\n" +
+                        "                          textNode.setAttribute('y', 0)\n" +
+                        "                      }\n" +
+                        "\n" +
+                        "                      textNode.appendChild(text)\n" +
+                        "                      yAxis.appendChild(textNode)\n" +
+                        "                  }\n" +
+                        "\n" +
+                        "                  const generateBar = (amount) => {\n" +
+                        "                      const lastChild = bars.lastElementChild\n" +
+                        "\n" +
+                        "                      const lineElement = document.createElementNS('http://www.w3.org/2000/svg','line')\n" +
+                        "                      lineElement.className = 'animated'\n" +
+                        "\n" +
+                        "                      lineElement.setAttribute('x1', 0)\n" +
+                        "                      lineElement.setAttribute('x2', Math.round(amount/1000))\n" +
+                        "                      lineElement.className.baseVal = 'animated'\n" +
+                        "            \n" +
+                        "                      if (lastChild) {\n" +
+                        "                          lineElement.setAttribute('y1', parseInt(lastChild.attributes.y1.value) + 36)\n" +
+                        "                          lineElement.setAttribute('y2', parseInt(lastChild.attributes.y2.value) + 36)\n" +
+                        "                      }\n" +
+                        "                      else {\n" +
+                        "                          lineElement.setAttribute('y1', 26)\n" +
+                        "                          lineElement.setAttribute('y2', 26)\n" +
+                        "                      }\n" +
+                        "\n" +
+                        "                      bars.appendChild(lineElement)\n" +
+                        "                  }\n" +
+                        "              </script>\n" +
+                        "          </body>\n" +
+                        "          </html>"
+                }
+            }
+        },
+        "9.3": {
+            "title": "9.3. Interaktive SVG Grafik",
+            "exercises": {
+                "1": {
+                    "title": "Implementieren Sie das Spiel Tic-Tac-Toe als HTML-Datei mit Inline SVG, CSS und JavaScript.",
+                    "image": false,
+                    "video": false,
+                    "code": true,
+                    "language": "html",
+                    "solution": "<!DOCTYPE html>\n" +
+                        "          <html lang=\"de\">\n" +
+                        "          <head>\n" +
+                        "              <meta charset=\"UTF-8\">\n" +
+                        "              <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n" +
+                        "              <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n" +
+                        "              <title>Übung 9.3</title>\n" +
+                        "          </head>\n" +
+                        "          <body>\n" +
+                        "              <svg width=\"600\" height=\"600\">\n" +
+                        "                  <g id=\"tictactoe\" style=\"pointer-events: bounding-box;\">\n" +
+                        "\n" +
+                        "                      <line style=\"stroke: #aaa;stroke-width: 2\" x1=\"200\" y1=\"0\" x2=\"200\" y2=\"600\"></line>\n" +
+                        "                      <line style=\"stroke: #aaa;stroke-width: 2\" x1=\"400\" y1=\"0\" x2=\"400\" y2=\"600\"></line>\n" +
+                        "                      <line style=\"stroke: #aaa;stroke-width: 2\" x1=\"0\" y1=\"200\" x2=\"600\" y2=\"200\"></line>\n" +
+                        "                      <line style=\"stroke: #aaa;stroke-width: 2\" x1=\"0\" y1=\"400\" x2=\"600\" y2=\"400\"></line>\n" +
+                        "\n" +
+                        "\n" +
+                        "                      <g class=\"area\" id=\"0\" transform=\"translate(0,0)\">\n" +
+                        "                          <rect width=\"200\" height=\"200\" style=\"fill: #fff;opacity: 0%;stroke: #fff;stroke-opacity: 0%\"></rect>\n" +
+                        "                      </g>\n" +
+                        "                      <g class=\"area\" id=\"1\" transform=\"translate(200,0)\">\n" +
+                        "                          <rect width=\"200\" height=\"200\" style=\"fill: #fff;opacity: 0%;stroke: #fff;stroke-opacity: 0%\"></rect>\n" +
+                        "                      </g>\n" +
+                        "                      <g class=\"area\" id=\"2\" transform=\"translate(400,0)\">\n" +
+                        "                          <rect width=\"200\" height=\"200\" style=\"fill: #fff;opacity: 0%;stroke: #fff;stroke-opacity: 0%\"></rect>\n" +
+                        "                      </g>\n" +
+                        "                      <g class=\"area\" id=\"3\" transform=\"translate(0,200)\">\n" +
+                        "                          <rect width=\"200\" height=\"200\" style=\"fill: #fff;opacity: 0%;stroke: #fff;stroke-opacity: 0%\"></rect>\n" +
+                        "                      </g>\n" +
+                        "                      <g class=\"area\" id=\"4\" transform=\"translate(200,200)\">\n" +
+                        "                          <rect width=\"200\" height=\"200\" style=\"fill: #fff;opacity: 0%;stroke: #fff;stroke-opacity: 0%\"></rect>\n" +
+                        "                      </g>\n" +
+                        "                      <g class=\"area\" id=\"5\" transform=\"translate(400,200)\">\n" +
+                        "                          <rect width=\"200\" height=\"200\" style=\"fill: #fff;opacity: 0%;stroke: #fff;stroke-opacity: 0%\"></rect>\n" +
+                        "                      </g>\n" +
+                        "                      <g class=\"area\" id=\"6\" transform=\"translate(0,400)\">\n" +
+                        "                          <rect width=\"200\" height=\"200\" style=\"fill: #fff;opacity: 0%;stroke: #fff;stroke-opacity: 0%\"></rect>\n" +
+                        "                      </g>\n" +
+                        "                      <g class=\"area\" id=\"7\" transform=\"translate(200,400)\">\n" +
+                        "                          <rect width=\"200\" height=\"200\" style=\"fill: #fff;opacity: 0%;stroke: #fff;stroke-opacity: 0%\"></rect>\n" +
+                        "                      </g>\n" +
+                        "                      <g class=\"area\" id=\"8\" transform=\"translate(400,400)\">\n" +
+                        "                          <rect width=\"200\" height=\"200\" style=\"fill: #fff;opacity: 0%;stroke: #fff;stroke-opacity: 0%\"></rect>\n" +
+                        "                      </g>\n" +
+                        "                  </g>\n" +
+                        "              </svg>\n" +
+                        "              <script>\n" +
+                        "                  const areas = document.getElementsByClassName('area')\n" +
+                        "                  var game = []\n" +
+                        "                  var symbol = ''\n" +
+                        "\n" +
+                        "                  window.addEventListener('load', () => {\n" +
+                        "                      game = [0,0,0,0,0,0,0,0,0]\n" +
+                        "                      symbol = 'X'\n" +
+                        "                      Array.from(areas).forEach(area => {\n" +
+                        "                          area.addEventListener('click', (e) => {\n" +
+                        "                              toggleSymbol(e.target.parentElement)  \n" +
+                        "                          },{ once: true })  \n" +
+                        "                      })\n" +
+                        "                  })\n" +
+                        "\n" +
+                        "                  const toggleSymbol = (target) => {\n" +
+                        "                      if (symbol === 'X') {\n" +
+                        "                          printCross(target)\n" +
+                        "                          symbol = 'O'\n" +
+                        "                      }\n" +
+                        "                      else if (symbol === 'O') {\n" +
+                        "                          printCircle(target)\n" +
+                        "                          symbol = 'X'\n" +
+                        "                      }\n" +
+                        "                  }\n" +
+                        "\n" +
+                        "                  const printCross = (target) => {\n" +
+                        "                      const group = document.createElementNS('http://www.w3.org/2000/svg', 'g')\n" +
+                        "                      group.setAttribute('id', 'cross')\n" +
+                        "                      group.setAttribute('style', 'stroke: #000;stroke-width: 8')\n" +
+                        "\n" +
+                        "                      const line1 = document.createElementNS('http://www.w3.org/2000/svg', 'line')\n" +
+                        "                      line1.setAttribute('x1','20')\n" +
+                        "                      line1.setAttribute('y1','20')\n" +
+                        "                      line1.setAttribute('x2','180')\n" +
+                        "                      line1.setAttribute('y2','180')\n" +
+                        "\n" +
+                        "                      const line2 = document.createElementNS('http://www.w3.org/2000/svg', 'line')\n" +
+                        "                      line2.setAttribute('x1','20')\n" +
+                        "                      line2.setAttribute('y1','180')\n" +
+                        "                      line2.setAttribute('x2','180')\n" +
+                        "                      line2.setAttribute('y2','20')\n" +
+                        "\n" +
+                        "                      group.appendChild(line1)\n" +
+                        "                      group.appendChild(line2)\n" +
+                        "\n" +
+                        "                      target.prepend(group)\n" +
+                        "                  }\n" +
+                        "\n" +
+                        "                  const printCircle = (target) => {\n" +
+                        "                      const group = document.createElementNS('http://www.w3.org/2000/svg', 'g')\n" +
+                        "                      group.setAttribute('id', 'cross')\n" +
+                        "                      group.setAttribute('style', 'stroke: #000;stroke-width: 8;fill: #fff')\n" +
+                        "\n" +
+                        "                      const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle')\n" +
+                        "                      circle.setAttribute('cx','100')\n" +
+                        "                      circle.setAttribute('cy','100')\n" +
+                        "                      circle.setAttribute('r','80')\n" +
+                        "\n" +
+                        "                      group.appendChild(circle)\n" +
+                        "\n" +
+                        "                      target.prepend(group)\n" +
+                        "                  }\n" +
+                        "              </script>\n" +
+                        "          </body>\n" +
+                        "          </html>"
+                }
+            }
+        }
     }
 }
 
