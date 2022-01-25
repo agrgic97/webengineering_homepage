@@ -3083,6 +3083,664 @@ export const exercises = {
                 }
             }
         }
+    },
+    "Vue": {
+        "11.1": {
+            "title": "11.1. Komponente in Vue.js",
+            "exercises": {
+                "1": {
+                    "title": "Schreiben Sie eine Vue.js Single File Component mit einem Text-Eingabefeld und 3 Ausgabefeldern, in denen man während des Tippens sehen kann, (a) wie viele Buchstaben (b) wie viele Leerzeichen und (c) wie viele Worte man in das Text-Eingabefeld bereits eingegeben hat.\n" +
+                        "\n" +
+                        "Betten Sie Ihre Komponente in eine Webseite zweimal ein und testen Sie, ob beide Komponenten unabhängig voneinander sind.",
+                    "image": false,
+                    "video": false,
+                    "code": true,
+                    "language": "javascript",
+                    "solution": "export default {\n" +
+                        "              template: `\n" +
+                        "                  <div class=\"container\" :style=\"{'display': 'inline-block','color': 'white','margin': '5px','padding': '0','box-sizing': 'border-box','font-family': 'Poppins, sans-serif','border': '1px solid black','border-radius': '2px','background-color': 'steelblue'}\">\n" +
+                        "                      <label :style=\"{ 'margin': '10px'}\" for=\"input\">Enter a text:</label>\n" +
+                        "                      <input :style=\"{ 'margin': '10px'}\" type=\"text\" name=\"input\" id=\"input\" v-model=\"text\" @keyup=\"calculateData()\">\n" +
+                        "\n" +
+                        "                      <label :style=\"{ 'margin': '10px'}\">Spaces:</label>\n" +
+                        "                      <span class=\"output\" :style=\"{ 'margin': '10px'}\">{{  spaces }}</span>\n" +
+                        "                      <label :style=\"{ 'margin': '10px'}\">Letters:</label>\n" +
+                        "                      <span class=\"output\" :style=\"{ 'margin': '10px'}\">{{  letters }}</span>\n" +
+                        "                      <label :style=\"{ 'margin': '10px'}\">Words:</label>\n" +
+                        "                      <span class=\"output\" :style=\"{ 'margin': '10px'}\">{{  words }}</span>\n" +
+                        "                  </div>´\n" +
+                        "              ,\n" +
+                        "              data() {\n" +
+                        "                  return {\n" +
+                        "                      text: \"\",\n" +
+                        "                      spaces: 0,\n" +
+                        "                      letters: 0,\n" +
+                        "                      words: 0,\n" +
+                        "                  };\n" +
+                        "              },\n" +
+                        "              methods: {\n" +
+                        "                  calculateData() {\n" +
+                        "                      this.spaces = (this.text.match(/ /g) || []).length;\n" +
+                        "                      this.letters = this.text.replace(/ /g, \"\").length;\n" +
+                        "                      this.words = this.text.split(\" \").filter((item) => item !== \"\").length;\n" +
+                        "                  },\n" +
+                        "              },\n" +
+                        "          };\n"
+                },
+                "2": {
+                    "title": "Geben Sie die Webseite, auf der Sie Ihre Komponente mehrfach testen, hier ein:",
+                    "image": false,
+                    "video": false,
+                    "code": true,
+                    "language": "html",
+                    "solution": "<!DOCTYPE html>\n" +
+                        "          <html lang=\"en\">\n" +
+                        "              <head>\n" +
+                        "                  <meta charset=\"UTF-8\">\n" +
+                        "                  <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n" +
+                        "                  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n" +
+                        "                  <title>Übung 11.1</title>\n" +
+                        "              </head>\n" +
+                        "              <body>\n" +
+                        "                  <div id=\"app\">\n" +
+                        "                      <eingabe></eingabe>\n" +
+                        "                      <eingabe></eingabe>\n" +
+                        "                  </div>\n" +
+                        "                  <script src=\"https://unpkg.com/vue\"></script>\n" +
+                        "                  <script type=\"module\">\n" +
+                        "                      import Eingabe from './Eingabe.mjs'\n" +
+                        "\n" +
+                        "                      new Vue({\n" +
+                        "                          el: '#app',\n" +
+                        "                          components: {\n" +
+                        "                              Eingabe\n" +
+                        "                          }\n" +
+                        "                      })\n" +
+                        "                  </script>\n" +
+                        "              </body>\n" +
+                        "          </html>"
+                }
+            }
+        },
+        "11.2": {
+            "title": "11.2. Menü-Komponente",
+            "exercises": {
+                "1": {
+                    "title": "Schreiben Sie eine möglichst flexible Vue.js Single File Component für Menüs und wenden Sie diese in derselben Webseite zweimal an, einmal horizontal, das andere Mal vertikal.\nGeben Sie die Inhalte aller Dateien Ihrer Lösung inkl. JS-Quelltext hintereinander ein. Schreiben Sie vor jede Datei deren Dateiname:",
+                    "image": false,
+                    "video": false,
+                    "code": true,
+                    "language": "html",
+                    "solution": "<!-- index.html -->\n" +
+                        "\n" +
+                        "          <!DOCTYPE html>\n" +
+                        "          <html lang=\"\">\n" +
+                        "              <head>\n" +
+                        "                  <meta charset=\"utf-8\">\n" +
+                        "                  <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n" +
+                        "                  <meta name=\"viewport\" content=\"width=device-width,initial-scale=1.0\">\n" +
+                        "                  <link rel=\"icon\" href=\"favicon.ico\">\n" +
+                        "                  <title>Übung 11.2</title>\n" +
+                        "              </head>\n" +
+                        "              <body>\n" +
+                        "                  <div id=\"app\"></div>\n" +
+                        "                  <!-- built files will be auto injected -->\n" +
+                        "              </body>\n" +
+                        "          </html>"
+                },
+                "2": {
+                    "title": "",
+                    "image": false,
+                    "video": false,
+                    "code": true,
+                    "language": "html",
+                    "solution": "<!-- App.vue -->\n" +
+                        "\n" +
+                        "          <template>\n" +
+                        "              <div class=\"container\">\n" +
+                        "                  <Navbar :alignment='horizontal'/>\n" +
+                        "                  <Navbar :alignment='vertical'/>\n" +
+                        "              </div>\n" +
+                        "          </template>\n" +
+                        "\n" +
+                        "          <script>\n" +
+                        "              import Navbar from './components/Navbar.vue'\n" +
+                        "\n" +
+                        "              export default {\n" +
+                        "                  name: 'App',\n" +
+                        "                  data() {\n" +
+                        "                      return {\n" +
+                        "                          vertical: true,\n" +
+                        "                          horizontal: false\n" +
+                        "                      }\n" +
+                        "                  },\n" +
+                        "                  components:  {\n" +
+                        "                      Navbar\n" +
+                        "                  }\n" +
+                        "    \n" +
+                        "              }\n" +
+                        "  \n" +
+                        "          </script>\n" +
+                        "\n" +
+                        "          <style>\n" +
+                        "              * {\n" +
+                        "                  margin: 0;\n" +
+                        "                  padding: 0;\n" +
+                        "                  box-sizing: border-box;\n" +
+                        "              }\n" +
+                        "          </style>"
+                },
+                "3": {
+                    "title": "",
+                    "image": false,
+                    "video": false,
+                    "code": true,
+                    "language": "html",
+                    "solution": "<!-- Eingabe.vue -->\n" +
+                        "\n" +
+                        "          <template>\n" +
+                        "              <ul :class=\"alignment ? 'vertical' : 'horizontal'\">\n" +
+                        "                  <div v-for=\"item in navitems\" :key=\"item.id\">\n" +
+                        "                      <li><a>{{ item.text }}</a></li>\n" +
+                        "                  </div>\n" +
+                        "              </ul>\n" +
+                        "          </template>\n" +
+                        "\n" +
+                        "          <script>\n" +
+                        "              export default {\n" +
+                        "                  name: 'Navbar',\n" +
+                        "                  props: {\n" +
+                        "                      alignment: Boolean\n" +
+                        "                  },\n" +
+                        "                  data() {\n" +
+                        "                      return {\n" +
+                        "                          navitems: [\n" +
+                        "                              { id: 1, text: 'Home' },\n" +
+                        "                              { id: 2, text: 'Products' },\n" +
+                        "                              { id: 3, text: 'Contact' },\n" +
+                        "                              { id: 4, text: 'Location' },\n" +
+                        "                              { id: 5, text: 'About' }\n" +
+                        "                          ]\n" +
+                        "                      }\n" +
+                        "                  }\n" +
+                        "              }\n" +
+                        "          </script>\n" +
+                        "\n" +
+                        "          <style scoped>\n" +
+                        "              .vertical,.horizontal {\n" +
+                        "                  list-style-type: none;\n" +
+                        "                  margin: 0;\n" +
+                        "                  padding: 0;\n" +
+                        "                  background-color: #f1f1f1;\n" +
+                        "                  overflow: auto;\n" +
+                        "              }\n" +
+                        "\n" +
+                        "              .vertical {\n" +
+                        "                  width: 25%;\n" +
+                        "                  height: 100%;\n" +
+                        "              }\n" +
+                        "\n" +
+                        "              .horizontal {\n" +
+                        "                  width: 100%;\n" +
+                        "              }\n" +
+                        "\n" +
+                        "              .horizontal li {\n" +
+                        "                  float: left;\n" +
+                        "              }\n" +
+                        "\n" +
+                        "              .vertical li a, .horizontal li a {\n" +
+                        "                  display: block;\n" +
+                        "                  color: #000;\n" +
+                        "                  padding: 8px 16px;\n" +
+                        "                  text-decoration: none;\n" +
+                        "              }\n" +
+                        "\n" +
+                        "              .vertical li a:hover ,.horizontal li a:hover{\n" +
+                        "                  background-color: #555;\n" +
+                        "                  color: white;\n" +
+                        "              }\n" +
+                        "          </style>"
+                }
+            }
+        },
+        "11.3": {
+            "title": "11.3. Vue.js WWW-Navigator",
+            "exercises": {
+                "1": {
+                    "title": "Schreiben Sie Ihren WWW-Navigator als SPA in Vue.js \n" +
+                        "Dokumentieren Sie Ihren Entscheidungsprozess: In welche Komponenten wollen Sie Ihre App zerlegen?",
+                    "image": false,
+                    "video": false,
+                    "code": false,
+                    "solution": ""
+                },
+                "2": {
+                    "title": "Geben Sie die Inhalte aller Dateien (ohne node_modules) Ihrer Lösung inkl. JS-Quelltext hintereinander ein. Schreiben Sie vor jede Datei deren Dateiname:",
+                    "image": false,
+                    "video": false,
+                    "code": true,
+                    "language": "html",
+                    "soluton": ""
+                }
+            }
+        }
+    },
+    "PHP": {
+        "12.1": {
+            "title": "12.1. Registrierung mit PHP",
+            "exercises": {
+                "1": {
+                    "title": "Erstellen Sie mit PHP 5 auf www2.inf.h-brs.de ein Registrierungsformular. Speichern Sie die eingegebenen Daten persistent in einer Datei auf www2.inf.h-brs.de. Schreiben Sie Ihre PHP-Scripte so, dass es zu keinen Nebenläufigkeitsartefakten (z.B. Lost Update) kommen kann, egal wie viele Nutzer sich gleichzeitig registrieren.",
+                    "image": false,
+                    "video": false,
+                    "code": true,
+                    "language": "html",
+                    "solution": "<!DOCTYPE html>\n" +
+                        "          <html lang=\"de\">\n" +
+                        "              <head>\n" +
+                        "                  <meta charset=\"UTF-8\">\n" +
+                        "                  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n" +
+                        "                  <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n" +
+                        "                  <title>Registrierung</title>\n" +
+                        "              </head>\n" +
+                        "              <body>\n" +
+                        "                  <h1>Registrieren</h1>\n" +
+                        "                  <form action=\"register.php\" method=\"post\">\n" +
+                        "                      <label>\n" +
+                        "                          Account\n" +
+                        "                          <br>\n" +
+                        "                          <input type=\"text\" name=\"account\">\n" +
+                        "                      </label>\n" +
+                        "                      <br>\n" +
+                        "                      <label>\n" +
+                        "                          Passwort\n" +
+                        "                          <br>\n" +
+                        "                          <input type=\"password\" name=\"password\">\n" +
+                        "                      </label>\n" +
+                        "                      <br>\n" +
+                        "                      <br>\n" +
+                        "                      <input type=\"submit\" value=\"Registieren\">\n" +
+                        "                  </form>\n" +
+                        "                  <?php\n" +
+                        "                      require './etc/salter.php';\n" +
+                        "\n" +
+                        "                      function accountUsed($account): bool\n" +
+                        "                      {\n" +
+                        "                          $lines = file('./etc/raw_passwd.csv');\n" +
+                        "\n" +
+                        "                          foreach ($lines as $line_num => $line) {\n" +
+                        "                              list($user,$passwd) = explode(',',$line);\n" +
+                        "                              if ($user === salter($account)) { return true; }\n" +
+                        "                          }\n" +
+                        "\n" +
+                        "                          return false;\n" +
+                        "                      }\n" +
+                        "\n" +
+                        "                      if(isset($_POST['account']) && $_POST['account'] != '' && isset($_POST['password']) && $_POST['password'] != '' && !accountUsed($_POST['account'])) {\n" +
+                        "                          $account = $_POST['account'];\n" +
+                        "                          $password = $_POST['password'];\n" +
+                        "\n" +
+                        "                          $file = './etc/raw_passwd.csv';\n" +
+                        "                          $new_line = salter($account) . ',' . salter($password) . \"\\n\";\n" +
+                        "\n" +
+                        "                          if(file_put_contents($file, $new_line, FILE_APPEND | LOCK_EX)) {\n" +
+                        "                              echo '<script>';\n" +
+                        "                              echo 'alert(\"Registrierung erfolgreich!\")';\n" +
+                        "                              echo '</script>';\n" +
+                        "                          }else {\n" +
+                        "                              echo '<script>';\n" +
+                        "                              echo 'alert(\"Registrierung fehlgeschlagen!\")';\n" +
+                        "                              echo '</script>';\n" +
+                        "                          }\n" +
+                        "                      }else {\n" +
+                        "                          echo '<script>';\n" +
+                        "                          echo 'alert(\"Registrierung fehlgeschlagen!\")';\n" +
+                        "                          echo '</script>';\n" +
+                        "                      }\n" +
+                        "\n" +
+                        "\n" +
+                        "                  ?>\n" +
+                        "              </body>\n" +
+                        "      </html>\n" +
+                        "\n" +
+                        "      <!-- salter.php -->\n" +
+                        "\n" +
+                        "      <?php\n" +
+                        "          $SALT = 'lksdlicse#9u98*lhl!5_dss+';\n" +
+                        "\n" +
+                        "          function salter($keyword): String\n" +
+                        "          {\n" +
+                        "              global $SALT;\n" +
+                        "              return hash(sha384, $keyword . $SALT);\n" +
+                        "          }\n" +
+                        "      ?>"
+                }
+            }
+        },
+        "12.2": {
+            "title": "12.2. Login mit PHP",
+            "exercises": {
+                "1": {
+                    "title": "Schreiben Sie eine sichere PHP-Lösung für Login, das die persistierten Registrierungsdaten aus der letzten Aufgabe nutzt.",
+                    "image": false,
+                    "video": false,
+                    "code": true,
+                    "language": "html",
+                    "solution": "<!DOCTYPE html>\n" +
+                        "          <html lang=\"de\">\n" +
+                        "              <head>\n" +
+                        "                  <meta charset=\"UTF-8\">\n" +
+                        "                  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n" +
+                        "                  <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n" +
+                        "                  <title>Login</title>\n" +
+                        "              </head>\n" +
+                        "              <body>\n" +
+                        "                  <h1>Login</h1>\n" +
+                        "                  <form action=\"login.php\" method=\"post\">\n" +
+                        "                      <label>\n" +
+                        "                          Account\n" +
+                        "                          <br>\n" +
+                        "                          <input type=\"text\" name=\"account\">\n" +
+                        "                      </label>\n" +
+                        "                      <br>\n" +
+                        "                      <label>\n" +
+                        "                          Passwort\n" +
+                        "                          <br>\n" +
+                        "                          <input type=\"password\" name=\"password\">\n" +
+                        "                      </label>\n" +
+                        "                      <br>\n" +
+                        "                      <br>\n" +
+                        "                      <input type=\"submit\" value=\"Einloggen\">\n" +
+                        "                  </form>\n" +
+                        "                  <?php\n" +
+                        "                      require './etc/salter.php';\n" +
+                        "\n" +
+                        "                      function isRegistered($account,$password): bool\n" +
+                        "                      {\n" +
+                        "                          $lines = file('./etc/raw_passwd.csv');\n" +
+                        "\n" +
+                        "                          foreach ($lines as $line_num => $line) {\n" +
+                        "                              list($registeredAccount,$registeredPassword) = explode(',',$line);\n" +
+                        "\n" +
+                        "                              // removes trailing whitespaces\n" +
+                        "                              $registeredPassword = trim($registeredPassword, \" \\n\\r\\t\\v\\0\");\n" +
+                        "\n" +
+                        "                              if($registeredAccount === salter($account) && $registeredPassword === salter($password)) { return true; }\n" +
+                        "                          }\n" +
+                        "\n" +
+                        "                          return false;\n" +
+                        "\n" +
+                        "                      }\n" +
+                        "\n" +
+                        "                      if(isset($_POST['account']) && $_POST['account'] != '' && isset($_POST['password']) && $_POST['password'] != '') {\n" +
+                        "                          $account = $_POST['account'];\n" +
+                        "                          $password = $_POST['password'];\n" +
+                        "\n" +
+                        "\n" +
+                        "                          if(isRegistered($account, $password)) {\n" +
+                        "                              header('Location:index.html');\n" +
+                        "                          }else {\n" +
+                        "                              echo '<script> alert(\"Keinen Account unter diesem Namen gefunden oder falsches Passwort!\") </script>';\n" +
+                        "                          }\n" +
+                        "                      }else {\n" +
+                        "                          echo '<script> alert(\"Ungültige Eingabe!\") </script>';\n" +
+                        "                      }\n" +
+                        "                  ?>\n" +
+                        "              </body>\n" +
+                        "          </html>\n"
+                }
+            }
+        },
+        "12.3": {
+            "title": "12.3. WWW-Navigator zum Content-Editor ausbauen",
+            "exercises": {
+                "1": {
+                    "title": "Bauen Sie Ihren WWW-Navigator zum Content-Editor aus, mit dem Sie weitere Inhalte hinzu fügen können, die persistent auf dem Server mittels PHP gespeichert werden. Schreiben Sie Ihre PHP-Scripte so, dass es zu keinen Nebenläufigkeitsartefakten kommen kann, egal wie viele Nutzer gleichzeitig editieren und speichern.\n" +
+                        "\n" +
+                        "Speichern Sie die Inhalte Ihres WWW-Navigators auf dem Server www2.inf.h-brs.de. Erweitern Sie Ihren WWW-Navigator um eine Edit-Funktionalität, so dass Inhalte editiert und ergänzt werden können. Vermeiden Sie die Lost Update-Anomalie.\n" +
+                        "\n" +
+                        "Schützen Sie Ihre Inhalte mit einem Login.",
+                    "image": false,
+                    "video": false,
+                    "code": true,
+                    "language": "html",
+                    "solution": "<!DOCTYPE html>\n" +
+                        "          <html lang=\"de\">\n" +
+                        "              <head>\n" +
+                        "                  <meta charset=\"UTF-8\">\n" +
+                        "                  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n" +
+                        "                  <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n" +
+                        "                  <title>Übung 12</title>\n" +
+                        "                  <style>\n" +
+                        "                      fieldset {\n" +
+                        "                          padding: 10px;\n" +
+                        "                          background-color: #ccc;\n" +
+                        "                      }\n" +
+                        "\n" +
+                        "                      select {\n" +
+                        "                          margin-bottom: 10px;\n" +
+                        "                      }\n" +
+                        "\n" +
+                        "                      textarea {\n" +
+                        "                          margin-bottom: 10px;\n" +
+                        "                          height: 100px;\n" +
+                        "                          width: 50%;\n" +
+                        "                      }\n" +
+                        "                  </style>\n" +
+                        "              </head>\n" +
+                        "              <body>\n" +
+                        "                  <h1>WWW-Navigator</h1>\n" +
+                        "                  <fieldset>\n" +
+                        "                      <form method=\"post\">\n" +
+                        "                          <select name=\"top_header\">\n" +
+                        "                              <option value=\"html\">HTML</option>\n" +
+                        "                              <option value=\"css\">CSS</option>\n" +
+                        "                              <option value=\"javascript\">JavaScript</option>\n" +
+                        "                          </select>\n" +
+                        "                          <select name=\"sub_header\"></select>\n" +
+                        "                          <br>\n" +
+                        "                          <textarea name=\"content\"></textarea>\n" +
+                        "                          <br>\n" +
+                        "                          <input type=\"submit\" value=\"Speichern\">\n" +
+                        "                      </form>\n" +
+                        "                  </fieldset>\n" +
+                        "              </body>\n" +
+                        "                  <?php\n" +
+                        "                      $file = './etc/data.json';\n" +
+                        "                      $contents = file_get_contents($file);\n" +
+                        "                      $json = json_decode($contents, true);\n" +
+                        "\n" +
+                        "                      if(isset($_POST['top_header']) && isset($_POST['sub_header']) && isset($_POST['content'])) {\n" +
+                        "                          $top_header = $_POST['top_header'];\n" +
+                        "                          $sub_header = $_POST['sub_header'];\n" +
+                        "                          $content = $_POST['content'];\n" +
+                        "\n" +
+                        "                          $json[$top_header][$sub_header] = $content;\n" +
+                        "\n" +
+                        "                          if(file_put_contents($file,json_encode($json, true))) {\n" +
+                        "                              echo '<script type=\"text/javascript\"> alert(\"Gespeichert!\") </script>';\n" +
+                        "                          }else {\n" +
+                        "                              echo '<script> alert(\"Speichern fehlgeschlagen!\") </script>';\n" +
+                        "                          }\n" +
+                        "                      }else {\n" +
+                        "                          echo '<script> alert(\"Falsche Eingabe!\") </script>';\n" +
+                        "                      }\n" +
+                        "                  ?>\n" +
+                        "                  <script>\n" +
+                        "                      let json = <?php echo json_encode($json) ?>;\n" +
+                        "                      const top_header = document.querySelector('select[name=\"top_header\"]');\n" +
+                        "                      const sub_header = document.querySelector('select[name=\"sub_header\"]');\n" +
+                        "                      const content = document.querySelector('textarea[name=\"content\"]');\n" +
+                        "\n" +
+                        "\n" +
+                        "                      Object.keys(json['html']).forEach(key => {\n" +
+                        "                          let option = document.createElement('option');\n" +
+                        "                          option.value = key;\n" +
+                        "                          option.innerText = key;\n" +
+                        "                          sub_header.append(option);\n" +
+                        "                      })\n" +
+                        "\n" +
+                        "                      const text = document.createTextNode(json[top_header.value][sub_header.value]);\n" +
+                        "                      content.append(text);\n" +
+                        "\n" +
+                        "                      top_header.addEventListener('change', (e) => {\n" +
+                        "                          while (sub_header.lastChild) {\n" +
+                        "                              let lastChild = sub_header.lastChild;\n" +
+                        "                              sub_header.removeChild(lastChild);\n" +
+                        "                          }\n" +
+                        "                          Object.keys(json[e.target.value]).forEach(key => {\n" +
+                        "                              let option = document.createElement('option');\n" +
+                        "                              option.value = key;\n" +
+                        "                              option.innerText = key;\n" +
+                        "\n" +
+                        "                              sub_header.append(option)\n" +
+                        "                          });\n" +
+                        "\n" +
+                        "                          let lstChld = content.lastChild;\n" +
+                        "                          content.removeChild(lstChld);\n" +
+                        "\n" +
+                        "                          const text = document.createTextNode(json[top_header.value][sub_header.value]);\n" +
+                        "                          content.append(text);\n" +
+                        "                      });\n" +
+                        "\n" +
+                        "                      sub_header.addEventListener('change', (e) => {\n" +
+                        "                          let lastChild = content.lastChild;\n" +
+                        "                          content.removeChild(lastChild);\n" +
+                        "\n" +
+                        "                          let text = document.createTextNode(json[top_header.value][e.target.value]);\n" +
+                        "                          content.append(text);\n" +
+                        "                      })\n" +
+                        "                  </script>\n" +
+                        "          </html>"
+                }
+            }
+        }
+    },
+    "Security": {
+        "13.1": {
+            "title": "13.1. Sicherer ArrayWrapper",
+            "exercises": {
+                "1": {
+                    "title": "In der Vorlesung wurde ein ArrayWrapper Exploit gezeigt.\n" +
+                        "\n" +
+                        "Analysieren Sie die Ursache dieses Exploits.\n" +
+                        "\n" +
+                        "Entwickeln Sie ein Sicherheitskonzept und eine ArrayWrapper-Lösung, die gegen diesen Exploit gewappnet ist.\n" +
+                        "\n" +
+                        "Geben Sie hier Ihr Ursachenanalyse ein:",
+                    "image": false,
+                    "video": false,
+                    "code": false,
+                    "solution": "Der Exploit macht sich den Gebrauch der push-Funktion in der append-Methode des Wrappers zu nutze. Über die store-Funktion wird eine überschriebene push-Funktion an das Array gehängt . Die neue push-Funktionalität ermöglicht es nun das Array, zu welchem die Funktion nun gehört, zu speichern."
+                },
+                "2": {
+                    "title": "Geben Sie hier Ihr Sicherheitskonzept ein:",
+                    "image": false,
+                    "video": false,
+                    "code": false,
+                    "solution": "Um den Exploit zu verhindern, führt man eine Implementierung ohne die push-Funktion ein. Die gleiche Funktionalität kann man mit dem Rest Parameter erreichen."
+                },
+                "3": {
+                    "title": "Geben Sie hier Ihren JS-Code eines sicheren ArrayWrappers ein:",
+                    "image": false,
+                    "video": false,
+                    "code": true,
+                    "language": "javascript",
+                    "solution": "const vector = (...arguments) => {\n" +
+                        "          var array = [...arguments]\n" +
+                        "              return {\n" +
+                        "                  get: function(index) {\n" +
+                        "                      return array[index] == -1 ? null : array[index]\n" +
+                        "                  },\n" +
+                        "                  store: function(index, value) {\n" +
+                        "                      array[index] = value\n" +
+                        "                  },\n" +
+                        "                  append: function(value) {\n" +
+                        "                      array = [...array, value]\n" +
+                        "                  }\n" +
+                        "              }\n" +
+                        "          }"
+                }
+            }
+        },
+        "13.2": {
+            "title": "13.2. WebGoat Injection",
+            "exercises": {
+                "1": {
+                    "title": "Installieren Sie WebGoat.\n" +
+                        "\n" +
+                        "Starten Sie das Docker Image mit WebGoat.\n" +
+                        "\n" +
+                        "Öffnen Sie die Landing Page von WebGoat.\n" +
+                        "\n" +
+                        "Lösen Sie die Aufgaben in (A1) Injection, SQL Injection (Intro).",
+                    "image": false,
+                    "video": false,
+                    "code": false,
+                    "solution": "SELECT department FROM employees WHERE first_name='Bob'\n" +
+                        "\n" +
+                        "UPDATE employees SET department='Sales' WHERE first_name='Tobi' AND last_name='Barnett'\n" +
+                        "\n" +
+                        "ALTER TABLE employees ADD phone varchar(20)\n" +
+                        "\n" +
+                        "GRANT all ON grant_rights TO unauthorized_user\n" +
+                        "\n" +
+                        "SELECT * FROM user_data WHERE first_name = 'John' and last_name = '' or '1' = '1'\n" +
+                        "\n" +
+                        "SELECT * From user_data WHERE Login_Count = 0 and userid= 0 OR 1=1\n" +
+                        "\n" +
+                        "Authentication TAN: ' OR '1' = '1\n" +
+                        "\n" +
+                        "Authentication TAN: ' ;UPDATE employees SET salary=100000 WHERE last_name='Smith'\n" +
+                        "\n" +
+                        "Action contains: UPDATE ';DROP TABLE access_log --"
+                }
+            }
+        },
+        "13.3": {
+            "title": "13.3. WebGoat XSS",
+            "exercises": {
+                "1": {
+                    "title": "Installieren Sie WebGoat.\n" +
+                        "\n" +
+                        "Starten Sie das Docker Image mit WebGoat.\n" +
+                        "\n" +
+                        "Öffnen Sie die Landing Page von WebGoat.\n" +
+                        "\n" +
+                        "Lösen Sie die Aufgaben in (A7) Cross-Site Scripting (XSS), Cross Site Scripting.",
+                    "image": false,
+                    "video": false,
+                    "code": false,
+                    "solution": "same cookies on each Tab: yes\n" +
+                        "\n" +
+                        "credit card input is vurnerable\n" +
+                        "\n" +
+                        "start.mvc#test/\n" +
+                        "\n" +
+                        "2099950210\n" +
+                        "\n" +
+                        "Correct solutions: 4 3 4 2 4"
+                }
+            }
+        },
+        "13.4": {
+            "title": "13.4. WebGoat Cross-Site Request Forgeries",
+            "exercises": {
+                "1": {
+                    "title": "Installieren Sie WebGoat.\n" +
+                        "\n" +
+                        "Starten Sie das Docker Image mit WebGoat.\n" +
+                        "\n" +
+                        "Öffnen Sie die Landing Page von WebGoat.\n" +
+                        "\n" +
+                        "Lösen Sie die Aufgaben zu (A8:2013) Request Forgeries, Cross-Site Request Forger",
+                    "image": false,
+                    "video": false,
+                    "code": false,
+                    "solution": "csrf"
+                }
+            }
+        }
     }
 }
 
