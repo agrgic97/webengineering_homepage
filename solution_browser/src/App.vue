@@ -23,71 +23,19 @@
         screenWidth: window.innerWidth,
         showNav: false,
         navList: [
-          {
-            text: 'Einführung',
-            path: '/Einfuehrung',
-            id: 1
-          },
-          {
-            text: 'CSS 1. Teil',
-            path: '/CSS1',
-            id: 2
-          },
-          {
-            text: 'CSS 2. Teil',
-            path: '/CSS2',
-            id: 3
-          },
-          {
-            text: 'JavaScript',
-            path: '/JavaScript',
-            id: 4
-          },
-          {
-            text: 'DOM',
-            path: '/DOM',
-            id: 5
-          },
-          {
-            text: 'ECMAScript',
-            path: '/ECMAScript',
-            id: 6
-          },
-          {
-            text: 'Functional',
-            path: '/Functional',
-            id: 7
-          },
-          {
-            text: 'Async',
-            path: '/Async',
-            id: 8
-          },
-          {
-            text: 'SVG',
-            path: '/SVG',
-            id: 9
-          },
-          {
-            text: 'TypeScript',
-            path: '/TypeScript',
-            id: 10
-          },
-          {
-            text: 'Vue',
-            path: '/Vue',
-            id: 11
-          },
-          {
-            text: 'PHP',
-            path: '/PHP',
-            id: 12
-          },
-          {
-            text: 'Security',
-            path: '/Security',
-            id: 13
-          }
+          { text: 'Einführung', path: '/Einfuehrung', id: 1 },
+          { text: 'CSS 1. Teil', path: '/CSS1', id: 2 },
+          { text: 'CSS 2. Teil', path: '/CSS2', id: 3 },
+          { text: 'JavaScript', path: '/JavaScript', id: 4 },
+          { text: 'DOM', path: '/DOM', id: 5 },
+          { text: 'ECMAScript', path: '/ECMAScript', id: 6 },
+          { text: 'Functional', path: '/Functional', id: 7 },
+          { text: 'Async', path: '/Async', id: 8 },
+          { text: 'SVG', path: '/SVG', id: 9 },
+          { text: 'TypeScript', path: '/TypeScript', id: 10 },
+          { text: 'Vue', path: '/Vue', id: 11 },
+          { text: 'PHP', path: '/PHP', id: 12 },
+          { text: 'Security', path: '/Security', id: 13 }
         ]
       }
     },

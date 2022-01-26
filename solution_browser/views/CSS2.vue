@@ -1,35 +1,25 @@
 <template>
-  <div class="view">
-    <ViewHeader :header="header" :subheader="subheader"></ViewHeader>
-    <Exercise class="exercise" v-for="item in data" :data="item"></Exercise>
-  </div>
+  <ViewTemplate :header="header" :subheader="subheader" :data="data"></ViewTemplate>
 </template>
 
 <script>
-import ViewHeader from "../src/components/ViewHeader.vue";
-import Exercise from "../src/components/Exercise.vue";
-import { exercises } from "../data/exercises.js";
+import ViewTemplate from "./ViewTemplate.vue";
 
 export default {
   name: "CSS2",
   components: {
-    ViewHeader,
-    Exercise
+    ViewTemplate
   },
   data() {
     return {
       header: "CSS 2. Teil",
       subheader: "Responsive Web Design",
-      data: exercises.CSS2
+      data: "CSS2"
     }
   }
 }
 </script>
 
 <style scoped>
-  @media only screen and (min-width: 600px) {
-    .exercise {
-      margin: 50px 15%;
-    }
-  }
+
 </style>
