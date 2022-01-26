@@ -1,5 +1,5 @@
 <template>
-  <<ViewTemplate :header="header" :subheader="subheader" :data="data"></ViewTemplate>>
+  <ViewTemplate :header="header" :subheader="subheader" :data="data"></ViewTemplate>
 </template>
 
 <script>

@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import ViewTemplate from "./ViewTemplate";
+import ViewTemplate from "./ViewTemplate.vue";
 
 export default {
   name: "Functional",
