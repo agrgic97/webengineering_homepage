@@ -4,6 +4,7 @@
     <div class="content" :class="showNav ? 'open' : ''">
       <Header :mobile="isMobile()" :navList="navList" :showNav="showNav" @slide-content="slideContent()"></Header>
       <router-view class="view"></router-view>
+      <ToTheTop v-show="scrollY > 300" @to-top="toTop"></ToTheTop>
     </div>
   </div>
 </template>
@@ -11,16 +12,19 @@
 <script>
   import Header from "./components/Header.vue";
   import MobileNavigation from "./components/MobileNavigation.vue";
+  import ToTheTop from "./components/ToTheTop.vue";
 
   export default {
     name: 'App',
     components: {
       Header,
       MobileNavigation,
+      ToTheTop
     },
     data() {
       return {
-        screenWidth: window.innerWidth,
+        screenWidth: 0,
+        widthTimer: 0,
         showNav: false,
         navList: [
           { text: 'Einführung', path: '/Einfuehrung', id: 1 },
@@ -36,7 +40,9 @@
           { text: 'Vue', path: '/Vue', id: 11 },
           { text: 'PHP', path: '/PHP', id: 12 },
           { text: 'Security', path: '/Security', id: 13 }
-        ]
+        ],
+        scrollTimer: 0,
+        scrollY: 0
       }
     },
     methods: {
@@ -48,10 +54,34 @@
       },
       slideContent() {
         this.showNav = !this.showNav
+      },
+      handleResize() {
+        if(this.widthTimer) return
+        this.widthTimer = setTimeout(() => {
+          this.screenWidth = window.innerWidth
+          clearTimeout(this.widthTimer)
+          this.widthTimer = 0
+        }, 100)
+      },
+      handleScroll() {
+        if(this.scrollTimer) return
+        this.scrollTimer = setTimeout(() => {
+          this.scrollY = document.body.scrollTop
+          clearTimeout(this.scrollTimer)
+          this.scrollTimer = 0
+        }, 100)
+
+      },
+      toTop() {
+        document.body.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        })
       }
     },
     mounted() {
-      window.onresize = () => { this.screenWidth = window.innerWidth }
+      window.addEventListener('resize', this.handleResize)
+      document.body.addEventListener('scroll', this.handleScroll)
     }
 
   }
@@ -71,7 +101,7 @@
   }
 
   body {
-    background-color: #4CAF50;
+    background-color: deepskyblue;
     font-family: 'Poppins', sans-serif;
     font-size: 1rem;
     overflow-x: hidden;
@@ -80,7 +110,6 @@
   }
 
   .app {
-    padding: 10px;
     min-height: calc(100vh - 20px);
     width: 100%;
     position: relative;
@@ -90,7 +119,6 @@
     background-color: white;
     min-height: calc(100vh - 20px);
     width: 100%;
-    border-radius: 5px;
     box-shadow: 2px 2px 2px 2px rgba(0,0,0,0.2);
     position: relative;
     transition: 0.75s ease-out;
@@ -113,13 +141,11 @@
     /* Track */
     ::-webkit-scrollbar-track {
       background: #f1f1f1;
-      border-radius: 10px;
     }
 
     /* Handle */
     ::-webkit-scrollbar-thumb {
       background: #888;
-      border-radius: 10px;
     }
 
     /* Handle on hover */

@@ -30,7 +30,8 @@ export default {
 
   .link {
     text-decoration: none;
-    color: #333333;
+    color: cornflowerblue;
+    font-weight: bold;
   }
 
   .navItem .link {
@@ -40,7 +41,7 @@ export default {
   .navItem .link:hover, .navItem .link:active {
     transform: scale(1.05);
     font-weight: bold;
-    color: #528545;
+    color: cornflowerblue;
   }
 
 </style>

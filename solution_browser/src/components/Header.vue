@@ -1,7 +1,7 @@
 <template>
   <div class="header">
     <font-awesome-icon v-if="mobile" class="icon" :icon="['fas', showNav ? 'times' : 'bars']" @click="$emit('slide-content')"></font-awesome-icon>
-    <router-link class="title" :style="mobile ? '' : 'font-size: 2rem'" to="/">Solution Browser</router-link>
+    <router-link id="top" class="title" :style="mobile ? '' : 'font-size: 2rem'" to="/">Solution Browser</router-link>
     <DesktopNavigation :navList="navList" v-if="!mobile"></DesktopNavigation>
   </div>
 </template>
@@ -27,6 +27,7 @@
   .header {
     text-align: center;
     padding: 30px;
+
   }
 
   .title {

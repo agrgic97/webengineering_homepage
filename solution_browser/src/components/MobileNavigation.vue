@@ -19,6 +19,7 @@ export default {
     position: absolute;
     color: white;
     margin-top: 25px;
+    padding-left: 10px;
   }
 
   .navItem{
@@ -33,7 +34,7 @@ export default {
   }
 
   .navItem:hover {
-    background-color: #528545;
+    background-color: cornflowerblue;
     border-radius: 5px;
   }
 
