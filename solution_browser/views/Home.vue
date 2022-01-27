@@ -16,13 +16,13 @@
 
 <script>
 export default {
-  name: "Home"
+  name: "Home",
 }
 </script>
 
 <style scoped>
   .view {
-    margin: 0 15%;
+    margin: 50px 15%;
   }
 
   .view * {
@@ -38,7 +38,7 @@ export default {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: center;
   }
 
   img {

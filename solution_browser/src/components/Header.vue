@@ -27,7 +27,7 @@
   .header {
     text-align: center;
     padding: 30px;
-
+    background-color: #f1f1f1;
   }
 
   .title {

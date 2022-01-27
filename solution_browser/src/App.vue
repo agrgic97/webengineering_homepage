@@ -4,6 +4,7 @@
     <div class="content" :class="showNav ? 'open' : ''">
       <Header :mobile="isMobile()" :navList="navList" :showNav="showNav" @slide-content="slideContent()"></Header>
       <router-view class="view"></router-view>
+      <Footer></Footer>
       <ToTheTop v-show="scrollY > 300" @to-top="toTop"></ToTheTop>
     </div>
   </div>
@@ -13,17 +14,19 @@
   import Header from "./components/Header.vue";
   import MobileNavigation from "./components/MobileNavigation.vue";
   import ToTheTop from "./components/ToTheTop.vue";
+  import Footer from "./components/Footer.vue";
 
   export default {
     name: 'App',
     components: {
       Header,
       MobileNavigation,
-      ToTheTop
+      ToTheTop,
+      Footer
     },
     data() {
       return {
-        screenWidth: 0,
+        screenWidth: window.innerWidth,
         widthTimer: 0,
         showNav: false,
         navList: [
@@ -117,12 +120,11 @@
 
   .content {
     background-color: white;
-    min-height: calc(100vh - 20px);
+    min-height: 100vh;
     width: 100%;
     box-shadow: 2px 2px 2px 2px rgba(0,0,0,0.2);
     position: relative;
     transition: 0.75s ease-out;
-    padding-bottom: 20px;
   }
 
   .open {
