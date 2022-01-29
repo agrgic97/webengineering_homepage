@@ -1,6 +1,6 @@
 <template>
   <div class="view">
-    <h1>Willkommen auf der Webapp zur Veranstaltung Web Eingineering WS2021/22</h1>
+    <h1>Willkommen auf der Webapp zur Veranstaltung Web Engineering WS2021/22</h1>
     <h3>Hier werden Übungsaufgaben rund um das Thema World-Wide-Web gezeigt. Die Bearbeitung der Aufgaben erfolgte über das gesamte Semester und werden auf dieser Webapp zur Schau gestellt.</h3>
     <p><strong>Ziele der Veranstaltung</strong> sind, den Umgang mit den kennengelernten Web-Technologien zu erlernen und diese am Beispiel der Webapp anzuwenden.</p>
     <p><strong>Technologien dieser Webapp:</strong></p>
@@ -45,10 +45,7 @@ export default {
     width: 200px;
     height: 200px;
     margin: 0 20px;
-  }
-
-  .test {
-    height: 500px;
+    transform: scale(1.05);
   }
 
 </style>
