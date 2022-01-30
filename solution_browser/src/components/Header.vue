@@ -1,6 +1,6 @@
 <template>
   <div class="header">
-    <router-link id="top" class="title" :style="mobile ? '' : 'font-size: 2rem'" to="/"><img src="src/assets/Color%20logo%20-%20no%20background.svg"></router-link>
+    <router-link id="top" class="title" :style="mobile ? '' : 'font-size: 2rem'" to="/">Solution Browser</router-link>
     <div class="icon"><font-awesome-icon v-if="mobile" class="icon" :icon="['fas', showNav ? 'times' : 'bars']" @click="$emit('slide-content')"></font-awesome-icon></div>
     <DesktopNavigation :navList="navList" v-if="!mobile"></DesktopNavigation>
   </div>

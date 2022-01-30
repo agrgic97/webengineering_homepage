@@ -6,5 +6,9 @@ export default defineConfig({
   plugins: [vue()],
   server: {
     host: true
-  }
+  },
+  resolve: {
+    dedupe: ['vue']
+  },
+  base: ''
 })

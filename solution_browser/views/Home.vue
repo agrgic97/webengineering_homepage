@@ -5,11 +5,11 @@
     <p><strong>Ziele der Veranstaltung</strong> sind, den Umgang mit den kennengelernten Web-Technologien zu erlernen und diese am Beispiel der Webapp anzuwenden.</p>
     <p><strong>Technologien dieser Webapp:</strong></p>
     <div class="images">
-      <img src="src/assets/HTML5_logo_and_wordmark.svg" alt="HTML-Logo">
-      <img src="src/assets/CSS3_logo_and_wordmark.svg" alt="CSS-Logo">
-      <img src="src/assets/Unofficial_JavaScript_logo_2.svg" alt="JS-Logo">
-      <img src="src/assets/Node.js_logo.svg" alt="Node-Logo">
-      <img src="src/assets/Vue.js_Logo_2.svg" alt="Vue-Logo">
+      <img src="/src/assets/HTML5_logo_and_wordmark.svg" alt="HTML-Logo">
+      <img src="/src/assets/CSS3_logo_and_wordmark.svg" alt="CSS-Logo">
+      <img src="/src/assets/Unofficial_JavaScript_logo_2.svg" alt="JS-Logo">
+      <img src="/src/assets/Node.js_logo.svg" alt="Node-Logo">
+      <img src="/src/assets/Vue.js_Logo_2.svg" alt="Vue-Logo">
     </div>
   </div>
 </template>
