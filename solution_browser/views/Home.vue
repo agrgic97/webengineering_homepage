@@ -5,17 +5,25 @@
     <p><strong>Ziele der Veranstaltung</strong> sind, den Umgang mit den kennengelernten Web-Technologien zu erlernen und diese am Beispiel der Webapp anzuwenden.</p>
     <p><strong>Diese Technologien wurden für die Entwicklung dieser Webapp benuzt:</strong></p>
     <div class="images">
-      <img src="/src/assets/HTML5_logo_and_wordmark.svg" alt="HTML-Logo">
-      <img src="/src/assets/CSS3_logo_and_wordmark.svg" alt="CSS-Logo">
-      <img src="/src/assets/Unofficial_JavaScript_logo_2.svg" alt="JS-Logo">
-      <img src="/src/assets/Vue.js_Logo_2.svg" alt="Vue-Logo">
+      <img :src="html" alt="HTML-Logo">
+      <img :src="css" alt="CSS-Logo">
+      <img :src="js" alt="JS-Logo">
+      <img :src="vue" alt="Vue-Logo">
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: "Home"
+  name: "Home",
+  data() {
+    return {
+      html: '/~agrgic2s/HTML5_logo_and_wordmark.svg',
+      css: '/~agrgic2s/CSS3_logo_and_wordmark.svg',
+      js: '/~agrgic2s/Unofficial_JavaScript_logo_2.svg',
+      vue: '/~agrgic2s/Vue.js_Logo_2.svg'
+    }
+  }
 }
 </script>
 
