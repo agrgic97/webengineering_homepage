@@ -23,11 +23,16 @@ export default {
     align-items: center;
     width: 100%;
     padding: 30px 0;
-    height: 120px;
+    height: 150px;
     color: white;
     background-color: deepskyblue;
     font-size: 2rem;
     font-weight: bold;
 
   }
+
+  .subheader {
+    text-align: center;
+  }
+
 </style>

@@ -16,8 +16,8 @@ export default {
     font-size: 2rem;
     color: cornflowerblue;
     position: fixed;
-    bottom: 5px;
-    right: 5px;
+    bottom: 10px;
+    right: 10px;
     border: 2px solid cornflowerblue;
     border-radius: 5px;
     padding: 0 12px;

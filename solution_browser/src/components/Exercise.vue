@@ -11,7 +11,7 @@
         </code-highlight>
         <a v-if="item.video" :href="item.video_link">Zum Video</a>
         <a v-if="item.html_page" :href="item.page_link">Zur Seite</a>
-        <img v-if="item.image" :src="item.path">
+        <img v-if="item.image" :src="'/' + item.path" :alt="item.path">
       </div>
       <div class="solution" v-if="!item.code">{{ item.solution }}</div>
       <code-highlight :language="item.language" class="code" v-if="item.code">
@@ -35,9 +35,6 @@ export default {
   },
   props: {
     data: Object
-  },
-  methods: {
-
   }
 }
 </script>
@@ -97,6 +94,10 @@ export default {
   }
 
   @media only screen and (min-width: 600px) {
+    .title {
+      font-size: 2rem;
+    }
+
     img {
       max-height: 400px;
       width: auto;

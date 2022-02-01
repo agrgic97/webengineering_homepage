@@ -1,9 +1,8 @@
 <template>
   <div class="navigation">
-    <router-link class="navItem" to="/">Home<font-awesome-icon icon="home" class="icon"></font-awesome-icon></router-link>
-    <router-link class="navItem" v-for="item in navList" key="{{ item.id }}" :to="item.path">{{ item.text }}</router-link>
+    <router-link @click="$emit('update-navbar', item.id)" :class="[item.active ? 'active': 'navItem']" v-for="item in navList" :key="item.id" :to="item.path">{{ item.text }}<font-awesome-icon v-if="item.id === 0" icon="home" class="icon"></font-awesome-icon></router-link>
   </div>
-</template>valueOf()
+</template>
 
 <script>
 export default {
@@ -17,25 +16,29 @@ export default {
 <style scoped>
   .navigation {
     position: absolute;
-    color: white;
-    margin-top: 25px;
-    padding-left: 10px;
+    margin-top: 30px;
   }
 
-  .navItem{
+  .navItem, .active {
     display: block;
     padding: 10px;
     color: white;
     text-decoration: none;
-    width: 160px;
+    width: 200px;
 
     /* https://pretagteam.com/question/chrome-hide-blue-highlight-css-mobile */
     -webkit-tap-highlight-color: transparent;
   }
 
+  .active {
+    background-color: darkblue;
+    transform: scale(1.05);
+    font-weight: bold;
+  }
+
   .navItem:hover {
-    background-color: cornflowerblue;
-    border-radius: 5px;
+    transform: scale(1.05);
+    font-weight: bold;
   }
 
   .icon {

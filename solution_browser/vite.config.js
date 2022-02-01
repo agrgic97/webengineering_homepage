@@ -8,7 +8,7 @@ export default defineConfig({
     host: true
   },
   resolve: {
-    dedupe: ['vue']
+    dedupe: ['vue'],
   },
-  base: ''
+  base: './'
 })

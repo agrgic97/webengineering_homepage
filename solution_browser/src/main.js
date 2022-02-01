@@ -1,7 +1,7 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 
-import store from '../store/store'
+// https://router.vuejs.org/guide/
 import router from "../router"
 
 // https://github.com/FortAwesome/vue-fontawesome
@@ -25,7 +25,6 @@ library.add(faGithub)
 
 const app = createApp(App)
 
-app.use(store)
 app.use(router)
 app.use(VueCodeHighlight)
 

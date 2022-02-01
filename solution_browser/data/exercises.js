@@ -107,7 +107,7 @@ export const exercises = {
                 "1": {
                     "title": "Mit welchem HTML-Code (ohne CSS, nur mit HTML-Tags) kann man diesen Wireframe exakt nachbilden?",
                     "image": true,
-                    "path": "src/assets/wireframe01.jpg",
+                    "path": "wireframe01.jpg",
                     "code": true,
                     "language": "html",
                     "solution": "<!DOCTYPE html>\n" +
@@ -155,9 +155,9 @@ export const exercises = {
                         "                          <td align=\"center\"><b>JavaScript</b></td>\n" +
                         "                      </tr>\n" +
                         "                      <tr>\n" +
-                        "                          <td><img src=\"https://kaul.inf.h-brs.de/we/assets/img/tbl.jpg\"></td>\n" +
+                        "                          <td><img src=\"https://kaul.inf.h-brs.de/weimg/tbl.jpg\"></td>\n" +
                         "                          <td><b>|</b></td>\n" +
-                        "                          <td><img src=\"https://kaul.inf.h-brs.de/we/assets/img/eich.jpg\"></td>\n" +
+                        "                          <td><img src=\"https://kaul.inf.h-brs.de/weimg/eich.jpg\"></td>\n" +
                         "                      </tr>\n" +
                         "                      <tr>\n" +
                         "                          <td><mark>Tim Berners-Lee</mark></td>\n" +
@@ -345,7 +345,7 @@ export const exercises = {
                     "title": "Mit welchem HTML- und CSS-Code kann man diesen Wireframe exakt nachbilden?",
                     "image": true,
                     "video": false,
-                    "path": "src/assets/survey.png",
+                    "path": "survey.png",
                     "code": true,
                     "language": "html",
                     "solution": "<!DOCTYPE html>\n" +
@@ -549,7 +549,7 @@ export const exercises = {
                 "1": {
                     "title": "Implementieren Sie ausschließlich mit HTML und CSS Flexbox folgendes responsive Webdesign nach der Desktop-First-Strategie!",
                     "image": true,
-                    "path": "src/assets/holy-grail1.png",
+                    "path": "holy-grail1.png",
                     "video": false,
                     "code": true,
                     "language": "html",
@@ -798,7 +798,7 @@ export const exercises = {
                 "1": {
                     "title": "Implementieren Sie folgende Landing Page responsiv mit Grid Layout. Vermeiden Sie außerdem das Erscheinen von Scrollbars so weit wie möglich.",
                     "image": true,
-                    "path": "src/assets/landing.png",
+                    "path": "landing.png",
                     "video": false,
                     "code": true,
                     "language": "html",
@@ -1318,7 +1318,7 @@ export const exercises = {
                 "1": {
                     "title": "Implementieren Sie die interaktive Anwendung \"Rednerliste mit Zeitmessung\" selbstständig in JavaScript durch Nutzung der DOM API und der Timer-Funktionen. Neue Redner sollen auf Knopfdruck hinzugefügt werden können. Deren Uhr wird dann sofort automatisch gestartet und alle anderen Uhren angehalten. Bei jedem Redner soll die individuelle, gemessene Redezeit sekundengenau angezeigt werden. Für jeden Redner soll es einen eigenen Start-/Stopp-Button geben. Es soll immer nur eine Uhr laufen. Angezeigt werden sollen die bisherigen Summenzeiten aller Redebeiträge der betreffenden Person. Suchen Sie eine möglichst kurze und elegante Lösung. Achten Sie gleichzeitig auf gute Usability: z.B. wenn die Eingabe mit einem Return beendet wird, soll der Button-Click nicht mehr erforderlich sein, usw.",
                     "image": true,
-                    "path": "src/assets/Rednerliste.png",
+                    "path": "Rednerliste.png",
                     "video": false,
                     "code": true,
                     "language": "html",
@@ -2188,7 +2188,7 @@ export const exercises = {
                     "image": false,
                     "video": false,
                     "html_page": true,
-                    "page_link": "https://kaul.inf.h-brs.de/we/assets/html/plagiatsresolution.html",
+                    "page_link": "https://kaul.inf.h-brs.de/wehtml/plagiatsresolution.html",
                     "code": true,
                     "language": "javascript",
                     "solution": "const source_code = Array.from(document.getElementsByTagName('*'))\n" +
@@ -2343,7 +2343,7 @@ export const exercises = {
                         "\n" +
                         "Fügen Sie selbst in die JSON-Datei zusätzliche Inhalte zu Themen der Vorlesung als Strings beispielhaft ein. Wenn Sie Inhalte aus fremden Quellen kopieren, so schreiben Sie bitte stets die Quelle als externe Ressource hinzu. Diese soll dann auf der rechten Seite im WWW-Navigator erscheinen.",
                     "image": true,
-                    "path": "src/assets/www-navigator.png",
+                    "path": "www-navigator.png",
                     "video": false,
                     "code": true,
                     "language": "html",
@@ -2644,7 +2644,7 @@ export const exercises = {
                     "title": "Codieren Sie eine HTML-Datei mit Inline SVG, so dass sich folgendes Aussehen ergibt:\n" +
                         "Fügen Sie als Hover-Effekt eine CSS-Animation hinzu, die die Größe der SVG-Grafik verdoppelt, wenn man mit dem Cursor über die Grafik geht.",
                     "image": true,
-                    "path": "src/assets/use_the_platform.png",
+                    "path": "use_the_platform.png",
                     "video": false,
                     "code": true,
                     "language": "html",

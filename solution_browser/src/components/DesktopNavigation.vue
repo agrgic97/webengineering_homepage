@@ -1,6 +1,6 @@
 <template>
   <div class="navigation">
-    <div class="navItem" v-for="item in navList" key="{{ item.id }}"><router-link class="link" :to="item.path">{{ item.text }}</router-link></div>
+    <router-link class="navItem" v-for="item in navList" :key="item.id" :to="item.path" @click="$emit('update-navbar', item.id)">{{ item.text }}<font-awesome-icon v-if="item.id === 0" icon="home" class="icon"></font-awesome-icon></router-link>
   </div>
 </template>
 
@@ -8,7 +8,7 @@
 export default {
   name: "DesktopNavigation",
   props: {
-      navList: Array
+    navList: Array
   }
 }
 </script>
@@ -24,25 +24,22 @@ export default {
   .navItem {
     display: inline-block;
     padding: 10px;
-    font-size: 1.25rem;
-    color: #333333;
-  }
-
-  .link {
     text-decoration: none;
     color: cornflowerblue;
     font-weight: bold;
     font-size: 1.5rem;
   }
 
-  .navItem .link {
-    display: block;
+
+
+  .icon {
+    margin-left: 5px;
   }
 
-  .navItem .link:hover, .navItem .link:active {
-    transform: scale(1.05);
+  .navItem:hover, .navItem:active {
     font-weight: bold;
     color: darkblue;
+    transform: scale(1.05);
   }
 
 </style>

@@ -1,8 +1,8 @@
 <template>
   <div class="app">
-    <MobileNavigation :navList="navList"></MobileNavigation>
+    <MobileNavigation @update-navbar="updateNavbar" :navList="navList"></MobileNavigation>
     <div class="content" :class="showNav ? 'open' : ''">
-      <Header :mobile="isMobile()" :navList="navList" :showNav="showNav" @slide-content="slideContent()"></Header>
+      <Header :mobile="isMobile()" :navList="navList" :showNav="showNav" @update-navbar="updateNavbar" @slide-content="slideContent()"></Header>
       <router-view class="view"></router-view>
       <Footer></Footer>
       <ToTheTop v-show="scrollY > 300" @to-top="toTop"></ToTheTop>
@@ -30,19 +30,20 @@
         widthTimer: 0,
         showNav: false,
         navList: [
-          { text: 'Einführung', path: '/Einfuehrung', id: 1 },
-          { text: 'CSS 1. Teil', path: '/CSS1', id: 2 },
-          { text: 'CSS 2. Teil', path: '/CSS2', id: 3 },
-          { text: 'JavaScript', path: '/JavaScript', id: 4 },
-          { text: 'DOM', path: '/DOM', id: 5 },
-          { text: 'ECMAScript', path: '/ECMAScript', id: 6 },
-          { text: 'Functional', path: '/Functional', id: 7 },
-          { text: 'Async', path: '/Async', id: 8 },
-          { text: 'SVG', path: '/SVG', id: 9 },
-          { text: 'TypeScript', path: '/TypeScript', id: 10 },
-          { text: 'Vue', path: '/Vue', id: 11 },
-          { text: 'PHP', path: '/PHP', id: 12 },
-          { text: 'Security', path: '/Security', id: 13 }
+          { text: 'Home', path: '/~agrgic2s', id: 0, active: true},
+          { text: 'Einführung', path: '/~agrgic2s/Einfuehrung', id: 1, active: false },
+          { text: 'CSS 1. Teil', path: '/~agrgic2s/CSS1', id: 2, active: false },
+          { text: 'CSS 2. Teil', path: '/~agrgic2s/CSS2', id: 3, active: false },
+          { text: 'JavaScript', path: '/~agrgic2s/JavaScript', id: 4, active: false },
+          { text: 'DOM', path: '/~agrgic2s/DOM', id: 5, active: false },
+          { text: 'ECMAScript', path: '/~agrgic2s/ECMAScript', id: 6, active: false },
+          { text: 'Functional', path: '/~agrgic2s/Functional', id: 7, active: false },
+          { text: 'Async', path: '/~agrgic2s/Async', id: 8, active: false },
+          { text: 'SVG', path: '/~agrgic2s/SVG', id: 9, active: false },
+          { text: 'TypeScript', path: '/~agrgic2s/TypeScript', id: 10, active: false },
+          { text: 'Vue', path: '/~agrgic2s/Vue', id: 11, active: false },
+          { text: 'PHP', path: '/~agrgic2s/PHP', id: 12, active: false },
+          { text: 'Security', path: '/~agrgic2s/Security', id: 13, active: false }
         ],
         scrollTimer: 0,
         scrollY: 0
@@ -52,12 +53,10 @@
       isMobile() {
         return this.screenWidth < 600
       },
-      isDesktop() {
-        return this.screenWidth >= 600
-      },
       slideContent() {
         this.showNav = !this.showNav
       },
+      // copied method structure from beneath
       handleResize() {
         if(this.widthTimer) return
         this.widthTimer = setTimeout(() => {
@@ -66,6 +65,7 @@
           this.widthTimer = 0
         }, 100)
       },
+      // https://codepen.io/webty_mizusawa/pen/QWLMeqE
       handleScroll() {
         if(this.scrollTimer) return
         this.scrollTimer = setTimeout(() => {
@@ -75,15 +75,23 @@
         }, 100)
 
       },
+      // https://codepen.io/webty_mizusawa/pen/QWLMeqE
       toTop() {
         document.body.scrollTo({
           top: 0,
           behavior: 'smooth'
         })
+      },
+      updateNavbar(id) {
+        this.navList = this.navList.map(item => {
+          (item.id === id) ? item.active = true: item.active = false
+          return item
+        })
       }
     },
     mounted() {
       window.addEventListener('resize', this.handleResize)
+      // https://codepen.io/webty_mizusawa/pen/QWLMeqE
       document.body.addEventListener('scroll', this.handleScroll)
     }
 
@@ -104,7 +112,7 @@
   }
 
   body {
-    background-color: deepskyblue;
+    background-color: cornflowerblue;
     font-family: 'Poppins', sans-serif;
     font-size: 1rem;
     overflow-x: hidden;
@@ -131,28 +139,28 @@
     transform: translateX(150px);
   }
 
-  @media only screen and (min-width: 600px) {
-    /* https://www.w3schools.com/howto/howto_css_custom_scrollbar.asp */
 
-    /* width */
-    ::-webkit-scrollbar {
-      height: 5px;
-      width: 8px;
-    }
+  /* https://www.w3schools.com/howto/howto_css_custom_scrollbar.asp */
 
-    /* Track */
-    ::-webkit-scrollbar-track {
-      background: #f1f1f1;
-    }
-
-    /* Handle */
-    ::-webkit-scrollbar-thumb {
-      background: #888;
-    }
-
-    /* Handle on hover */
-    ::-webkit-scrollbar-thumb:hover {
-      background: #555;
-    }
+  /* width */
+  ::-webkit-scrollbar {
+    height: 5px;
+    width: 8px;
   }
+
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888;
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+
 </style>

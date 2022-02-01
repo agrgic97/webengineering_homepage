@@ -1,3 +1,5 @@
+// https://router.vuejs.org/guide/
+
 import { createRouter, createWebHistory } from "vue-router"
 import Home from "../views/Home.vue"
 import Einfuehrung from "../views/Einfuehrung.vue"
@@ -16,72 +18,72 @@ import Security from "../views/Security.vue"
 
 const routes = [
     {
-        path: '/',
+        path: '/~agrgic2s/',
         name: 'Home',
         component: Home
     },
     {
-        path: '/Einfuehrung',
+        path: '/~agrgic2s/Einfuehrung',
         name: 'Einfuehrung',
         component: Einfuehrung
     },
     {
-        path: '/CSS1',
+        path: '/~agrgic2s/CSS1',
         name: 'CSS1',
         component: CSS1
     },
     {
-        path: '/CSS2',
+        path: '/~agrgic2s/CSS2',
         name: 'CSS2',
         component: CSS2
     },
     {
-        path: '/JavaScript',
+        path: '/~agrgic2s/JavaScript',
         name: 'JavaScript',
         component: JavaScript
     },
     {
-        path: '/DOM',
+        path: '/~agrgic2s/DOM',
         name: 'DOM',
         component: DOM
     },
     {
-        path: '/ECMAScript',
+        path: '/~agrgic2s/ECMAScript',
         name: 'ECMAScript',
         component: ECMAScript
     },
     {
-        path: '/Functional',
+        path: '/~agrgic2s/Functional',
         name: 'Functional',
         component: Functional
     },
     {
-        path: '/Async',
+        path: '/~agrgic2s/Async',
         name: 'Async',
         component: Async
     },
     {
-        path: '/SVG',
+        path: '/~agrgic2s/SVG',
         name: 'SVG',
         component: SVG
     },
     {
-        path: '/TypeScript',
+        path: '/~agrgic2s/TypeScript',
         name: 'TypeScript',
         component: TypeScript
     },
     {
-        path: '/Vue',
+        path: '/~agrgic2s/Vue',
         name: 'Vue',
         component: Vue
     },
     {
-        path: '/PHP',
+        path: '/~agrgic2s/PHP',
         name: 'PHP',
         component: PHP
     },
     {
-        path: '/Security',
+        path: '/~agrgic2s/Security',
         name: 'Security',
         component: Security
     }
