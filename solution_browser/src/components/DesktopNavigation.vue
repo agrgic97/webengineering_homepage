@@ -28,6 +28,9 @@ export default {
     color: cornflowerblue;
     font-weight: bold;
     font-size: 1.5rem;
+
+    /* https://stackoverflow.com/questions/21003535/anyway-to-prevent-the-blue-highlighting-of-elements-in-chrome-when-clicking-quic */
+    -webkit-tap-highlight-color: transparent;
   }
 
 

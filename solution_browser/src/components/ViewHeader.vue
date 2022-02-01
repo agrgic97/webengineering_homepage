@@ -25,7 +25,7 @@ export default {
     padding: 30px 0;
     height: 150px;
     color: white;
-    background-color: deepskyblue;
+    background-color: cornflowerblue;
     font-size: 2rem;
     font-weight: bold;
 

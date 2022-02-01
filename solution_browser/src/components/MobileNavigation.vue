@@ -26,7 +26,7 @@ export default {
     text-decoration: none;
     width: 200px;
 
-    /* https://pretagteam.com/question/chrome-hide-blue-highlight-css-mobile */
+    /* https://stackoverflow.com/questions/21003535/anyway-to-prevent-the-blue-highlighting-of-elements-in-chrome-when-clicking-quic */
     -webkit-tap-highlight-color: transparent;
   }
 
